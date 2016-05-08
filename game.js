@@ -1,8 +1,8 @@
 $(document).ready(function() {
-	initialize();
+	initialize(2);
 	generate(1);
-	generate(2);
-	setInterval('move();', 5);
+	//generate(2);
+	setInterval('move();', 10);
 	
 });
 
@@ -27,6 +27,8 @@ function move() {
 
 function initialize(lanes) {
 	if(screen.width > screen.height) {
-		alert('Success');
+		var uiBar = screen.height * 0.05;
+		var trackHeight = screen.height / lanes;
+		alert(uiBar);
 	}
 }

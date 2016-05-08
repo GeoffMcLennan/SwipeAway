@@ -7,6 +7,12 @@ div#container {
 	width: 450px;
 }
 
+div#ui {
+	border: 1px black solid;
+	border-width: 1px 0;
+	height: 10%;
+}
+
 div.track {
 	height: 100%;
 	width: 100%;

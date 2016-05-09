@@ -2,9 +2,26 @@ body {
 	margin: 0;
 }
 
+/* Extra UI that appears on desktop version */
+div#desktop {
+	text-align: center;
+}
+
+/* Error that displays if user is playing in portrait mode */
+#portError {
+	text-align: center;
+	font-size: 1.90em;
+}
+
+/* Game container */
 div#container {
-	height: 100px;
-	width: 450px;
+	border: 1px black solid;
+	border-width: 1px 0;
+}
+
+div#ui {
+	border: 1px black solid;
+	border-width: 1px 0;
 }
 
 div#ui {
@@ -14,14 +31,13 @@ div#ui {
 }
 
 div.track {
-	height: 100%;
 	width: 100%;
 	border:1px black solid;
 	border-width: 1px 0;
 }
 
 div.obstacle {
-	width: 10px;
+	width: 40px;
 	background-color: red;
 	position: absolute;
 }

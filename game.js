@@ -1,17 +1,13 @@
 
 $(document).ready(function() {
+	// Recalls intialize function if screen orientation is changed.
+	$(window).on("orientationchange", function(event){
+		interval = setInterval("checkOrientation();", 1000);
+	});
 	initialize();
 	generate();	
 	setInterval('move();', $tickLength);
 });
-
-// Recalls intialize function if screen orientation is changed.
-$(window).on("orientationchange", function(){
-	initialize();
-});
-
-// Height of the game panel, set in initialize() and used in obstacle generation.
-var gameHeight;
 
 // Generates a new obstacle off-screen, to the right.
 function generate() {
@@ -23,7 +19,7 @@ function generate() {
 	$trackHeight = $($trackId).css("height");
 	$leftInit = parseInt($("div#container").css("margin-left")) + $("div#container").width() + 2;
 
-	$block.css({"height": $trackHeight, "left": $leftInit - 300});
+	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
 
 	setObsListeners();
@@ -77,14 +73,15 @@ function move() {
 // Sets up appropriate game screen depending on screen size.
 function initialize() {
 	$("h2#portError").hide();
+	
 	// Sets up screen for phones or small devices.
 	if (screen.height <= 800 && screen.width <= 800) {
 		$("div#desktop").hide();
-		$("div#container").css({"width": "100vw", 
-								"height": "100vh"});
+		$width = $(window).width();
+		$height = $(window).height();
+		$("div#container").css({"width": $width, 
+								"height": $height});
 
-		$width = $("div#container").width();
-		$height = $("div#container").height();
 		// If the phone is in portrait mode, limits the height of game pane and displays error.
 		if ($height > $width) {
 			$height = $width / 1.5;
@@ -102,26 +99,30 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
-	gameHeight = $height - $("div#ui").height() - 2;
-	$laneHeight = (gameHeight / $lanes) - 2;
+	$gameHeight = $height - $("div#ui").height() - 2;
+	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
-
-	$('html, body').css({
-	    'overflow': 'hidden',
-	    'height': '100%'
-	});
 }
 
-/*$(document).on("pageinit", function(event){
+// Helps the goddamn orientation bullshit.
+function checkOrientation() {
+	$heightCon = ($("div#container").height == screen.height) || ($("div#container") == screen.width / 1.5);
+	$widthCon = $("div#container").width() == screen.width;
 
-	jQuery("div.obsTarget").on("swipeup", function(event) {
-		alert(event.target);
-	});
+	if ($heightCon && $widthCon) {
+		clearInterval(interval);
+	} else {
+		initialize();
+	}
+}
 
-});*/
-
+// Sets the listeners for obstacles.
 function setObsListeners() {
 	jQuery("div.obstacle").on("swipeup", function(event) {
-		alert(event.target);
+		alert("UP");
+	});
+
+	jQuery("div.obstacle").on("swipedown", function(event) {
+		alert("DOWN");
 	});
 }

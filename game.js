@@ -92,7 +92,7 @@ function initialize() {
 }
 
 $(document).on("pageinit", function(event){
-	jQuery("div.track").on("swipe", function() {
+	jQuery("div.obstacle").on("swipeup", function() {
 		alert("Yay");
 	});
 });

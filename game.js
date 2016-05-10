@@ -21,7 +21,10 @@ function generate() {
 
 	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
+    
 }
+
+setInterval(generate, 1000);
 
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {

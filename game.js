@@ -90,6 +90,12 @@ function initialize() {
 	$("div.track").css({"height": $laneHeight + "px", "width": $width});
 }
 
-$("#test").on("swipe", function() {
-	alert("Yay");
+$(document).on("pageinit", function(event){
+	jQuery("div.track").on("swipeone", function() {
+		alert("Yay");
+	});
 });
+
+$(document).on("mobileinit", function(){
+	$.mobile.loading().hide();
+})

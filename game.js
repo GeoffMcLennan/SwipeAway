@@ -1,20 +1,19 @@
+
 $(document).ready(function() {
-	initialize(2);
-	generate(1);
-	generate(2);
-	$('div.obstacle').on("click", function() {
-	alert("Yay");
-});
+	initialize();
+	generate();	
 	setInterval('move();', $tickLength);
-	
 });
 
 // Recalls intialize function if screen orientation is changed.
-$(window).on("orientationchange", initialize());
+$(window).on("orientationchange", function(){
+	initialize();
+});
 
 // Generates a new obstacle off-screen, to the right.
-function generate(track) {
-	$trackId = "#t" + track;
+function generate() {
+	$track = Math.floor(Math.random() * $lanes) + 1
+	$trackId = "#t" + $track;
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
 
@@ -24,6 +23,23 @@ function generate(track) {
 	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
 }
+
+function generateSprites(trackNum) {
+    var randomPosition1 = Math.random() * 210 + 10;
+    var randomPosition2 = Math.random() * 210 + 10;
+    while ((randomPosition1 >= randomPosition2 - 60) && (randomPosition1 <= randomPosition2 + 60)) {
+        randomPosition1 = Math.random() * 210 + 10;
+    }
+    if (trackNum == 2) {
+        var sprite1 = $('<img src="circle.png" id="circle">');
+        var sprite2 = $('<img src="circle.png" id="circle">');
+        sprite1.css({"left": randomPosition1 + "px"});
+        $("#t1").append(sprite1);
+        sprite2.css({"left": randomPosition2 + "px"});
+        $("#t2").append(sprite2);
+    }
+}
+
 
 // Moves all obstacles by 1 pixel.
 // **PENDING** Checks all obstacles to see if they have collided with an object.
@@ -72,9 +88,11 @@ function initialize() {
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
 	$game = $height - $("div#ui").height() - 2;
 	$laneHeight = ($game / $lanes) - 2;
-	$("div.track").css({"height": $laneHeight + "px", "width": $width});
+	$("div.track").css({"height": $laneHeight, "width": $width});
 }
 
-$('div.obstacle').on("swipe", function() {
-	alert("Yay");
+$(document).on("pageinit", function(event){
+	jQuery("div.track").on("swipe", function() {
+		alert("Yay");
+	});
 });

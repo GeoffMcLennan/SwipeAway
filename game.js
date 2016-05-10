@@ -89,6 +89,14 @@ function initialize() {
 	$laneHeight = ($game / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight + "px", "width": $width});
 }
+//Play button
+function pressPlay() {
+	$(document).ready(function() {
+    	$("#playButton").click(function(){
+        	alert("button");
+   		 }); 
+	});
+}
 
 $("#test").on("swipe", function() {
 	alert("Yay");

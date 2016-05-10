@@ -10,6 +10,9 @@ $(window).on("orientationchange", function(){
 	initialize();
 });
 
+// Height of the game panel, set in initialize() and used in obstacle generation.
+var gameHeight;
+
 // Generates a new obstacle off-screen, to the right.
 function generate() {
 	$track = Math.floor(Math.random() * $lanes) + 1
@@ -20,8 +23,10 @@ function generate() {
 	$trackHeight = $($trackId).css("height");
 	$leftInit = parseInt($("div#container").css("margin-left")) + $("div#container").width() + 2;
 
-	$block.css({"height": $trackHeight, "left": $leftInit});
+	$block.css({"height": $trackHeight, "left": $leftInit - 300});
 	$($trackId).append($block);
+
+	setObsListeners();
 }
 
 function generateSprites(trackNum) {
@@ -45,6 +50,7 @@ function generateSprites(trackNum) {
 // **PENDING** Checks all obstacles to see if they have collided with an object.
 function move() {
 	$blocks = $(".obstacle");
+	$targets = $(".obsTarget");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
 	$blocks.each(function() {
@@ -53,6 +59,16 @@ function move() {
 
 		// Deletes any obstacles that have travelled to the right off screen.
 		if ($newLeft <= $offLeft) {
+			$(this).remove();
+		}
+	});
+
+	$targets.each(function() {
+		$newLeft = parseInt($(this).css("left")) - 1;
+		$(this).css("left", $newLeft + "px");
+
+		// Deletes any obstacles that have travelled to the right off screen.
+		if ($newLeft + 20 <= $offLeft) {
 			$(this).remove();
 		}
 	});
@@ -86,13 +102,26 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
-	$game = $height - $("div#ui").height() - 2;
-	$laneHeight = ($game / $lanes) - 2;
+	gameHeight = $height - $("div#ui").height() - 2;
+	$laneHeight = (gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
+
+	$('html, body').css({
+	    'overflow': 'hidden',
+	    'height': '100%'
+	});
 }
 
-$(document).on("pageinit", function(event){
-	jQuery("div.obstacle").on("swipeup", function() {
-		alert("Yay");
+/*$(document).on("pageinit", function(event){
+
+	jQuery("div.obsTarget").on("swipeup", function(event) {
+		alert(event.target);
 	});
-});
+
+});*/
+
+function setObsListeners() {
+	jQuery("div.obstacle").on("swipeup", function(event) {
+		alert(event.target);
+	});
+}

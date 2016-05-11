@@ -69,36 +69,32 @@ div.obsTarget {
 }
 
 #button1 {
-    position: fixed;
-    margin-top: 40px;
-    margin-left: 185px;
+    margin-top: 6%;
+    margin-left: 20%;
     width: 60px;
     height: 60px;
     font-size: 180%;
 }
 
 #button2 {
-    position: fixed;
-    margin-top: 40px;
-    margin-left: 345px;
+    margin-top: 6%;
+    margin-left: 20%;
     width: 60px;
     height: 60px;
     font-size: 180%;
 }
 
 #button3 {
-    position: fixed;
-    margin-top: 40px;
-    margin-left: 495px;
+    margin-top: 6%;
+    margin-left: 20%;
     width: 60px;
     height: 60px;
     font-size: 180%;
 }
 
 #button4 {
-    position: fixed;
-    margin-top: 140px;
-    margin-left: 275px;
+    margin-top: 8%;
+    margin-left: 39%;
     width: 200px;
 }
 

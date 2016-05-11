@@ -89,7 +89,8 @@ function initialize() {
 	$laneHeight = ($game / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight + "px", "width": $width});
 }
-//Play button
+
+// Play button
 function pressPlay() {
 	$(document).ready(function() {
     	$("#playButton").click(function(){
@@ -97,6 +98,22 @@ function pressPlay() {
    		 }); 
 	});
 }
+
+// Mute/unmute button change picture
+$("").button({
+    icons: {
+        primary: "ui-icon-locked"
+    }
+});
+$('#sound').click(function() {
+    $(this).data('state', ($(this).data('state') == 'disarm') ? 'arm' : 'disarm');
+    $(".armdisarm").button({
+        icons: {
+            primary: ($(this).data('state') == "disarm") ? "ui-icon-unlocked" : "ui-icon-locked"
+        }
+    });
+});
+
 
 $("#test").on("swipe", function() {
 	alert("Yay");

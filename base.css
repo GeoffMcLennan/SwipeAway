@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	padding: 0;
 }
 
 /* Extra UI that appears on desktop version */
@@ -43,19 +44,25 @@ div.obstacle {
     top: 30px;
 } 
 
-//login and signup links
+/*login and signup links*/
 .block {
-    margin: auto;
+	display: block;
+    margin: 0 auto;
 }
 
 .account {
 	float: right;
-	color: red;
+	color: black;
 	padding-top: 10px;
 	padding-right: 10px;
 }
 
-// centering home page buttons
+/*Center SwipeAway text*/
+div#title {
+	text-align: center;
+}
+
+/*  centering home page buttons */
 .buttons {
 	width: 150px;
 	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
@@ -68,16 +75,26 @@ div.obstacle {
 	padding:5px
 }
 
-div.buttonSpace {
+div.inputSpace {
 	padding-top: 10px;
 }
 
 button {
 	margin: 0 auto;
 	display: block;
+	cursor: pointer;
 }
 
-a img.icon {
+/* Padd left side icons */
+.icon {
 	padding-top: 10px;
 	padding-left: 10px;
 }
+
+div.block {
+	margin: 0 auto;
+	width: 170px;
+}
+
+
+

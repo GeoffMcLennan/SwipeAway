@@ -28,6 +28,10 @@ function generate() {
 
 setInterval(generate, 1000);
 
+function randomIntForInterval(min,max){
+    Math.floor(Math.random() * (601) + 700);
+}
+
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     var sprite1 = $('<img src="circle.png" id="circle">');

@@ -10,6 +10,11 @@ $(document).ready(function() {
 	setInterval('move();', $tickLength);
 });
 
+var sprite1 = $('<img src="circle.png" id="circle">');
+var sprite2 = $('<img src="circle.png" id="circle">');
+var sprite3 = $('<img src="circle.png" id="circle">');
+var sprite4 = $('<img src="circle.png" id="circle">');
+
 // Generates a new obstacle off-screen, to the right.
 function generate() {
 	$track = Math.floor(Math.random() * $lanes) + 1
@@ -28,10 +33,6 @@ function generate() {
 
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
-    var sprite1 = $('<img src="circle.png" id="circle">');
-    var sprite2 = $('<img src="circle.png" id="circle">');
-    var sprite3 = $('<img src="circle.png" id="circle">');
-    var sprite4 = $('<img src="circle.png" id="circle">');
     //The width in which the sprites are able to spawn.
     var genRange = parseInt($("#container").css("width")) * 0.5;
     //Specific possible position of the sprites.

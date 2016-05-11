@@ -119,10 +119,39 @@ function checkOrientation() {
 // Sets the listeners for obstacles.
 function setObsListeners() {
 	jQuery("div.obstacle").on("swipeup", function(event) {
-		alert("UP");
+		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
+		$newLane = parseInt($parentId) - 1;
+		$newId = "#t" + $newLane;
+
+		if($newLane >= 1) {
+			$left = $(this).css("left");
+			$height = $(this).css("height");
+			$(this).remove();
+
+			$block = $("<div></div>");
+			$block.addClass("obstacle").css({"left": $left, "height": $height});
+
+			$($newId).append($block);
+			setObsListeners();
+		}
+
 	});
 
 	jQuery("div.obstacle").on("swipedown", function(event) {
-		alert("DOWN");
+		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
+		$newLane = parseInt($parentId) + 1;
+		$newId = "#t" + $newLane;
+
+		if($newLane <= $lanes) {
+			$left = $(this).css("left");
+			$height = $(this).css("height");
+			$(this).remove();
+
+			$block = $("<div></div>");
+			$block.addClass("obstacle").css({"left": $left, "height": $height});
+
+			$($newId).append($block);
+			setObsListeners();
+		}
 	});
 }

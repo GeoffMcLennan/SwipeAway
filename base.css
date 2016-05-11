@@ -43,38 +43,9 @@ div.obstacle {
     top: 30px;
 } 
 
-img#logo {
-	padding-top: 2%;
-	display: block;
-	margin: 0 auto;
-}
-
-// centering home page buttons
+//login and signup links
 .block {
-  height:500px;
-  text-align: center;
-}
-
-
-.block:before {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -0.25em; 
-}
-
-.centered {
-  display: inline-block;
-  vertical-align: middle;
-  width: 300px;
-    margin: 0 auto;
-}
-
-// put icons in top left
-
-a:link {
-	margin-top: 4px;
-	margin-left: 2px;
+    margin: auto;
 }
 
 .account {
@@ -84,6 +55,7 @@ a:link {
 	padding-right: 10px;
 }
 
+// centering home page buttons
 .buttons {
 	width: 150px;
 	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
@@ -101,7 +73,11 @@ div.buttonSpace {
 }
 
 button {
-    position:relative;
-    top:50%; 
-    left:50%;
+	margin: 0 auto;
+	display: block;
+}
+
+a img.icon {
+	padding-top: 10px;
+	padding-left: 10px;
 }

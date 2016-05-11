@@ -1,13 +1,14 @@
 
 $(document).ready(function() {
+	// Recalls intialize function if screen orientation is changed.
+	$(window).on("orientationchange", function(event){
+		interval = setInterval("checkOrientation();", 1000);
+	});
 	initialize();
 	generate();
 	generateSprites(lane);
 	setInterval('move();', $tickLength);
 });
-
-// Recalls intialize function if screen orientation is changed.
-$(window).on("orientationchange", initialize);
 
 // Generates a new obstacle off-screen, to the right.
 function generate() {
@@ -21,6 +22,8 @@ function generate() {
 
 	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
+
+	setObsListeners();
 }
 
 setInterval(generate, 1000);
@@ -165,6 +168,7 @@ function generateSprites(trackNum) {
 // **PENDING** Checks all obstacles to see if they have collided with an object.
 function move() {
 	$blocks = $(".obstacle");
+	$targets = $(".obsTarget");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
 	$blocks.each(function() {
@@ -176,19 +180,30 @@ function move() {
 			$(this).remove();
 		}
 	});
+
+	$targets.each(function() {
+		$newLeft = parseInt($(this).css("left")) - 1;
+		$(this).css("left", $newLeft + "px");
+
+		// Deletes any obstacles that have travelled to the right off screen.
+		if ($newLeft + 20 <= $offLeft) {
+			$(this).remove();
+		}
+	});
 }
 
 // Sets up appropriate game screen depending on screen size.
 function initialize() {
 	$("h2#portError").hide();
+	
 	// Sets up screen for phones or small devices.
 	if (screen.height <= 800 && screen.width <= 800) {
 		$("div#desktop").hide();
-		$("div#container").css({"width": "100vw", 
-								"height": "100vh"});
+		$width = $(window).width();
+		$height = $(window).height();
+		$("div#container").css({"width": $width, 
+								"height": $height});
 
-		$width = $("div#container").width();
-		$height = $("div#container").height();
 		// If the phone is in portrait mode, limits the height of game pane and displays error.
 		if ($height > $width) {
 			$height = $width / 1.5;
@@ -206,11 +221,59 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
-	$game = $height - $("div#ui").height() - 2;
-	$laneHeight = ($game / $lanes) - 2;
-	$("div.track").css({"height": $laneHeight + "px", "width": $width});
+	$gameHeight = $height - $("div#ui").height() - 2;
+	$laneHeight = ($gameHeight / $lanes) - 2;
+	$("div.track").css({"height": $laneHeight, "width": $width});
 }
 
-$("#test").on("swipe", function() {
-	alert("Yay");
-});
+// Helps the goddamn orientation bullshit.
+function checkOrientation() {
+	$heightCon = ($("div#container").height == screen.height) || ($("div#container") == screen.width / 1.5);
+	$widthCon = $("div#container").width() == screen.width;
+
+	if ($heightCon && $widthCon) {
+		clearInterval(interval);
+	} else {
+		initialize();
+	}
+}
+
+// Sets the listeners for obstacles.
+function setObsListeners() {
+	jQuery("div.obstacle").on("swipeup", function(event) {
+		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
+		$newLane = parseInt($parentId) - 1;
+		$newId = "#t" + $newLane;
+
+		if($newLane >= 1) {
+			$left = $(this).css("left");
+			$height = $(this).css("height");
+			$(this).remove();
+
+			$block = $("<div></div>");
+			$block.addClass("obstacle").css({"left": $left, "height": $height});
+
+			$($newId).append($block);
+			setObsListeners();
+		}
+
+	});
+
+	jQuery("div.obstacle").on("swipedown", function(event) {
+		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
+		$newLane = parseInt($parentId) + 1;
+		$newId = "#t" + $newLane;
+
+		if($newLane <= $lanes) {
+			$left = $(this).css("left");
+			$height = $(this).css("height");
+			$(this).remove();
+
+			$block = $("<div></div>");
+			$block.addClass("obstacle").css({"left": $left, "height": $height});
+
+			$($newId).append($block);
+			setObsListeners();
+		}
+	});
+}

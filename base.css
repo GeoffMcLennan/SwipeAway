@@ -24,6 +24,12 @@ div#ui {
 	border-width: 1px 0;
 }
 
+div#ui {
+	border: 1px black solid;
+	border-width: 1px 0;
+	height: 10%;
+}
+
 div.track {
 	width: 100%;
 	border:1px black solid;
@@ -34,6 +40,14 @@ div.obstacle {
 	width: 40px;
 	background-color: red;
 	position: absolute;
+}
+
+div.obsTarget {
+	width: 240px;
+	position: absolute;
+	border: 1px black solid;
+	border-width: 0 1px;
+	z-index: 100;
 }
 
 #circle {

@@ -52,7 +52,8 @@ div.obsTarget {
 
 #circle {
     position: relative;
-    width: 35px;
-    height: 35px;
-    top: 30px;
+    width: 31px;
+    height: 31px;
+    top: 35%;
 } 
+

@@ -21,7 +21,6 @@ function generate() {
 
 	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
-    
 }
 
 setInterval(generate, 1000);

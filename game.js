@@ -31,6 +31,8 @@ function generate() {
 	setObsListeners();
 }
 
+setInterval(generate, 1000);
+
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     //The width in which the sprites are able to spawn.

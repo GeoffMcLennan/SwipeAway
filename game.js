@@ -14,6 +14,34 @@ var sprite2 = $('<img src="circle.png" id="circle">');
 var sprite3 = $('<img src="circle.png" id="circle">');
 var sprite4 = $('<img src="circle.png" id="circle">');
 
+function collision() {
+    var obstacle = $(".obstacle").offset().left;
+    var spritePos1 = $(sprite1).offset().left + 25;
+    var spritePos2 = $(sprite2).offset().left + 25;
+    var spritePos3 = $(sprite3).offset().left + 25;
+    var spritePos4 = $(sprite4).offset().left + 25;
+    if ($(".obstacle").parent().is("#t1")) {
+        if (obstacle <= spritePos1) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t2")) {
+        if (obstacle <= spritePos2) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t3")) {
+        if (obstacle <= spritePos3) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t4")) {
+        if (obstacle <= spritePos4) {
+            $(".obstacle").remove();
+        }
+    }
+}
+
 // Generates a new obstacle off-screen, to the right.
 function generate() {
 	$track = Math.floor(Math.random() * $lanes) + 1
@@ -182,6 +210,7 @@ function move() {
 			$(this).remove();
 		}
 	});
+	collision();
 }
 
 // Sets up appropriate game screen depending on screen size.

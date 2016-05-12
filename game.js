@@ -63,7 +63,7 @@ function generate() {
 
 //generateOb = setInterval(generate, 1000);
 
-function randomIntForInterval(min,max){
+function randomIntForInterval(){
     Math.floor(Math.random() * (601) + 700);
 }
 
@@ -156,6 +156,15 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
+	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
+						"width": (0.075 * $height) - 2 + "px"});
+
+	$uiLeft = $("div#ui").width() - $("div#pause").width();
+	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
+	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
+						"line-height": $("div#score").height() + "px"});
+	$("span#cScore").html("0000");
+
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});

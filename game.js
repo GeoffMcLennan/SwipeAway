@@ -122,7 +122,7 @@ function move() {
 			$(this).remove();
 		}
 	});
-	collision();
+	//collision();
 }
 
 // Sets up appropriate game screen depending on screen size.
@@ -219,6 +219,8 @@ function setObsListeners() {
 
 			$($newId).append($block);
 			setObsListeners();
+		} else {
+			easterEgg();
 		}
 
 	});
@@ -238,6 +240,31 @@ function setObsListeners() {
 
 			$($newId).append($block);
 			setObsListeners();
+		} else {
+			easterEgg();
 		}
 	});
+}
+
+function easterEgg() {
+	$rand = Math.floor(Math.random() * 4);
+	switch ($rand) {
+		case 0:
+			$newImg = "jim.png";
+			break;
+		case 1:
+			$newImg = "geoff.png";
+			break;
+		case 2:
+			$newImg = "daniel.png";
+			break;
+		case 3:
+			$newImg = "jesse.png";
+			break;
+		case 4:
+			$newImg = "kelvin.png";
+			break;
+	}
+
+	$("img#pause").attr("src", $newImg);
 }

@@ -63,8 +63,8 @@ function generate() {
 
 //generateOb = setInterval(generate, 1000);
 
-function randomIntForInterval(min,max){
-    Math.floor(Math.random() * (601) + 700);
+function randomIntForInterval(){
+    return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
 //Generate sprites depending on the number of tracks.
@@ -174,13 +174,16 @@ function checkOrientation() {
 }
 
 $time = 0;
-
+$interval = 0;
 function tick() {
-	if ($time % 1000 == 0) {
+
+	if ($time >= $interval) {
 		generate();
+		$interval = randomIntForInterval();
+		$time = 0;
 	}
 
-	$time += 5;
+	$time += $tickLength;
 	move();
 }
 

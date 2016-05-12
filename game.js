@@ -17,27 +17,27 @@ var sprite4 = $('<img src="circle.png" id="circle">');
 
 function collision() {
     var obstacle = $(".obstacle").offset().left;
-    var spritePos1 = $(sprite1).offset().left + 25;
-    var spritePos2 = $(sprite2).offset().left + 25;
-    var spritePos3 = $(sprite3).offset().left + 25;
-    var spritePos4 = $(sprite4).offset().left + 25;
+    var spritePos1 = $(sprite1).offset().left;
+    var spritePos2 = $(sprite2).offset().left;
+    var spritePos3 = $(sprite3).offset().left;
+    var spritePos4 = $(sprite4).offset().left;
     if ($(".obstacle").parent().is("#t1")) {
-        if (obstacle <= spritePos1) {
+        if ((obstacle <= (spritePos1 + 25)) && (obstacle >= spritePos1)) {
             $(".obstacle").remove();
         }
     }
     if ($(".obstacle").parent().is("#t2")) {
-        if (obstacle <= spritePos2) {
+        if ((obstacle <= (spritePos2 + 25)) && (obstacle >= spritePos2)) {
             $(".obstacle").remove();
         }
     }
     if ($(".obstacle").parent().is("#t3")) {
-        if (obstacle <= spritePos3) {
+        if ((obstacle <= (spritePos3 + 25)) && (obstacle >= spritePos3)) {
             $(".obstacle").remove();
         }
     }
     if ($(".obstacle").parent().is("#t4")) {
-        if (obstacle <= spritePos4) {
+        if ((obstacle <= (spritePos4 + 25)) && (obstacle >= spritePos4)) {
             $(".obstacle").remove();
         }
     }

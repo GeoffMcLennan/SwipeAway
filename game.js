@@ -15,34 +15,6 @@ var sprite2 = $('<img src="circle.png" id="circle">');
 var sprite3 = $('<img src="circle.png" id="circle">');
 var sprite4 = $('<img src="circle.png" id="circle">');
 
-function collision() {
-    var obstacle = $(".obstacle").offset().left;
-    var spritePos1 = $(sprite1).offset().left;
-    var spritePos2 = $(sprite2).offset().left;
-    var spritePos3 = $(sprite3).offset().left;
-    var spritePos4 = $(sprite4).offset().left;
-    if ($(".obstacle").parent().is("#t1")) {
-        if ((obstacle <= (spritePos1 + 25)) && (obstacle >= spritePos1)) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t2")) {
-        if ((obstacle <= (spritePos2 + 25)) && (obstacle >= spritePos2)) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t3")) {
-        if ((obstacle <= (spritePos3 + 25)) && (obstacle >= spritePos3)) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t4")) {
-        if ((obstacle <= (spritePos4 + 25)) && (obstacle >= spritePos4)) {
-            $(".obstacle").remove();
-        }
-    }
-}
-
 // Generates a new obstacle off-screen, to the right.
 function generate() {
 	$track = Math.floor(Math.random() * $lanes) + 1
@@ -192,6 +164,39 @@ function generateSprites(trackNum) {
     }
 }
 
+// Removes obstacle when it collides with a sprite. **pending**
+function collision() {
+    // Left positition of each sprite.
+    var spritePos1 = $(sprite1).offset().left;
+    var spritePos2 = $(sprite2).offset().left;
+    var spritePos3 = $(sprite3).offset().left;
+    var spritePos4 = $(sprite4).offset().left;
+    var blocks = $("div.obstacle");
+    // Checks each obstacle if it's colliding with a sprite.
+    $(blocks).each(function() {
+        var obstacle = $(this).offset().left;
+        if ($(this).parent().is("#t1")) {
+            if ((obstacle <= (spritePos1 + 25)) && (obstacle >= spritePos1)) {
+                $(this).remove();
+            }
+        }
+        if ($(this).parent().is("#t2")) {
+            if (obstacle <= (spritePos2 + 25) && (obstacle >= spritePos2)) {
+                $(this).remove();
+            }
+        }
+        if ($(this).parent().is("#t3")) {
+            if (obstacle <= (spritePos3 + 25) && (obstacle >= spritePos3)) {
+                $(this).remove();
+            }
+        }
+        if ($(this).parent().is("#t4")) {
+            if (obstacle <= (spritePos4 + 25) && (obstacle >= spritePos4)) {
+                $(this).remove();
+            }
+        }
+    });
+}
 
 // Moves all obstacles by 1 pixel.
 // **PENDING** Checks all obstacles to see if they have collided with an object.

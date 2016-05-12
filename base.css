@@ -115,7 +115,9 @@ img#circle {
     width: 80px;
     height: 40px;
 }
+
 /*CSS for HighScores page*/
+
 table, th, td {
     margin: 0px auto;
     text-align: center;
@@ -127,6 +129,7 @@ table, th, td {
 table {
     margin-top: 6%;
 }
+
 #tableheader {
     height: 40px;
     color: white;
@@ -136,4 +139,22 @@ table {
 tbody tr:hover {
     background-color: #808080;
 }
+
 /*CSS for Settings page*/
+div#Buttoncontainer {
+   margin-top: 6%;
+   margin-left: 37%;
+   margin-right: 37%;
+}
+
+#ResetProfile {
+    width: 200px;
+}
+
+#DeleteAccount {
+    width: 200px;
+}
+
+#ResetTutorial {
+    width: 200px;
+}

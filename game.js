@@ -61,10 +61,8 @@ function generate() {
 	setObsListeners();
 }
 
-//generateOb = setInterval(generate, 1000);
-
 function randomIntForInterval(){
-    Math.floor(Math.random() * (601) + 700);
+    return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
 //Generate sprites depending on the number of tracks.
@@ -183,13 +181,24 @@ function checkOrientation() {
 }
 
 $time = 0;
-
+$interval = 0;
+$progress = 0;
 function tick() {
-	if ($time % 1000 == 0) {
+
+	if ($time >= $interval) {
 		generate();
+		$interval = randomIntForInterval();
+		$time = 0;
 	}
 
-	$time += 5;
+	$time += $tickLength;
+	$progress += $tickLength;
+	$current = ($progress / $gameLength) * 100;
+	if ($current >= 100) {
+		clearInterval(gameStart);
+	} else {
+		$("div#cProgress").css("width", $current + "%");
+	}
 	move();
 }
 

@@ -5,9 +5,14 @@ $(document).ready(function() {
 		interval = setInterval("checkOrientation();", 1000);
 	});
 	initialize();
-	generate();
-	generateSprites(lane);
-	setInterval('move();', $tickLength);
+	generateSprites($lanes);
+	//generate();
+	gameStart = setInterval('tick();', $tickLength);
+
+	$("button#pause").on("click", function(){
+		clearInterval(gameStart);
+		clearInterval(generateOb);
+	});
 });
 
 var sprite1 = $('<img src="circle.png" id="circle">');
@@ -23,15 +28,18 @@ function generate() {
 	$block.addClass("obstacle");
 
 	$trackHeight = $($trackId).css("height");
-	$leftInit = parseInt($("div#container").css("margin-left")) + $("div#container").width() + 2;
+	//$leftInit = parseInt($("div#container").css("margin-left")) + $("div#container").width() + 2;
+	$leftInit = $("div#container").width() + 2;
 
 	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
+	$topInit = $block.css("top");
+	$block.css("top", $topInit - 35);
 
 	setObsListeners();
 }
 
-setInterval(generate, 1000);
+//generateOb = setInterval(generate, 1000);
 
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
@@ -169,7 +177,6 @@ function generateSprites(trackNum) {
 // **PENDING** Checks all obstacles to see if they have collided with an object.
 function move() {
 	$blocks = $(".obstacle");
-	$targets = $(".obsTarget");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
 	$blocks.each(function() {
@@ -177,17 +184,7 @@ function move() {
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= $offLeft) {
-			$(this).remove();
-		}
-	});
-
-	$targets.each(function() {
-		$newLeft = parseInt($(this).css("left")) - 1;
-		$(this).css("left", $newLeft + "px");
-
-		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft + 20 <= $offLeft) {
+		if ($newLeft <= 0) {
 			$(this).remove();
 		}
 	});
@@ -237,6 +234,17 @@ function checkOrientation() {
 	} else {
 		initialize();
 	}
+}
+
+$time = 0;
+
+function tick() {
+	if ($time % 1000 == 0) {
+		generate();
+	}
+
+	$time += 5;
+	move();
 }
 
 // Sets the listeners for obstacles.

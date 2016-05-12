@@ -1,14 +1,47 @@
 
-$(document).ready(function() {
-	// Recalls intialize function if screen orientation is changed.
-	$(window).on("orientationchange", function(event){
-		interval = setInterval("checkOrientation();", 1000);
-	});
-	initialize();
-	generate();
-	generateSprites(lane);
-	setInterval('move();', $tickLength);
+$(document).ready(function () {
+    // Recalls intialize function if screen orientation is changed.
+    $(window).on("orientationchange", function (event) {
+        interval = setInterval("checkOrientation();", 1000);
+    });
+    initialize();
+    generate();
+    generateSprites(lane);
+    setInterval('move();', $tickLength);
 });
+
+var sprite1 = $('<img src="circle.png" id="circle">');
+var sprite2 = $('<img src="circle.png" id="circle">');
+var sprite3 = $('<img src="circle.png" id="circle">');
+var sprite4 = $('<img src="circle.png" id="circle">');
+
+function collision() {
+    var obstacle = $(".obstacle").offset().left;
+    var spritePos1 = $(sprite1).offset().left + 25;
+    var spritePos2 = $(sprite2).offset().left + 25;
+    var spritePos3 = $(sprite3).offset().left + 25;
+    var spritePos4 = $(sprite4).offset().left + 25;
+    if ($(".obstacle").parent().is("#t1")) {
+        if (obstacle <= spritePos1) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t2")) {
+        if (obstacle <= spritePos2) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t3")) {
+        if (obstacle <= spritePos3) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t4")) {
+        if (obstacle <= spritePos4) {
+            $(".obstacle").remove();
+        }
+    }
+}
 
 // Generates a new obstacle off-screen, to the right.
 function generate() {
@@ -34,10 +67,6 @@ function randomIntForInterval(min,max){
 
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
-    var sprite1 = $('<img src="circle.png" id="circle">');
-    var sprite2 = $('<img src="circle.png" id="circle">');
-    var sprite3 = $('<img src="circle.png" id="circle">');
-    var sprite4 = $('<img src="circle.png" id="circle">');
     //The width in which the sprites are able to spawn.
     var genRange = parseInt($("#container").css("width")) * 0.5;
     //Specific possible position of the sprites.
@@ -194,6 +223,7 @@ function move() {
 			$(this).remove();
 		}
 	});
+	collision();
 }
 
 // Sets up appropriate game screen depending on screen size.

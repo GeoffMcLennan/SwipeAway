@@ -33,10 +33,8 @@ function generate() {
 	setObsListeners();
 }
 
-//generateOb = setInterval(generate, 1000);
-
-function randomIntForInterval(min,max){
-    Math.floor(Math.random() * (601) + 700);
+function randomIntForInterval(){
+    return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
 //Generate sprites depending on the number of tracks.
@@ -129,7 +127,7 @@ function move() {
 			$(this).remove();
 		}
 	});
-	collision();
+	//collision();
 }
 
 // Sets up appropriate game screen depending on screen size.
@@ -161,6 +159,15 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
+	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
+						"width": (0.075 * $height) - 2 + "px"});
+
+	$uiLeft = $("div#ui").width() - $("div#pause").width();
+	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
+	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
+						"line-height": $("div#score").height() + "px"});
+	$("span#cScore").html("0000");
+
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
@@ -179,13 +186,24 @@ function checkOrientation() {
 }
 
 $time = 0;
-
+$interval = 0;
+$progress = 0;
 function tick() {
-	if ($time % 1000 == 0) {
+
+	if ($time >= $interval) {
 		generate();
+		$interval = randomIntForInterval();
+		$time = 0;
 	}
 
-	$time += 5;
+	$time += $tickLength;
+	$progress += $tickLength;
+	$current = ($progress / $gameLength) * 100;
+	if ($current >= 100) {
+		clearInterval(gameStart);
+	} else {
+		$("div#cProgress").css("width", $current + "%");
+	}
 	move();
 }
 
@@ -206,6 +224,8 @@ function setObsListeners() {
 
 			$($newId).append($block);
 			setObsListeners();
+		} else {
+			easterEgg();
 		}
 
 	});
@@ -225,6 +245,31 @@ function setObsListeners() {
 
 			$($newId).append($block);
 			setObsListeners();
+		} else {
+			easterEgg();
 		}
 	});
+}
+
+function easterEgg() {
+	$rand = Math.floor(Math.random() * 4);
+	switch ($rand) {
+		case 0:
+			$newImg = "jim.png";
+			break;
+		case 1:
+			$newImg = "geoff.png";
+			break;
+		case 2:
+			$newImg = "daniel.png";
+			break;
+		case 3:
+			$newImg = "jesse.png";
+			break;
+		case 4:
+			$newImg = "kelvin.png";
+			break;
+	}
+
+	$("img#pause").attr("src", $newImg);
 }

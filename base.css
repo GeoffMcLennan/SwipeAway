@@ -24,10 +24,30 @@ div#ui {
 	border-width: 1px 0;
 }
 
-div#ui {
+div#progress {
+	float: left;
+	display: inline-block;
+	height: 100%;
 	border: 1px black solid;
-	border-width: 1px 0;
-	height: 10%;
+	border-width: 0 1px;
+}
+
+div#cProgress {
+	height: 100%;
+	background-color: red;
+}
+
+div#score {
+	float: left;
+	display: inline-block;
+	height: 100%;
+	font-size: 150%;
+	text-align: center;
+}
+
+div#pause {
+	float: right;
+	display: inline-block;
 }
 
 div.track {
@@ -95,7 +115,9 @@ img#circle {
     width: 80px;
     height: 40px;
 }
+
 /*CSS for HighScores page*/
+
 table, th, td {
     margin: 0px auto;
     text-align: center;
@@ -107,6 +129,7 @@ table, th, td {
 table {
     margin-top: 6%;
 }
+
 #tableheader {
     height: 40px;
     color: white;
@@ -116,4 +139,22 @@ table {
 tbody tr:hover {
     background-color: #808080;
 }
+
 /*CSS for Settings page*/
+div#Buttoncontainer {
+   margin-top: 6%;
+   margin-left: 37%;
+   margin-right: 37%;
+}
+
+#ResetProfile {
+    width: 200px;
+}
+
+#DeleteAccount {
+    width: 200px;
+}
+
+#ResetTutorial {
+    width: 200px;
+}

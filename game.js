@@ -247,21 +247,22 @@ function pressPlay() {
    		 }); 
 	});
 }
+//--------------------------------------
+// JESSE'S JAVASCRIPT
+//--------------------------------------
 
 // Mute/unmute button change picture
-$("").button({
-    icons: {
-        primary: "ui-icon-locked"
-    }
-});
-$('#sound').click(function() {
-    $(this).data('state', ($(this).data('state') == 'disarm') ? 'arm' : 'disarm');
-    $(".armdisarm").button({
-        icons: {
-            primary: ($(this).data('state') == "disarm") ? "ui-icon-unlocked" : "ui-icon-locked"
-        }
-    });
-});
+function mute() {
+	$document.ready(function() {
+		$('#soundIcon').click(function() {
+			$(this).attr('src', 'music-note-mute.png');
+		});
+	});
+}
+
+//--------------------------------------
+// END OF JESSE'S JAVASCRIPT
+//--------------------------------------
 
 // Sets the listeners for obstacles.
 function setObsListeners() {

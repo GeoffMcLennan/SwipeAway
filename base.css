@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	-webkit-text-size-adjust: none;
 }
 
 /* Extra UI that appears on desktop version */
@@ -67,18 +68,22 @@ div.obsTarget {
 .account {
 	float: right;
 	color: black;
+	font-size: 30px;
 	padding-top: 10px;
 	padding-right: 10px;
 }
 
 /*Center SwipeAway text*/
 div#title {
+	font-size: 50px;
 	text-align: center;
+	margin: 0px; 
+	padding: 0px;
+	line-height: 0.5;
 }
 
 /*  centering home page buttons */
 .buttons {
-	width: 150px;
 	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
 	border-bottom-color:#333;
 	border:1px solid #61c4ea;
@@ -99,10 +104,14 @@ div#title {
 a.button {
 	text-decoration: none;
     display: inline-block; 
-    width: 150px;
+    width: 300px;
+	height: 50px;
     padding: 2px 8px;
-    background: ButtonFace; color: ButtonText;
-    border-style: solid; border-width: 2px;
+    background: ButtonFace; 
+	color: ButtonText;
+    border-style: solid; 
+	font-size: 2.5em;
+	border-width: 2px;
     border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
 }
 
@@ -118,11 +127,12 @@ li {
 }
 
 .input {
-	width: 160px;
+	width: 316px;
+	height: 50px;
+	font-size: 2em;
 }
 
 form {
-	width: 200px;
 	display: block;
 	margin: 0 auto;
 }

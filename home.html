@@ -7,12 +7,20 @@
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>-->
 
 	<script src="game.js"></script>
-
+	
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<script>
+	$(document).ready(function(){
+		$('#muteClick').click(function(){
+			$('#soundIcon').attr('src', 'music-note-off.png');
+		});
+	});
+</script>
 
 </head>
 <body>
 	<a href="settings.html"><img src="settings.png" class="icon" id="settingsIcon"></a>
-	<a href=#><img src="music-note.png" class="icon" id="soundIcon"></a>
+	<a href=# id="muteClick"><img src="music-note.png" class="icon" id="soundIcon"></a>
 	<a href="login.html" class="account">Login</a>
 	<a href="signup.html" class="account">Sign Up</a>
 

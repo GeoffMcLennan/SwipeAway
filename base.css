@@ -95,3 +95,25 @@ img#circle {
     width: 80px;
     height: 40px;
 }
+/*CSS for HighScores page*/
+table, th, td {
+    margin: 0px auto;
+    text-align: center;
+    border: 1px solid black;
+    font-family: 'Comic Sans MS';
+    font-size: 18px;
+}
+
+table {
+    margin-top: 6%;
+}
+#tableheader {
+    height: 40px;
+    color: white;
+    background-color: #878181;
+}
+
+tbody tr:hover {
+    background-color: #808080;
+}
+/*CSS for Settings page*/

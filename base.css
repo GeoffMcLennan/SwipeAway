@@ -34,27 +34,19 @@ div.track {
 	width: 100%;
 	border:1px black solid;
 	border-width: 1px 0;
+	position: relative;
 }
 
 div.obstacle {
 	width: 40px;
 	background-color: red;
 	position: absolute;
+	top: 0;
 }
 
-div.obsTarget {
-	width: 240px;
-	position: absolute;
-	border: 1px black solid;
-	border-width: 0 1px;
-	z-index: 100;
-}
-
-#circle {
-    position: relative;
-    width: 31px;
-    height: 31px;
-    top: 35%;
+img#circle {
+    width: 30px;
+    height: 30px;
 } 
 
 /* CSS for level select page. */

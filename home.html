@@ -8,13 +8,20 @@
 
 	<script src="game.js"></script>
 	
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
 	$(document).ready(function(){
 		$('#muteClick').click(function(){
 			$('#soundIcon').attr('src', 'music-note-off.png');
 		});
 	});
+	          
+$(window).on("orientationchange",function(event){
+  alert("Orientation is: " + event.orientation);
+});
+ 
+// You can also manually force this event to fire.
+$( window ).orientationchange();
 </script>
 
 </head>
@@ -25,7 +32,7 @@
 	<a href="signup.html" class="account">Sign Up</a>
 
 	<div id="title">
-		<h1>SwipeAway</h1>
+		<h1 onorientationchange="fixMargins()">SwipeAway</h1>
 	</div>
 
 

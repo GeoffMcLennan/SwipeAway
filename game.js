@@ -260,6 +260,19 @@ function mute() {
 	});
 }
 
+//add margin to h1 on rotation ***NOT WORKING
+function fixMargins() {
+    var orientation = window.orientation;
+    switch (orientation) {
+        case 0: // portrait 
+            $('#title').css('margin-top', '80px');
+            break;
+        case 180: // portrait upside down
+            $('#title').css('margin-top', '80px');
+            break;
+    }
+}
+
 //--------------------------------------
 // END OF JESSE'S JAVASCRIPT
 //--------------------------------------

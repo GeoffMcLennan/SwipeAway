@@ -75,11 +75,12 @@ div.obsTarget {
 
 /*Center SwipeAway text*/
 div#title {
-	font-size: 50px;
+	font-size: 35px;
 	text-align: center;
 	margin: 0px; 
-	padding: 0px;
-	line-height: 0.5;
+	padding-bottom: 10px;
+	line-height: 0;
+	margin-top: 80px;
 }
 
 /*  centering home page buttons */
@@ -120,6 +121,7 @@ ul {
 	text-align: center;
 	padding: 0;
 	list-style-type: none;
+	margin-bottom: 0;
 }
 
 li {

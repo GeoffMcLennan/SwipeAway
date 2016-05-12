@@ -1,3 +1,4 @@
+$.mobile.pushStateEnabled = false;
 
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.

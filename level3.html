@@ -9,9 +9,11 @@
 	<script>
 	$lanes = 4;
 	$tickLength = 5;
+	$gameLength = 60000;
 	</script>
 	<script src="game.js"></script>
 	<script src="swipemod.js"></script>
+
 </head>
 <body>
 <div id="desktop">
@@ -20,6 +22,9 @@
 
 <div id="container">
 	<div id="ui">
+		<div id="progress"><div id="cProgress"></div></div>
+		<div id="score"><span id="cScore"></span> / 1000</div>
+		<div id="pause"><img src="pause.png" id="pause"></div>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">

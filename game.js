@@ -1,3 +1,4 @@
+
 $.mobile.pushStateEnabled = false;
 
 $(document).ready(function() {
@@ -10,37 +11,39 @@ $(document).ready(function() {
 	gameStart = setInterval('tick();', $tickLength);
 });
 
-var sprite1 = $('<img src="circle.png" id="circle">');
-var sprite2 = $('<img src="circle.png" id="circle">');
-var sprite3 = $('<img src="circle.png" id="circle">');
-var sprite4 = $('<img src="circle.png" id="circle">');
-
+// Removes obstacle if it collides with a sprite.
 function collision() {
-    var obstacle = $(".obstacle").offset().left;
-    var spritePos1 = $(sprite1).offset().left + 25;
-    var spritePos2 = $(sprite2).offset().left + 25;
-    var spritePos3 = $(sprite3).offset().left + 25;
-    var spritePos4 = $(sprite4).offset().left + 25;
-    if ($(".obstacle").parent().is("#t1")) {
-        if (obstacle <= spritePos1) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t2")) {
-        if (obstacle <= spritePos2) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t3")) {
-        if (obstacle <= spritePos3) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t4")) {
-        if (obstacle <= spritePos4) {
-            $(".obstacle").remove();
-        }
-    }
+    var block = $(".obstacle");
+    // Left position of each sprite.
+    var spritePos1 = $("#s1").offset().left;
+    var spritePos2 = $("#s2").offset().left;
+	
+	$(block).each(function() {
+		var object = $(this).offset().left;
+		if ($(this).parent().is("#t1")) {
+			if ((object <= spritePos1 + 25) && (object >= spritePos1)) {
+				$(this).remove();
+			}
+		}
+		if ($(this).parent().is("#t2")) {
+			if ((object <= spritePos2 + 25) && (object >= spritePos2)) {
+				$(this).remove();
+			}
+		}
+		if ($(this).parent().is("#t3")) {
+            var spritePos3 = $("#s3").offset().left;
+			if ((object <= spritePos3 + 25) && (object >= spritePos3)) {
+				$(this).remove();
+			}
+		}
+		if ($(this).parent().is("#t4")) {
+            var spritePos3 = $("#s3").offset().left;
+            var spritePos4 = $("#s4").offset().left;
+			if ((object <= spritePos4 + 25) && (object >= spritePos4)) {
+				$(this).remove();
+			}
+		}
+	});
 }
 
 // Generates a new obstacle off-screen, to the right.
@@ -62,10 +65,8 @@ function generate() {
 	setObsListeners();
 }
 
-//generateOb = setInterval(generate, 1000);
-
-function randomIntForInterval(min,max){
-    Math.floor(Math.random() * (601) + 700);
+function randomIntForInterval(){
+    return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
 //Generate sprites depending on the number of tracks.
@@ -97,8 +98,9 @@ function generateSprites(trackNum) {
 
     // Puts a sprite in each array with the given margin value
     for (j = 1; j <= $lanes; j++) {
-    	$sprite = $('<img src="circle.png" id="circle">');
+    	$sprite = $('<img src="circle.png" class="circle">');
     	$sprite.css("margin-left", pos[j - 1] - 15 + "px");
+        $sprite.attr("id", ("s" + j));
     	$("#t" + j).append($sprite);
     }
 
@@ -106,7 +108,7 @@ function generateSprites(trackNum) {
     $height = $("div.track").height();
     $margin = ($height / 2) - 15;
 
-    $("img#circle").css("margin-top", $margin + "px");
+    $("img.circle").css("margin-top", $margin + "px");
 }
 
 
@@ -157,6 +159,15 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
+	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
+						"width": (0.075 * $height) - 2 + "px"});
+
+	$uiLeft = $("div#ui").width() - $("div#pause").width();
+	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
+	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
+						"line-height": $("div#score").height() + "px"});
+	$("span#cScore").html("0000");
+
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
@@ -175,13 +186,24 @@ function checkOrientation() {
 }
 
 $time = 0;
-
+$interval = 0;
+$progress = 0;
 function tick() {
-	if ($time % 1000 == 0) {
+
+	if ($time >= $interval) {
 		generate();
+		$interval = randomIntForInterval();
+		$time = 0;
 	}
 
-	$time += 5;
+	$time += $tickLength;
+	$progress += $tickLength;
+	$current = ($progress / $gameLength) * 100;
+	if ($current >= 100) {
+		clearInterval(gameStart);
+	} else {
+		$("div#cProgress").css("width", $current + "%");
+	}
 	move();
 }
 
@@ -203,6 +225,8 @@ function setObsListeners() {
 
 			$($newId).append($block);
 			setObsListeners();
+		} else {
+			easterEgg();
 		}
 
 	});
@@ -222,7 +246,32 @@ function setObsListeners() {
 
 			$($newId).append($block);
 			setObsListeners();
+		} else {
+			easterEgg();
 		}
 	});
+}
+
+function easterEgg() {
+	$rand = Math.floor(Math.random() * 4);
+	switch ($rand) {
+		case 0:
+			$newImg = "jim.png";
+			break;
+		case 1:
+			$newImg = "geoff.png";
+			break;
+		case 2:
+			$newImg = "daniel.png";
+			break;
+		case 3:
+			$newImg = "jesse.png";
+			break;
+		case 4:
+			$newImg = "kelvin.png";
+			break;
+	}
+
+	$("img#pause").attr("src", $newImg);
 }
 

@@ -64,7 +64,7 @@ div.obstacle {
 	top: 0;
 }
 
-img#circle {
+img.circle {
     width: 30px;
     height: 30px;
 } 

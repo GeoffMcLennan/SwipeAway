@@ -17,10 +17,13 @@ $(document).ready(function() {
 	
 	$(document).ready(function(){
 		$('#soundIcon').click(function(){
-			if ($(this).attr('src') == 'sound.png')
-				$(this).attr('src', 'mute.png');
-			else
-				$(this).attr('src', 'sound.png');
+			//ORIRGINAL ID="muteicon"
+			if ($('.material-icons').text() == 'volume_up'/*$(this).attr('src') == 'sound.png'*/) {
+				$(this).text('volume_off')/*$(this).attr('src', 'mute.png')*/;
+				alert('yo dawg');
+			}else{
+				$(this).text('volume_up')/*$(this).attr('src', 'sound.png')*/;
+			}
 		});
 	});
 	

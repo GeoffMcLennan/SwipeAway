@@ -83,6 +83,7 @@ img.circle {
 	font-size: 30px;
 	padding-top: 10px;
 	padding-right: 10px;
+	padding-left: 10px;
 }
 
 /*Center SwipeAway text*/
@@ -100,14 +101,14 @@ div#title {
 
 /*  centering home page buttons */
 .buttons {
-	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	/* box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
 	border-bottom-color:#333;
 	border:1px solid #61c4ea;
 	background-color:#7cceee;
 	border-radius:5px;
 	color:#333;
 	font-size:24px;
-	padding:5px
+	padding:5px */
 }
 
 /* Padd left side icons */
@@ -122,7 +123,7 @@ a.btn {
     display: inline-block; 
     width: 300px;
 	height: 50px;
-    padding: 2px 8px;
+	padding: 2px 8px;
 	font-size: 5em;
 
 }
@@ -149,7 +150,7 @@ li {
 form {
 	display: block;
 	margin: 0 auto;
-	width: 320px;
+	width: 340px;
 	font-size: 0.4em;
 }
 
@@ -230,9 +231,6 @@ table {
 tbody tr:hover {
     background-color: #808080;
 }
-<<<<<<< HEAD
-/*CSS for Settings page*/
-=======
 
 /*CSS for Settings page*/
 div#Buttoncontainer {
@@ -252,4 +250,7 @@ div#Buttoncontainer {
 #ResetTutorial {
     width: 200px;
 }
->>>>>>> master
+
+
+
+

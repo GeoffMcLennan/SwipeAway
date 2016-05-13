@@ -8,37 +8,39 @@ $(document).ready(function() {
 	gameStart = setInterval('tick();', $tickLength);
 });
 
-var sprite1 = $('<img src="circle.png" id="circle">');
-var sprite2 = $('<img src="circle.png" id="circle">');
-var sprite3 = $('<img src="circle.png" id="circle">');
-var sprite4 = $('<img src="circle.png" id="circle">');
-
+// Removes obstacle if it collides with a sprite.
 function collision() {
-    var obstacle = $(".obstacle").offset().left;
-    var spritePos1 = $(sprite1).offset().left + 25;
-    var spritePos2 = $(sprite2).offset().left + 25;
-    var spritePos3 = $(sprite3).offset().left + 25;
-    var spritePos4 = $(sprite4).offset().left + 25;
-    if ($(".obstacle").parent().is("#t1")) {
-        if (obstacle <= spritePos1) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t2")) {
-        if (obstacle <= spritePos2) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t3")) {
-        if (obstacle <= spritePos3) {
-            $(".obstacle").remove();
-        }
-    }
-    if ($(".obstacle").parent().is("#t4")) {
-        if (obstacle <= spritePos4) {
-            $(".obstacle").remove();
-        }
-    }
+    var block = $(".obstacle");
+    // Left position of each sprite.
+    var spritePos1 = $("#s1").offset().left;
+    var spritePos2 = $("#s2").offset().left;
+	
+	$(block).each(function() {
+		var object = $(this).offset().left;
+		if ($(this).parent().is("#t1")) {
+			if ((object <= spritePos1 + 25) && (object >= spritePos1)) {
+				$(this).remove();
+			}
+		}
+		if ($(this).parent().is("#t2")) {
+			if ((object <= spritePos2 + 25) && (object >= spritePos2)) {
+				$(this).remove();
+			}
+		}
+		if ($(this).parent().is("#t3")) {
+            var spritePos3 = $("#s3").offset().left;
+			if ((object <= spritePos3 + 25) && (object >= spritePos3)) {
+				$(this).remove();
+			}
+		}
+		if ($(this).parent().is("#t4")) {
+            var spritePos3 = $("#s3").offset().left;
+            var spritePos4 = $("#s4").offset().left;
+			if ((object <= spritePos4 + 25) && (object >= spritePos4)) {
+				$(this).remove();
+			}
+		}
+	});
 }
 
 // Generates a new obstacle off-screen, to the right.
@@ -93,8 +95,9 @@ function generateSprites(trackNum) {
 
     // Puts a sprite in each array with the given margin value
     for (j = 1; j <= $lanes; j++) {
-    	$sprite = $('<img src="circle.png" id="circle">');
+    	$sprite = $('<img src="circle.png" class="circle">');
     	$sprite.css("margin-left", pos[j - 1] - 15 + "px");
+        $sprite.attr("id", ("s" + j));
     	$("#t" + j).append($sprite);
     }
 
@@ -102,7 +105,7 @@ function generateSprites(trackNum) {
     $height = $("div.track").height();
     $margin = ($height / 2) - 15;
 
-    $("img#circle").css("margin-top", $margin + "px");
+    $("img.circle").css("margin-top", $margin + "px");
 }
 
 
@@ -121,7 +124,7 @@ function move() {
 			$(this).remove();
 		}
 	});
-	//collision();
+	collision();
 }
 
 // Sets up appropriate game screen depending on screen size.

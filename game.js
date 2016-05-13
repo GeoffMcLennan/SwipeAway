@@ -6,15 +6,42 @@ $(document).ready(function() {
 		interval = setInterval("checkOrientation();", 1000);
 	});
 	initialize();
-	generate();
-	generateSprites(lane);
-	setInterval('move();', $tickLength);
+	generateSprites($lanes);
+	gameStart = setInterval('tick();', $tickLength);
 });
 
 var sprite1 = $('<img src="circle.png" id="circle">');
 var sprite2 = $('<img src="circle.png" id="circle">');
 var sprite3 = $('<img src="circle.png" id="circle">');
 var sprite4 = $('<img src="circle.png" id="circle">');
+
+function collision() {
+    var obstacle = $(".obstacle").offset().left;
+    var spritePos1 = $(sprite1).offset().left + 25;
+    var spritePos2 = $(sprite2).offset().left + 25;
+    var spritePos3 = $(sprite3).offset().left + 25;
+    var spritePos4 = $(sprite4).offset().left + 25;
+    if ($(".obstacle").parent().is("#t1")) {
+        if (obstacle <= spritePos1) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t2")) {
+        if (obstacle <= spritePos2) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t3")) {
+        if (obstacle <= spritePos3) {
+            $(".obstacle").remove();
+        }
+    }
+    if ($(".obstacle").parent().is("#t4")) {
+        if (obstacle <= spritePos4) {
+            $(".obstacle").remove();
+        }
+    }
+}
 
 // Generates a new obstacle off-screen, to the right.
 function generate() {
@@ -24,145 +51,62 @@ function generate() {
 	$block.addClass("obstacle");
 
 	$trackHeight = $($trackId).css("height");
-	$leftInit = parseInt($("div#container").css("margin-left")) + $("div#container").width() + 2;
+	//$leftInit = parseInt($("div#container").css("margin-left")) + $("div#container").width() + 2;
+	$leftInit = $("div#container").width() + 2;
 
 	$block.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($block);
+	$topInit = $block.css("top");
+	$block.css("top", $topInit - 35);
 
 	setObsListeners();
 }
 
-setInterval(generate, 1000);
+//generateOb = setInterval(generate, 1000);
+
+function randomIntForInterval(min,max){
+    Math.floor(Math.random() * (601) + 700);
+}
 
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
-    //The width in which the sprites are able to spawn.
-    var genRange = parseInt($("#container").css("width")) * 0.5;
-    //Specific possible position of the sprites.
-    var pos1 = genRange * 0.01;
-    var pos2 = genRange * 0.32;
-    var pos3 = genRange * 0.69;
-    var pos4 = genRange;
-    //Placeholder variable.
-    var pick1;
-    var pick2;
-    var pick3;
-    var pick4;
-            
-    if (trackNum == 2) {
-        var random1 = Math.floor(Math.random() * 2) + 1;
-        var random2 = Math.floor(Math.random() * 2) + 1;
-        while (random1 == random2) {
-            random2 = Math.floor(Math.random() * 2) + 1;
-        } 
-        if (random1 == 1) {
-            pick1 = pos1;
-            pick2 = pos2;
-        } else {
-            pick1 = pos2;
-            pick2 = pos1;
-        }
-        sprite1.css({"left": pick1 + "px"});
-        $("#t1").append(sprite1);
-        sprite2.css({"left": pick2 + "px"});
-        $("#t2").append(sprite2);
+    // Width between sprites
+    var genRange = parseInt($("#container").css("width")) * 0.5 / $lanes;
+    var skew = parseInt($("#container").css("width")) * 0.2 / $lanes;
+
+    // Array containing possible positions
+    var pos = [];
+    for (i = 0; i < $lanes; i++) {
+    	pos[i] = (genRange * (i + 1)) - skew;
     }
-    
-    if (trackNum == 3) {
-        var random1 = Math.floor(Math.random() * 3) + 1;
-        var random2 = Math.floor(Math.random() * 3) + 1;
-        var random3 = Math.floor(Math.random() * 3) + 1;
-        while ((random1 == random2) || (random1 == random3) || (random2 == random3)) {
-            random2 = Math.floor(Math.random() * 3) + 1;
-            random3 = Math.floor(Math.random() * 3) + 1;
-        } 
-        //**Can be simplified??**
-        if (random1 == 1) {
-            pick1 = pos1;
-        } else if (random1 == 2) {
-            pick1 = pos2;
-        } else {
-            pick1 = pos3;
-        }
-        if (random2 == 1) {
-            pick2 = pos1;
-        } else if (random2 == 2) {
-            pick2 = pos2;
-        } else {
-            pick2 = pos3;
-        } 
-        if (random3 == 1) {
-            pick3 = pos1;
-        } else if (random3 == 2) {
-            pick3 = pos2;
-        } else {
-            pick3 = pos3;
-        }
-        sprite1.css({"left": pick1 + "px"});
-        $("#t1").append(sprite1);
-        sprite2.css({"left": pick2 + "px"});
-        $("#t2").append(sprite2);
-        sprite3.css({"left": pick3 + "px"});
-        $("#t3").append(sprite3);
+
+    // Shuffles the array
+    if (pos.length == 2) {
+    	var rand = Math.random();
+    	if (rand >= 0.5) {
+    		var temp = pos[0];
+    		pos[0] = pos[1];
+    		pos[1] = temp;
+    	}
+    } else {
+    	function shuffle(a, b) {
+	    	return Math.random() > 0.5 ? -1 : 1;
+	    }
+	    pos.sort(shuffle);
     }
-    
-    if (trackNum == 4) {
-        var random1 = Math.floor(Math.random() * 4) + 1;
-        var random2 = Math.floor(Math.random() * 4) + 1;
-        var random3 = Math.floor(Math.random() * 4) + 1;
-        var random4 = Math.floor(Math.random() * 4) + 1;
-        while ((random1 == random2) || (random1 == random3) || (random1 == random4) || (random2 == random3) || (random2 == random4) || (random3     == random4)) {
-            random2 = Math.floor(Math.random() * 4) + 1;
-            random3 = Math.floor(Math.random() * 4) + 1;
-            random4 = Math.floor(Math.random() * 4) + 1;
-        } 
-        //**Can be simplified??**
-        if (random1 == 1) {
-            pick1 = pos1;
-        } else if (random1 == 2) {
-            pick1 = pos2;
-        } else if (random1 == 3) {
-            pick1 = pos3;
-        } else {
-            pick1 = pos4;
-        }
-        if (random2 == 1) {
-            pick2 = pos1;
-        } else if (random2 == 2) {
-            pick2 = pos2;
-        } else if (random2 == 3) {
-            pick2 = pos3;
-        } else {
-            pick2 = pos4;
-        } 
-        if (random3 == 1) {
-            pick3 = pos1;
-        } else if (random3 == 2) {
-            pick3 = pos2;
-        } else if (random3 == 3) {
-            pick3 = pos3;
-        } 
-        else {
-            pick3 = pos4;
-        }
-        if (random4 == 1) {
-            pick4 = pos1;
-        } else if (random4 == 2) {
-            pick4 = pos2;
-        } else if (random4 == 3) {
-            pick4 = pos3;
-        } else {
-            pick4 = pos4;
-        }
-        sprite1.css({"left": pick1 + "px"});
-        $("#t1").append(sprite1);
-        sprite2.css({"left": pick2 + "px"});
-        $("#t2").append(sprite2);
-        sprite3.css({"left": pick3 + "px"});
-        $("#t3").append(sprite3);
-        sprite4.css({"left": pick4 + "px"});
-        $("#t4").append(sprite4);
+
+    // Puts a sprite in each array with the given margin value
+    for (j = 1; j <= $lanes; j++) {
+    	$sprite = $('<img src="circle.png" id="circle">');
+    	$sprite.css("margin-left", pos[j - 1] - 15 + "px");
+    	$("#t" + j).append($sprite);
     }
+
+    // Adds top margin relative to track height
+    $height = $("div.track").height();
+    $margin = ($height / 2) - 15;
+
+    $("img#circle").css("margin-top", $margin + "px");
 }
 
 
@@ -170,7 +114,6 @@ function generateSprites(trackNum) {
 // **PENDING** Checks all obstacles to see if they have collided with an object.
 function move() {
 	$blocks = $(".obstacle");
-	$targets = $(".obsTarget");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
 	$blocks.each(function() {
@@ -178,20 +121,11 @@ function move() {
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= $offLeft) {
+		if ($newLeft <= 0) {
 			$(this).remove();
 		}
 	});
-
-	$targets.each(function() {
-		$newLeft = parseInt($(this).css("left")) - 1;
-		$(this).css("left", $newLeft + "px");
-
-		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft + 20 <= $offLeft) {
-			$(this).remove();
-		}
-	});
+	collision();
 }
 
 // Sets up appropriate game screen depending on screen size.
@@ -240,43 +174,17 @@ function checkOrientation() {
 	}
 }
 
-// Play button
-function pressPlay() {
-	$(document).ready(function() {
-    	$("#playButton").click(function(){
-        	alert("button");
-   		 }); 
-	});
-}
-//--------------------------------------
-// JESSE'S JAVASCRIPT
-//--------------------------------------
+$time = 0;
 
-// Mute/unmute button change picture
-function mute() {
-	$document.ready(function() {
-		$('#soundIcon').click(function() {
-			$(this).attr('src', 'music-note-mute.png');
-		});
-	});
+function tick() {
+	if ($time % 1000 == 0) {
+		generate();
+	}
+
+	$time += 5;
+	move();
 }
 
-//add margin to h1 on rotation ***NOT WORKING
-function fixMargins() {
-    var orientation = window.orientation;
-    switch (orientation) {
-        case 0: // portrait 
-            $('#title').css('margin-top', '80px');
-            break;
-        case 180: // portrait upside down
-            $('#title').css('margin-top', '80px');
-            break;
-    }
-}
-
-//--------------------------------------
-// END OF JESSE'S JAVASCRIPT
-//--------------------------------------
 
 // Sets the listeners for obstacles.
 function setObsListeners() {

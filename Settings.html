@@ -1,11 +1,34 @@
 <!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script>
+    var lane = 0;
+    $lanes = 0;
+    $tickLength = 0;
+	</script>
+	<script src="game.js"></script>
+</head>
+<body>
+<div id="desktop">
+</div>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-    </head>
-    <body>
-        
-    </body>
+<div id="container">
+    <div>
+        <a href=""><img src="Back.png" alt="backButton"id="backButton"></a>
+        <h1 id="title">Settings</h1>
+    </div>
+    <button type="button" class="btn btn-default" id="button1">1</button>
+    <button type="button" class="btn btn-default" id="button2">2</button>
+    <button type="button" class="btn btn-default" id="button3">3</button>
+    <button type="button" class="btn btn-default btn-lg" id="button4"><img src="infinity.png" alt="infinity" id="infinite"><br>Endless Mode</button>
+</div>
+<h2 id="portError">You are holding your phone in portrait mode.<br>
+For the best experience playing our game, please hold your phone in landscape mode.</h2>
+</body>
 </html>

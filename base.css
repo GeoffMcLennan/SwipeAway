@@ -36,27 +36,19 @@ div.track {
 	width: 100%;
 	border:1px black solid;
 	border-width: 1px 0;
+	position: relative;
 }
 
 div.obstacle {
 	width: 40px;
 	background-color: red;
 	position: absolute;
+	top: 0;
 }
 
-div.obsTarget {
-	width: 240px;
-	position: absolute;
-	border: 1px black solid;
-	border-width: 0 1px;
-	z-index: 100;
-}
-
-#circle {
-    position: relative;
-    width: 31px;
-    height: 31px;
-    top: 35%;
+img#circle {
+    width: 30px;
+    height: 30px;
 } 
 
 /* 
@@ -75,12 +67,15 @@ div.obsTarget {
 
 /*Center SwipeAway text*/
 div#title {
-	font-size: 35px;
 	text-align: center;
 	margin: 0px; 
 	padding-bottom: 10px;
 	line-height: 0;
-	margin-top: 80px;
+	/*margin-top: 80px;*/
+}
+
+#titleText {
+	font-size: 60px;
 }
 
 /*  centering home page buttons */
@@ -102,18 +97,14 @@ div#title {
 }
 
 /* Style anchors as buttons*/
-a.button {
+a.btn {
 	text-decoration: none;
     display: inline-block; 
     width: 300px;
 	height: 50px;
     padding: 2px 8px;
-    background: ButtonFace; 
-	color: ButtonText;
-    border-style: solid; 
-	font-size: 2.5em;
-	border-width: 2px;
-    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+	font-size: 1.5em;
+
 }
 
 /* align buttons and inputs in center*/
@@ -122,21 +113,26 @@ ul {
 	padding: 0;
 	list-style-type: none;
 	margin-bottom: 0;
+	margin: 0 10px;
 }
 
 li {
-	padding-bottom: 10px;
+	padding-bottom: 5px;
+	/*margin: 0 10px;*/
 }
 
-.input {
-	width: 316px;
-	height: 50px;
-	font-size: 2em;
+input {
+	margin: 10px auto;
+	width: 100px;
+	height: 40px;
+	font-size: 4em;
 }
 
 form {
 	display: block;
 	margin: 0 auto;
+	width: 350px;
+	font-size: 1.5em;
 }
 
 /* 
@@ -192,3 +188,25 @@ form {
     width: 80px;
     height: 40px;
 }
+/*CSS for HighScores page*/
+table, th, td {
+    margin: 0px auto;
+    text-align: center;
+    border: 1px solid black;
+    font-family: 'Comic Sans MS';
+    font-size: 18px;
+}
+
+table {
+    margin-top: 6%;
+}
+#tableheader {
+    height: 40px;
+    color: white;
+    background-color: #878181;
+}
+
+tbody tr:hover {
+    background-color: #808080;
+}
+/*CSS for Settings page*/

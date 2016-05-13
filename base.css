@@ -68,10 +68,10 @@ img#circle {
 /*Center SwipeAway text*/
 div#title {
 	text-align: center;
-	margin: 0px; 
 	padding-bottom: 10px;
 	line-height: 0;
-	/*margin-top: 80px;*/
+	margin-top: 80px;
+	margin-bottom: 80px;
 }
 
 #titleText {
@@ -103,7 +103,7 @@ a.btn {
     width: 300px;
 	height: 50px;
     padding: 2px 8px;
-	font-size: 1.5em;
+	font-size: 5em;
 
 }
 
@@ -117,22 +117,20 @@ ul {
 }
 
 li {
-	padding-bottom: 5px;
-	/*margin: 0 10px;*/
+	padding-bottom: 10px;
 }
 
-input {
-	margin: 10px auto;
+.inputs {
+	margin: 0 auto;
 	width: 100px;
-	height: 40px;
 	font-size: 4em;
 }
 
 form {
 	display: block;
 	margin: 0 auto;
-	width: 350px;
-	font-size: 1.5em;
+	width: 320px;
+	font-size: 0.4em;
 }
 
 /* 

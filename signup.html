@@ -3,31 +3,31 @@
 <head>
 	<link rel="stylesheet" href="base.css">	
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
-	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
 
 	<script src="menus.js"></script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
 </head>
 <body>
-	<a href="home.html"><img src="back-arrow.png" class="icon" id="backIcon"></a>
+	<a href="home.html" rel="external"><img src="back-arrow.png" class="icon" id="backIcon"></a>
+	<a href="signup.html" class="account" rel="external">Sign Up</a>
 	
-	<a href="login.html" class="account">Login</a>
-
 	<div id="title">
-	<h1>SwipeAway</h1>
+		<h1 id="titleText">SwipeAway</h1>
 	</div>
-
-
+	
 	<form>
 		<ul id="options">
-			<li><input type="text" class="input" name="username" placeholder="Username"></li>
-			<li><input type="email" class="input" name="email" placeholder="Email"></li>
-			<li><input type="password" class="input" name="password" placeholder="Password"></li>
-			<li><input type="password" class="input" name="re-enter password" placeholder="Re-enter Password"></li>
-			<li><a class="button" id="playButton" href="">Login</a></li>
+			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
+			<li><input type="email" class="inputs" name="username" placeholder="Email" rel="external"></li>
+			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
+			<li><input type="password" class="inputs" name="password" placeholder="Re-Enter Password" rel="external"></li>
+
+			<li><a class="btn btn-default" id="playButton" href="" rel="external">Sign Up</a></li>
 		</ul>
 	</form>
 </body>

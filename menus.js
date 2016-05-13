@@ -8,11 +8,9 @@ $(document).ready(function() {
 		if (event.orientation == "portrait") {
 			$('#title').css({"margin-top": "80px"});
 			$('#title').css({"margin-bottom": "80px"});
-			$('form').css({"margin": "0 10px"});
 		} else {
-			$('#title').css({"margin-top": "0px"});
-			$('#title').css({"margin-bottom": "0px"});
-			$('#form').css({"margin": "'0 40pxpx'"});
+			$('#title').css({"margin-top": "0"});
+			$('#title').css({"margin-bottom": "0"});
 		}
 	});
 });

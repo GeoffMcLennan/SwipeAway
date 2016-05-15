@@ -22,10 +22,9 @@ div#title {
 	  box-shadow: 0 !important;
 } 
 
-a.icon {
-	margin-top: 200px;
-	margin-left: 20px;
-	color: black;
+a i.material-icons {
+	font-size: 30px;
+	padding-right: 10px;
 }
 
 div#topBar {
@@ -38,6 +37,7 @@ div#account {
 }
 
 div a.account {
+	margin-top: 5px;
 	padding-top: 0;
 	font-size: 20px;
 	text-decoration: none;
@@ -57,3 +57,75 @@ div a.account:link {
 	margin-left: 5px !important;
 	border-right: 2px solid #8F7A66; 
 }
+
+input.inputs {
+	border: 1px solid #8F7A66 !important;
+	background-color: white;
+}
+
+input.inputs::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #CDC1B4;
+}
+
+div#subTitle {
+	text-align: center;
+	padding-bottom: 10px;
+	line-height: 0;
+	color: #776E65;
+
+}
+
+#endless {
+	font-size: 30px;
+	text-decoration: none;
+	/*border: 3px solid #F67C5F;*/
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-color: #F59563;
+	color: #776E65;
+	width: 276px;
+	margin: 60px auto;
+}
+
+#endless a {
+	color: white;
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

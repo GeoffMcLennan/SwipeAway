@@ -84,6 +84,7 @@ img.circle {
 	padding-top: 10px;
 	padding-right: 10px;
 	padding-left: 10px;
+	text-shadow: none;
 }
 
 /*Center SwipeAway text*/
@@ -111,20 +112,17 @@ div#title {
 	padding:5px */
 }
 
-/* Padd left side icons */
-.icon {
-	padding-top: 10px;
-	padding-left: 10px;
-}
-
 /* Style anchors as buttons*/
 a.btn {
 	text-decoration: none;
     display: inline-block; 
-    width: 300px;
+    width: 310px;
 	height: 50px;
-	padding: 2px 8px;
+	padding-top: 6px;
+	padding-left: 8px;
+	padding-left: 8px;
 	font-size: 5em;
+	text-shadow: none;
 
 }
 
@@ -152,6 +150,7 @@ form {
 	margin: 0 auto;
 	width: 340px;
 	font-size: 0.4em;
+	text-shadow: none;
 }
 
 /* Style level page*/
@@ -165,11 +164,15 @@ form {
 	border-radius: 5px;
 	background-color: #CDC1B4;
 	color: #776E65;
+	text-shadow: none;
+}
+
+#levels a:active {
+	background-color: #ddd2c5;
 }
 
 #levels {
 	text-align: center;
-	margin-top: 140px;
 }
 
 #levels a:nth-child(3) {
@@ -229,10 +232,28 @@ form {
     width: 80px;
     height: 40px;
 }
+/* Style Table*/
+div#centerTable {
+
+}
+
+table#table {
+	color: #776E65;
+	margin: 0  auto;
+	border-collapse: collapse;
+	text-align: center;
+	border: none;
+	width: 310px;
+
+}
+
+table, th, td{
+	border: 2px solid #8F7A66;
+} 
 
 /*CSS for HighScores page*/
 
-table, th, td {
+/*table, th, td {
     margin: 0px auto;
     text-align: center;
     border: 1px solid black;
@@ -252,7 +273,7 @@ table {
 
 tbody tr:hover {
     background-color: #808080;
-}
+}*/
 
 /*CSS for Settings page*/
 div#Buttoncontainer {

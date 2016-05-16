@@ -17,7 +17,7 @@ div#title {
 	
 }
 
-.btn:active {
+form .btn:active {
 	background-color: #d6b444 !important;
 	  box-shadow: 0 !important;
 } 
@@ -25,6 +25,11 @@ div#title {
 a i.material-icons {
 	font-size: 30px;
 	padding-right: 10px;
+}
+
+/* COLOR NOT CHANGING WHEN CLICKED ON*/
+div a.icon#settingsIcon:active {
+	color: black !important;
 }
 
 div#topBar {
@@ -44,6 +49,10 @@ div a.account {
 	color: #BBADA0 !important;
 }
 
+div a.account:active {
+	color: #7c746b !important;
+}
+
 i {
 	padding-left: 10px;
 	color: #BBADA0;
@@ -61,13 +70,16 @@ div a.account:link {
 input.inputs {
 	border: 1px solid #8F7A66 !important;
 	background-color: white;
+	box-shadow: none;
 }
 
 input.inputs::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: #CDC1B4;
+    text-shadow: none;
 }
 
 div#subTitle {
+	margin-bottom: 140px;
 	text-align: center;
 	padding-bottom: 10px;
 	line-height: 0;
@@ -76,22 +88,34 @@ div#subTitle {
 }
 
 #endless {
+	margin: 70px auto;
+	text-align: center;
+}
+
+ul li a.btn#reset, .btn#delete, .btn#tutorial  {
+	background-color: #F59563;
+}
+
+ul li a.btn#reset:active, a.btn#delete:active, a.btn#tutorial:active {
+	background-color: #d68760 !important;
+} 
+
+a#endlessBtn {
+	color: white;
+	text-decoration: none;
 	font-size: 30px;
 	text-decoration: none;
-	/*border: 3px solid #F67C5F;*/
 	padding: 10px 20px;
 	border-radius: 5px;
 	background-color: #F59563;
-	color: #776E65;
-	width: 276px;
-	margin: 60px auto;
-}
-
-#endless a {
 	color: white;
-	text-decoration: none;
+	text-shadow: none;
+	padding-right: 102px
 }
 
+a#endlessBtn:active {
+	background-color: #d68760;
+} 
 
 
 

@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="base.css">		
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+	<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="2048theme.css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script>
-    var lane = 0;
-    $lanes = 0;
-    $tickLength = 0;
-	</script>
-	<script src="game.js"></script>
+	<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
+	<script src="menus.js"></script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
-<div id="desktop">
-</div>
+	<div id="topBar">
+	<a href="home.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+	</div>
+	
+	<div id="subTitle">
+		<h1>Settings</h1>
+	</div>
+	
+	<form>
+		<ul id="acctOptions">
+			<li><a class="btn btn-default" id="reset" href="" rel="external">Reset Profile</a></li>
+			<li><a class="btn btn-default" id="delete" href="level.html" rel="external">Delete Account</a></li>
+			<li><a class="btn btn-default" id="tutorial" href="highscore2.html" rel="external">Replay Tutorial</a></li>
+		</ul>
+	</form>
 
-<div id="container">
-    <div>
-        <a href=""><img src="Back.png" alt="backButton"id="backButton"></a>
-        <h1 id="title">Settings</h1>
-    </div>
-    <div id="Buttoncontainer">
-      <button type="button" class="btn btn-default" id="ResetProfile">Reset Profile</button><br>
-      <button type="button" class="btn btn-default" id="DeleteAccount">Delete Account</button><br>
-      <button type="button" class="btn btn-default" id="ResetTutorial">Reset Tutorial</button>
-    </div>
-</div>
-<h2 id="portError">You are holding your phone in portrait mode.<br>
-For the best experience playing our game, please hold your phone in landscape mode.</h2>
 </body>
 </html>

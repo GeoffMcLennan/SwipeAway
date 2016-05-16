@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="base.css">		
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+	<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="2048theme.css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script>
-    var lane = 0;
-    $lanes = 0;
-    $tickLength = 0;
-	</script>
-	<script src="game.js"></script>
+	<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
+	<script src="menus.js"></script>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
-<div id="desktop">
-</div>
-
-<div id="container">
-    <div>
-        <a href=""><img src="back-arrow.png" alt="backButton"id="backButton"></a>
-        <h1 id="title">HighScore</h1>
-    </div>
-    <div style="overflow-y:auto;">
-    <table id="table" style="width:75%" border="1">
+	<div id="topBar">
+	<a href="home.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+	</div>
+	
+	<div id="subTitle">
+		<h1>Highscores</h1>
+	</div>
+	
+    <div id="levels">
+    <table id="table">
         <tr>
          <td id="tableheader"> </td>
          <td id="tableheader">Username</td>		
@@ -58,7 +60,6 @@
     </table>
     </div>
 </div>
-<h2 id="portError">You are holding your phone in portrait mode.<br>
-For the best experience playing our game, please hold your phone in landscape mode.</h2>
+
 </body>
 </html>

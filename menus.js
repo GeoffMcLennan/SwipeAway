@@ -4,8 +4,13 @@ $.mobile.pushStateEnabled = false;
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
 	$(window).on("orientationchange", function(event){
-		/*alert("Orientation is: " + event.orientation);*/
-		if (event.orientation == "portrait") {
+		margins();
+	});
+	margins();
+});
+
+function margins() {
+		if (window.orientation == 0 || window.orientation == 180) {
 			$('#title').css({"margin-top": "80px"});
 			$('#title').css({"margin-bottom": "80px"});
 			$('#subTitle').css({"margin-bottom": "140px"});
@@ -13,20 +18,7 @@ $(document).ready(function() {
 			$('#title').css({"margin-top": "0"});
 			$('#title').css({"margin-bottom": "0"});
 			$('#subTitle').css({"margin-bottom": "20px"});
-		}
-	});
-});
-	
-	$(document).ready(function(){
-		$('#soundIcon').click(function(){
-			//ORIRGINAL ID="muteicon"
-			if ($('.material-icons').text() == 'volume_up'/*$(this).attr('src') == 'sound.png'*/) {
-				$(this).text('volume_off')/*$(this).attr('src', 'mute.png')*/;
-				alert('yo dawg');
-			}else{
-				$(this).text('volume_up')/*$(this).attr('src', 'sound.png')*/;
-			}
-		});
-	});
-	
+		}	
+}	
 
+	

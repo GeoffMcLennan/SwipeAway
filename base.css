@@ -20,6 +20,10 @@ div#desktop {
 div#container {
 	border: 1px black solid;
 	border-width: 1px 0;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	cursor: default;	
+	-webkit-user-select: none;
 }
 
 div#ui {
@@ -61,7 +65,7 @@ div.track {
 }
 
 div.obstacle {
-	width: 40px;
+	width: 50px;
 	background-color: red;
 	position: absolute;
 	top: 0;
@@ -93,8 +97,8 @@ div#title {
 	text-align: center;
 	padding-bottom: 10px;
 	line-height: 0;
-	margin-top: 80px;
-	margin-bottom: 80px;
+	margin-top: 0;
+	margin-bottom: 0px;
 }
 
 #titleText {

@@ -3,7 +3,7 @@
 <head>
 	<link rel="stylesheet" href="base.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
-
+	<meta name="viewport" content="user-scalable=no">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
 	<script>
@@ -11,8 +11,8 @@
 	$tickLength = 5;
 	$gameLength = 60000;
 	</script>
-	<script src="game.js"></script>
-	<script src="swipemod.js"></script>
+	<script src="scripts/game.js"></script>
+	<script src="scripts/swipemod.js"></script>
 </head>
 <body>
 <div id="desktop">
@@ -23,7 +23,7 @@
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore"></span> / 1000</div>
-		<div id="pause"><img src="pause.png" id="pause"></div>
+		<div id="pause"><img src="images/pause.png" id="pause"></div>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">

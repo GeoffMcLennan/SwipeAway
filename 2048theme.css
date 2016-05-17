@@ -62,7 +62,7 @@ div a.account:link {
 	color: #BBADA0;
 }
 
-#signup {
+a#signup {
 	margin-left: 5px !important;
 	border-right: 2px solid #8F7A66; 
 }

@@ -27,9 +27,8 @@ a i.material-icons {
 	padding-right: 10px;
 }
 
-/* COLOR NOT CHANGING WHEN CLICKED ON*/
-div a.icon#settingsIcon:active {
-	color: black !important;
+a i.material-icons:active {
+	color: #7c746b !important;
 }
 
 div#topBar {

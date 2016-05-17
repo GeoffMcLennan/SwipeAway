@@ -47,7 +47,8 @@ function initialize() {
 	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
 	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
 						"line-height": $("div#score").height() + "px"});
-	$("span#cScore").html("0000");
+	$("span#cScore").html("0");
+	$("span#scorePass").html($scorePass);
 
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
@@ -211,19 +212,19 @@ function easterEgg() {
 	$rand = Math.floor(Math.random() * 4);
 	switch ($rand) {
 		case 0:
-			$newImg = "jim.png";
+			$newImg = "images/jim.png";
 			break;
 		case 1:
-			$newImg = "geoff.png";
+			$newImg = "images/geoff.png";
 			break;
 		case 2:
-			$newImg = "daniel.png";
+			$newImg = "images/daniel.png";
 			break;
 		case 3:
-			$newImg = "jesse.png";
+			$newImg = "images/jesse.png";
 			break;
 		case 4:
-			$newImg = "kelvin.png";
+			$newImg = "images/kelvin.png";
 			break;
 	}
 
@@ -236,6 +237,7 @@ function randomIntForInterval(){
 }
 
 // Moves all obstacles by 1 pixel.
+$cScore = 0;
 function move() {
 	$blocks = $(".obstacle");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
@@ -247,8 +249,11 @@ function move() {
 		// Deletes any obstacles that have travelled to the right off screen.
 		if ($newLeft <= 0) {
 			$(this).remove();
+			$cScore += 1;
 		}
 	});
+
+	$("span#cScore").html($cScore);
 	collision();
 }
 

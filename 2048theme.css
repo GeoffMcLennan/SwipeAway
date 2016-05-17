@@ -72,6 +72,12 @@ input.inputs {
 	box-shadow: none;
 }
 
+/* UGLY INPUTS STILL UGLY */
+form ul#options li input.inputs:active {
+	color: #776E65 !important;
+	box-shadow: none !important;
+}
+
 input.inputs::-webkit-input-placeholder { 
     color: #CDC1B4;
     text-shadow: none;

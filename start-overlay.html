@@ -10,27 +10,22 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
 	<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
+	<script src="menus.js"></script>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="scripts/menus.js"></script>
 
 </head>
 <body>
-	<div id="topBar">
-		<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
-		<a href="signup.html" class="account" rel="external">Sign Up</a>
+	<div id="overlayTitle">
+		<h1>Level</h1>
 	</div>
 	
-	<div id="title">
-		<h1 id="titleText">SwipeAway</h1>
-	</div>
-	
-	<form>
-		<ul id="options">
-			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
-			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
-			<li><a class="btn btn-default" id="playButton" href="" rel="external">Login</a></li>
-		</ul>
-	</form>
+	<div id="centerOptions">
+		<div id="options">
+			<a class="button" id="quit" href="home.html" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" href="level.html" rel="external">Start</a>
+		</div>
+	<div/>
 </body>
 </html>

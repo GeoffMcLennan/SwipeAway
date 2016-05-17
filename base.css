@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	position: relative;
 	-webkit-text-size-adjust: none;
 }
 
@@ -87,6 +88,8 @@ img.circle {
 	font-size: 30px;
 	padding-top: 10px;
 	padding-right: 10px;
+	padding-left: 10px;
+	text-shadow: none;
 }
 
 /*Center SwipeAway text*/
@@ -94,40 +97,24 @@ div#title {
 	text-align: center;
 	padding-bottom: 10px;
 	line-height: 0;
-	margin-top: 80px;
-	margin-bottom: 80px;
+	margin-top: 0;
+	margin-bottom: 0px;
 }
 
 #titleText {
 	font-size: 60px;
 }
 
-/*  centering home page buttons */
-.buttons {
-	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
-	border-bottom-color:#333;
-	border:1px solid #61c4ea;
-	background-color:#7cceee;
-	border-radius:5px;
-	color:#333;
-	font-size:24px;
-	padding:5px
-}
-
-/* Padd left side icons */
-.icon {
-	padding-top: 10px;
-	padding-left: 10px;
-}
-
 /* Style anchors as buttons*/
 a.btn {
 	text-decoration: none;
     display: inline-block; 
-    width: 300px;
+    width: 310px;
 	height: 50px;
-    padding: 2px 8px;
+	padding-top: 6px;
+	padding-left: 8px;
 	font-size: 5em;
+	text-shadow: none;
 
 }
 
@@ -153,10 +140,83 @@ li {
 form {
 	display: block;
 	margin: 0 auto;
-	width: 320px;
+	width: 340px;
 	font-size: 0.4em;
+	text-shadow: none;
 }
 
+/* Style level page*/
+
+#levels a {
+	font-size: 30px;
+	text-decoration: none;
+	margin-right: 60px;
+	padding: 13px 23px;
+	border-radius: 5px;
+	background-color: #CDC1B4;
+	color: #776E65;
+	text-shadow: none;
+}
+
+#levels a:active {
+	background-color: #ddd2c5;
+}
+
+#levels {
+	text-align: center;
+}
+
+#levels a:nth-child(3) {
+	margin-right: 0;
+}
+
+/* Start Overlay */
+
+div#overlayTitle {
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 10px;
+	line-height: 0;
+	color: #776E65;
+}
+div#centerOptions {
+	text-align: center;
+}
+div#options {
+	text-align: center;
+	left: 0;
+	right: 0;
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 20px;
+}
+
+div#options a.button {
+	font-size: 30px;
+	text-decoration: none;
+	margin-left: 10px;
+	padding: 10px 40px;
+	border-radius: 5px;
+	background-color: #EDC53F;
+	color: white;
+	text-shadow: none;
+}
+
+div#options a#quit {
+	background-color: #f67c5f;
+}
+
+div#options a#quit:active {
+	background-color: #e07057;
+}
+
+div#options a#start:active {
+	background-color: #d6b444;
+}
+
+div#options a.button:nth-child(1) {
+	margin-left: 0;
+}
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS
@@ -210,10 +270,28 @@ form {
     width: 80px;
     height: 40px;
 }
+/* Style Table*/
+div#centerTable {
+
+}
+
+table#table {
+	color: #776E65;
+	margin: 0  auto;
+	border-collapse: collapse;
+	text-align: center;
+	border: none;
+	width: 310px;
+
+}
+
+table, th, td{
+	border: 2px solid #8F7A66;
+} 
 
 /*CSS for HighScores page*/
 
-table, th, td {
+/*table, th, td {
     margin: 0px auto;
     text-align: center;
     border: 1px solid black;
@@ -233,10 +311,7 @@ table {
 
 tbody tr:hover {
     background-color: #808080;
-}
-<<<<<<< HEAD
-/*CSS for Settings page*/
-=======
+}*/
 
 /*CSS for Settings page*/
 div#Buttoncontainer {
@@ -256,4 +331,7 @@ div#Buttoncontainer {
 #ResetTutorial {
     width: 200px;
 }
->>>>>>> master
+
+
+
+

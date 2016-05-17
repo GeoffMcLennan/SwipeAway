@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	position: relative;
 	-webkit-text-size-adjust: none;
 }
 
@@ -100,18 +101,6 @@ div#title {
 	font-size: 60px;
 }
 
-/*  centering home page buttons */
-.buttons {
-	/* box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
-	border-bottom-color:#333;
-	border:1px solid #61c4ea;
-	background-color:#7cceee;
-	border-radius:5px;
-	color:#333;
-	font-size:24px;
-	padding:5px */
-}
-
 /* Style anchors as buttons*/
 a.btn {
 	text-decoration: none;
@@ -119,7 +108,6 @@ a.btn {
     width: 310px;
 	height: 50px;
 	padding-top: 6px;
-	padding-left: 8px;
 	padding-left: 8px;
 	font-size: 5em;
 	text-shadow: none;
@@ -159,7 +147,6 @@ form {
 	font-size: 30px;
 	text-decoration: none;
 	margin-right: 60px;
-	/*border: 3px solid #BBADA0;*/
 	padding: 13px 23px;
 	border-radius: 5px;
 	background-color: #CDC1B4;
@@ -179,6 +166,46 @@ form {
 	margin-right: 0;
 }
 
+/* Start Overlay */
+
+div#overlayTitle {
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 10px;
+	line-height: 0;
+	color: #776E65;
+}
+div#centerOptions {
+	text-align: center;
+}
+div#options {
+	text-align: center;
+	left: 0;
+	right: 0;
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 20px;
+}
+
+div#options a#quit {
+	background-color: #f67c5f;
+}
+
+div#options a.button {
+	font-size: 30px;
+	text-decoration: none;
+	margin-left: 10px;
+	padding: 10px 40px;
+	border-radius: 5px;
+	background-color: #EDC53F;
+	color: white;
+	text-shadow: none;
+
+}
+
+div#options a.button:nth-child(1) {
+	margin-left: 0;
+}
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS

@@ -73,7 +73,7 @@ input.inputs {
 	box-shadow: none;
 }
 
-input.inputs::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+input.inputs::-webkit-input-placeholder { 
     color: #CDC1B4;
     text-shadow: none;
 }
@@ -105,7 +105,7 @@ a#endlessBtn {
 	text-decoration: none;
 	font-size: 30px;
 	text-decoration: none;
-	padding: 10px 20px;
+	padding: 15px 20px;
 	border-radius: 5px;
 	background-color: #F59563;
 	color: white;

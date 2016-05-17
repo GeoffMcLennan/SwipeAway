@@ -187,10 +187,6 @@ div#options {
 	margin-bottom: 20px;
 }
 
-div#options a#quit {
-	background-color: #f67c5f;
-}
-
 div#options a.button {
 	font-size: 30px;
 	text-decoration: none;
@@ -200,7 +196,18 @@ div#options a.button {
 	background-color: #EDC53F;
 	color: white;
 	text-shadow: none;
+}
 
+div#options a#quit {
+	background-color: #f67c5f;
+}
+
+div#options a#quit:active {
+	background-color: #e07057;
+}
+
+div#options a#start:active {
+	background-color: #d6b444;
 }
 
 div#options a.button:nth-child(1) {

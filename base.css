@@ -64,10 +64,15 @@ div.track {
 }
 
 div.obstacle {
-	width: 50px;
+	width: 30px;
 	background-color: red;
+	margin: 0 30px;
+	height: 100%;
+}
+
+div.target {
+	width: 90px;
 	position: absolute;
-	top: 0;
 }
 
 img.circle {

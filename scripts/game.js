@@ -139,19 +139,24 @@ function generate() {
 	// Randomly selects lane to spawn in
 	$track = Math.floor(Math.random() * $lanes) + 1
 	$trackId = "#t" + $track;
+
+	// Creates target
+	$target = $('<div></div>');
+	$target.addClass("target");
 	// Creates obstacle
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
+	$target.append($block);
 
 	// Gets height and initial left value for new obstacle
 	$trackHeight = $($trackId).css("height");
 	$leftInit = $("div#container").width() + 2;
 
 	// Applies height and left values to obstacle and inserts it into the lane
-	$block.css({"height": $trackHeight, "left": $leftInit});
-	$($trackId).append($block);
-	$topInit = $block.css("top");
-	$block.css("top", $topInit - 35);
+	$target.css({"height": $trackHeight, "left": $leftInit});
+	$($trackId).append($target);
+	$topInit = $target.css("top");
+	$target.css("top", "0");
 
 	// Attaches swipe listeners to obstacle
 	setObsListeners();
@@ -160,7 +165,7 @@ function generate() {
 // Sets the listeners for obstacles.
 function setObsListeners() {
 	// Swipe up listener
-	jQuery("div.obstacle").on("swipeup", function(event) {
+	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) - 1;
@@ -173,10 +178,14 @@ function setObsListeners() {
 			$height = $(this).css("height");
 			$(this).remove();
 
-			$block = $("<div></div>");
-			$block.addClass("obstacle").css({"left": $left, "height": $height});
+			$target = $('<div></div>');
+			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			
+			$block = $('<div></div>');
+			$block.addClass("obstacle");
+			$target.append($block);
 
-			$($newId).append($block);
+			$($newId).append($target);
 			setObsListeners();
 		// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
 		} else {
@@ -186,7 +195,7 @@ function setObsListeners() {
 	});
 
 	// Swipe down listener
-	jQuery("div.obstacle").on("swipedown", function(event) {
+	jQuery("div.target").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) + 1;
 		$newId = "#t" + $newLane;
@@ -196,10 +205,14 @@ function setObsListeners() {
 			$height = $(this).css("height");
 			$(this).remove();
 
-			$block = $("<div></div>");
-			$block.addClass("obstacle").css({"left": $left, "height": $height});
+			$target = $('<div></div>');
+			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			
+			$block = $('<div></div>');
+			$block.addClass("obstacle");
+			$target.append($block);
 
-			$($newId).append($block);
+			$($newId).append($target);
 			setObsListeners();
 		} else {
 			easterEgg();
@@ -239,7 +252,7 @@ function randomIntForInterval(){
 // Moves all obstacles by 1 pixel.
 $cScore = 0;
 function move() {
-	$blocks = $(".obstacle");
+	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
 	$blocks.each(function() {
@@ -259,33 +272,36 @@ function move() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
-    var block = $(".obstacle");
+    var block = $(".target");
+    $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
+    $leftOffset = 25 - $innerMargin;
+    $rightOffset = -$innerMargin;
 	
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {
-			if ((object <= spritePos1 + 25) && (object >= spritePos1)) {
+			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
 			}
 		}
 		if ($(this).parent().is("#t2")) {
-			if ((object <= spritePos2 + 25) && (object >= spritePos2)) {
+			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
 			}
 		}
 		if ($(this).parent().is("#t3")) {
             var spritePos3 = $("#s3").offset().left;
-			if ((object <= spritePos3 + 25) && (object >= spritePos3)) {
+			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
 			}
 		}
 		if ($(this).parent().is("#t4")) {
             var spritePos3 = $("#s3").offset().left;
             var spritePos4 = $("#s4").offset().left;
-			if ((object <= spritePos4 + 25) && (object >= spritePos4)) {
+			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
 			}
 		}

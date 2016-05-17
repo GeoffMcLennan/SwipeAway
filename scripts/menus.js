@@ -17,10 +17,10 @@ $(document).ready(function() {
 	
 	$(document).ready(function(){
 		$('#soundIcon').click(function(){
-			if ($(this).attr('src') == 'sound.png')
-				$(this).attr('src', 'mute.png');
+			if ($(this).attr('src') == 'images/sound.png')
+				$(this).attr('src', 'images/mute.png');
 			else
-				$(this).attr('src', 'sound.png');
+				$(this).attr('src', 'images/sound.png');
 		});
 	});
 	

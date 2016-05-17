@@ -13,6 +13,10 @@ $(document).ready(function() {
 			$('#title').css({"margin-bottom": "0"});
 		}
 	});
+
+	$("a#su_submit").click(function(){
+		$("form#signup").submit();
+	});
 });
 	
 	$(document).ready(function(){
@@ -25,3 +29,6 @@ $(document).ready(function() {
 	});
 	
 
+$("form#signup").submit(function() {
+	alert("Whaddup");
+});

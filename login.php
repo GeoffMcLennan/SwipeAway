@@ -1,3 +1,9 @@
+<?php
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +33,18 @@
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
+	</div>
+
+	<div id="phperr">
+		<?php
+			if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) > 0) {
+				foreach ($_SESSION['ERRMSG_ARR'] as $error) {
+					echo $error . "<br>";
+				}
+
+				unset($_SESSION['ERRMSG_ARR']);
+			}
+		?>
 	</div>
 	
 	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">

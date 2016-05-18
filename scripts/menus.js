@@ -10,6 +10,10 @@ $(document).ready(function() {
 		sound();	
 	});
 	refreshMargin();
+
+	$("a#su_submit").click(function() {
+		$("form#signup").submit();
+	});
 });  		
 
 function refreshMargin() {

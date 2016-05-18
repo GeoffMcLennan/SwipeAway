@@ -12,6 +12,7 @@ $(document).ready(function() {
 });
 
 // Sets up appropriate game screen depending on screen size.
+$uiHeight = 0;
 function initialize() {
 	$("h2#portError").hide();
 	
@@ -38,21 +39,27 @@ function initialize() {
 		$height = $("div#container").height();
 	}
 
+	// Set the number of lives
+	setLives();
+
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
+	$uiHeight = $("div#ui").css("height");
 	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
 						"width": (0.075 * $height) - 2 + "px"});
+	$("img#heart").css({"height": (0.075 * $height) - 2 + "px",
+						"width": (0.075 * $height) - 2 + "px",
+						"margin": "0 5px"});
 
-	$uiLeft = $("div#ui").width() - $("div#pause").width();
-	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
-	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
+	$uiLeft = $("div#ui").width() - $("div#pause").width() - $("div#lives").width();
+	$("div#score").css({"width": $uiLeft - 2 + "px",
 						"line-height": $("div#score").height() + "px"});
 	$("span#cScore").html("0");
-	$("span#scorePass").html($scorePass);
 
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
+
 }
 
 // Helps the goddamn orientation bullshit.
@@ -111,7 +118,6 @@ function generateSprites(trackNum) {
 
 $time = 0;
 $interval = 0;
-$progress = 0;
 function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
@@ -121,15 +127,8 @@ function tick() {
 		$time = 0;
 	}
 
-	// Increments time values and updates progress bar
+	// Increments time value
 	$time += $tickLength;
-	$progress += $tickLength;
-	$current = ($progress / $gameLength) * 100;
-	if ($current >= 100) {
-		clearInterval(gameStart);
-	} else {
-		$("div#cProgress").css("width", $current + "%");
-	}
 
 	move();
 }
@@ -280,22 +279,26 @@ function collision() {
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
 	
+	$colFlag = 0;
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {
 			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
+				$colFlag += 1;
 			}
 		}
 		if ($(this).parent().is("#t2")) {
 			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
+				$colFlag += 1;
 			}
 		}
 		if ($(this).parent().is("#t3")) {
             var spritePos3 = $("#s3").offset().left;
 			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
+				$colFlag += 1;
 			}
 		}
 		if ($(this).parent().is("#t4")) {
@@ -303,7 +306,32 @@ function collision() {
             var spritePos4 = $("#s4").offset().left;
 			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
+				$colFlag += 1;
 			}
 		}
 	});
+
+	if ($colFlag > 0) {
+		$cLives -= $colFlag;
+		setLives();
+	}
+
+	if ($cLives == 0) {
+		clearInterval(gameStart);
+	}
+}
+
+function setLives() {
+	$("div#lives").empty();
+	for (i = 1; i <= $lives; i++) {
+		if (i <= $cLives) {
+			$("div#lives").append('<img src="images/heart.png" id="heart">');
+		} else {
+			$("div#lives").append("<img src='images/empty_heart.png' id='heart'>")
+		}
+	}
+
+	$("img#heart").css({"height": $uiHeight,
+						"width": $uiHeight,
+						"margin": "0 5px"});
 }

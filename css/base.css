@@ -21,8 +21,7 @@ div#container {
 	position: relative;
 	border: 1px black solid;
 	border-width: 1px 0;
-	overflow-y: hidden;
-	overflow-x: hidden;
+	overflow: hidden;
 	cursor: default;	
 	-webkit-user-select: none;
 }
@@ -43,6 +42,14 @@ div#progress {
 div#cProgress {
 	height: 100%;
 	background-color: red;
+}
+
+div#lives {
+	float: left;
+	display: inline-block;
+	height: 100%;
+	border: 1px black solid;
+	border-width: 0 1px;
 }
 
 div#score {
@@ -66,10 +73,15 @@ div.track {
 }
 
 div.obstacle {
-	width: 50px;
+	width: 30px;
 	background-color: red;
+	margin: 0 30px;
+	height: 100%;
+}
+
+div.target {
+	width: 90px;
 	position: absolute;
-	top: 0;
 }
 
 img.circle {

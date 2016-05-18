@@ -43,6 +43,14 @@ div#cProgress {
 	background-color: red;
 }
 
+div#lives {
+	float: left;
+	display: inline-block;
+	height: 100%;
+	border: 1px black solid;
+	border-width: 0 1px;
+}
+
 div#score {
 	float: left;
 	display: inline-block;

@@ -194,6 +194,7 @@ div#overlayTitle {
 div#centerOptions {
 	text-align: center;
 }
+
 div#options {
 	text-align: center;
 	left: 0;
@@ -231,15 +232,14 @@ div#options a.button:nth-child(1) {
 }
 
 /* Position overlay on top of game screen */
-div#overlay {
+div#startOverlay {
 	z-index: 10;
 	position: absolute;
 	height: 100%;
 	width: 100%;
- 	background-color: rgba(255,255,255, 1.0);
+	background-color: rgba(255,255,255, 0.95);
 
 }
-
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS
@@ -311,9 +311,3 @@ table#table {
 table, th, td {
 	border: 2px solid #8F7A66;
 } 
-
-
-
-
-
-

@@ -13,7 +13,6 @@
 	$scorePass = 30;
 	</script>
 	<script src="scripts/game.js"></script>
-	<script src="scripts/overlay.js"></script>
 	<script src="scripts/swipemod.js"></script>
 </head>
 <body>
@@ -27,10 +26,14 @@
 		<div id="overlayTitle">
 			<h1>Level</h1>
 		</div>
+
+		<h2>Score needed: <span id="putScore"></span>pts</h2>
+		
 		<div id="options">
 			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
 			<a class="button" id="start" rel="external">Start</a>
 		</div>
+		
 	</div>
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>

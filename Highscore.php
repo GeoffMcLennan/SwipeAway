@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div id="topBar">
-	<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+	<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 	</div>
 	
 	<div id="subTitle">

@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div id="topBar">
-		<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+		<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 		<a href="signup.php" class="account" rel="external">Sign Up</a>
 	</div>
 	
@@ -51,7 +51,7 @@
 		<ul id="options">
 			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
-			<li><a class="btn btn-default" id="logsubmit" href="" rel="external">Login</a></li>
+			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>
 	</form>
 </body>

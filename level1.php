@@ -21,17 +21,15 @@
 		<h1>SwipeAway</h1>
 	</div>
 
-<div id="container">jdnfjknvjkncjknfjkdnks
+<div id="container">
 	<div id="startOverlay">
 		<!--OVERLAY CODE BEING A PEICE OF SHIT-->
 		<div id="overlayTitle">
 			<h1>Level</h1>
 		</div>
-		<div id="centerOptions">
-			<div id="options">
-				<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-				<a class="button" id="start" rel="external">Start</a>
-			</div>
+		<div id="options">
+			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" rel="external">Start</a>
 		</div>
 	</div>
 	<div id="ui">
@@ -44,7 +42,7 @@
 		<!-- Track 1 -->
 	</div>
 	<div class="track" id="t2">
-		<!-- Track 2 -->kk
+		<!-- Track 2 -->
 	</div>
 </div>
 

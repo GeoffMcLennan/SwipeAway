@@ -33,7 +33,7 @@
 
 	<div id="topBar">
 		<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
-		<a href="login.html" class="account" rel="external">Login</a>
+		<a href="login.php" class="account" rel="external">Login</a>
 	</div>
 	
 	<div id="title">
@@ -46,6 +46,8 @@
 				foreach ($_SESSION['ERRMSG_ARR'] as $error) {
 					echo $error . "<br>";
 				}
+
+				unset($_SESSION['ERRMSG_ARR']);
 			}
 		?>
 	</div>

@@ -26,15 +26,15 @@
 		<div id="overlayTitle">
 			<h1>Level</h1>
 		</div>
+
+		<h2>Score needed: <span id="putScore"></span>pts</h2>
 		
-		<div id="centerOptions">
-			<div id="options">
-				<a class="button" id="quit" href="home.html" rel="external">Quit&nbsp</a>
-				<a class="button" id="start" href="level.html" rel="external">Start</a>
-			</div>
+		<div id="options">
+			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" rel="external">Start</a>
 		</div>
+		
 	</div>
-    <span onload="openstartOverlay()"></span>
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>

@@ -1,3 +1,9 @@
+<?php
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,25 +25,33 @@
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
-</head>
 <body>
 	<div id="topBar">
-		<a href="settings.html" class="icon" id="settingsIcon" rel="external"><i class="material-icons">settings</i></a>
-		<a href=# id="soundIcon" class="icon" rel="external"><i class="material-icons">volume_up</i></a>
-		<a href="login.html" class="account" rel="external">Login</a>
-		<a href="signup.php" class="account" id="signup" rel="external">Sign Up</a>
+		<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+		<a href="signup.php" class="account" rel="external">Sign Up</a>
 	</div>
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
 	</div>
 
+	<div id="phperr">
+		<?php
+			if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) > 0) {
+				foreach ($_SESSION['ERRMSG_ARR'] as $error) {
+					echo $error . "<br>";
+				}
 
-	<form>
+				unset($_SESSION['ERRMSG_ARR']);
+			}
+		?>
+	</div>
+	
+	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">
 		<ul id="options">
-			<li><a class="btn btn-default" id="playButton" href="level1.html" rel="external">Play</a></li>
-			<li><a class="btn btn-default" id="levelButton" href="level.html" rel="external">Level</a></li>
-			<li><a class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
+			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
+			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
+			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>
 	</form>
 </body>

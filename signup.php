@@ -32,8 +32,8 @@
 <body>
 
 	<div id="topBar">
-		<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
-		<a href="login.html" class="account" rel="external">Login</a>
+		<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+		<a href="login.php" class="account" rel="external">Login</a>
 	</div>
 	
 	<div id="title">
@@ -46,6 +46,8 @@
 				foreach ($_SESSION['ERRMSG_ARR'] as $error) {
 					echo $error . "<br>";
 				}
+
+				unset($_SESSION['ERRMSG_ARR']);
 			}
 		?>
 	</div>
@@ -57,7 +59,7 @@
 			<li><input type="password" class="inputs" name="pass1" placeholder="Password" rel="external"></li>
 			<li><input type="password" class="inputs" name="pass2" placeholder="Re-Enter Password" rel="external"></li>
 
-			<li><a class="btn btn-default" id="su_submit" href="" rel="external">Sign Up</a></li>
+			<li><a class="btn btn-default" id="su_submit" rel="external">Sign Up</a></li>
 		</ul>
 	</form>
 </body>

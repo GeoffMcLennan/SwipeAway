@@ -1,7 +1,4 @@
-DROP DATABASE swipedb;
-CREATE DATABASE swipedb;
-
-USE swipedb;
+USE a3694388_swipedb;
 
 CREATE TABLE members (
 	id INTEGER unsigned NOT NULL auto_increment,

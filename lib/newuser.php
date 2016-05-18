@@ -90,7 +90,7 @@
 	if ($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		session_write_close();
-		header('Location: signup.php');
+		header('Location: '.HOME.'/signup.php');
 		exit();
 	}
 
@@ -100,7 +100,7 @@
 
 	// Confirm row creation and link to home page.
 	if ($result) {
-		header("Location: index.html");
+		header("Location: ".HOME."/index.html");
 		exit();
 	} else {
 		die("Row creation failure.");

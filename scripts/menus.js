@@ -7,6 +7,10 @@ $(document).ready(function() {
 		refreshMargin();
 	});
 	refreshMargin();
+
+	$("a#su_submit").click(function() {
+		$("form#signup").submit();
+	});
 });  		
 
 function refreshMargin() {

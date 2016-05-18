@@ -9,6 +9,11 @@ div#title {
 	color: #776E65; 
 }
 
+div#phperr {
+	color: red;
+	text-align: center;
+}
+
 .btn {
 	color: white !important;
 	padding-top: 100px;

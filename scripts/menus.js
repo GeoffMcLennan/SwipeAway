@@ -6,6 +6,9 @@ $(document).ready(function() {
 	$(window).on("orientationchange", function(event) {
 		refreshMargin();
 	});
+	$( "#soundIcon" ).click(function(event) {
+		sound();	
+	});
 	refreshMargin();
 
 	$("a#su_submit").click(function() {
@@ -23,6 +26,15 @@ function refreshMargin() {
 		$('#title').css({"margin-top": "0"});
 		$('#title').css({"margin-bottom": "0"});
 		$('#subTitle').css({"margin-bottom": "20px"});
+	}
+}
+
+function sound() {
+	var icon = document.getElementById('soundIcon');
+	if (icon.innerHTML === '<i class="material-icons">volume_up</i>') {
+		icon.innerHTML = '<i class="material-icons">volume_off</i>';
+	} else {
+		icon.innerHTML = '<i class="material-icons">volume_up</i>';
 	}
 }
 

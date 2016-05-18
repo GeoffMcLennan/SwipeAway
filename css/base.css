@@ -18,6 +18,7 @@ div#desktop {
 
 /* Game container */
 div#container {
+	position: relative;
 	border: 1px black solid;
 	border-width: 1px 0;
 	overflow: hidden;
@@ -183,7 +184,6 @@ form {
 }
 
 /* Start Overlay */
-
 div#overlayTitle {
 	padding-top: 20px;
 	text-align: center;
@@ -228,6 +228,15 @@ div#options a#start:active {
 
 div#options a.button:nth-child(1) {
 	margin-left: 0;
+}
+
+/* Position overlay on top of game screen */
+div#startOverlay {
+	z-index: 10;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+
 }
 /* 
 //--------------------------------------
@@ -297,52 +306,11 @@ table#table {
 
 }
 
-table, th, td{
+table, th, td {
 	border: 2px solid #8F7A66;
 } 
 
-/*CSS for HighScores page*/
 
-/*table, th, td {
-    margin: 0px auto;
-    text-align: center;
-    border: 1px solid black;
-    font-family: 'Comic Sans MS';
-    font-size: 18px;
-}
-
-table {
-    margin-top: 6%;
-}
-
-#tableheader {
-    height: 40px;
-    color: white;
-    background-color: #878181;
-}
-
-tbody tr:hover {
-    background-color: #808080;
-}*/
-
-/*CSS for Settings page*/
-div#Buttoncontainer {
-   margin-top: 6%;
-   margin-left: 37%;
-   margin-right: 37%;
-}
-
-#ResetProfile {
-    width: 200px;
-}
-
-#DeleteAccount {
-    width: 200px;
-}
-
-#ResetTutorial {
-    width: 200px;
-}
 
 
 

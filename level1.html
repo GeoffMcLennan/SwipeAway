@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="/SwipeAway/css/base.css">
+	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -16,11 +16,25 @@
 	<script src="scripts/swipemod.js"></script>
 </head>
 <body>
-<div id="desktop">
-<h1>SwipeAway</h1>
-</div>
+	<div id="desktop">
+		<h1>SwipeAway</h1>
+	</div>
 
 <div id="container">
+	<div id="startOverlay">
+		<!--OVERLAY CODE BEING A PEICE OF SHIT-->
+		<div id="overlayTitle">
+			<h1>Level</h1>
+		</div>
+		
+		<div id="centerOptions">
+			<div id="options">
+				<a class="button" id="quit" href="home.html" rel="external">Quit&nbsp</a>
+				<a class="button" id="start" href="level.html" rel="external">Start</a>
+			</div>
+		</div>
+	</div>
+    <span onload="openstartOverlay()"></span>
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>

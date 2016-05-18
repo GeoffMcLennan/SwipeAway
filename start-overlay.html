@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="css/base.css">	
 	<link rel="stylesheet" href="css/2048theme.css">
 	
-	<!-- 3rd Party Stylesheets + Icon Font -->
+	<!-- 3rd Party Stylesheets -->
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	
@@ -17,26 +17,18 @@
 	<script src="scripts/menus.js"></script>
 	
 	<!-- Adjust screen nicely for mobile--> 
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<div id="topBar">
-	<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
-	</div>
-	
-	<div id="subTitle">
+	<div id="overlayTitle">
 		<h1>Level</h1>
 	</div>
 	
-	<div id="levels">
-		<a href="level1.html" class="level" rel="external">1</a>
-		<a href="level2.html" class="level" rel="external">2</a>
-		<a href="level3.html" class="level" rel="external">3</a>
-	</div>
-
-	<div id="endless">
-		<a id="endlessBtn" href="endless.html" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>
-	</div>
-
+	<div id="centerOptions">
+		<div id="options">
+			<a class="button" id="quit" href="home.html" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" href="level.html" rel="external">Start</a>
+		</div>
+	<div/>
 </body>
 </html>

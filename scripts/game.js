@@ -307,3 +307,7 @@ function collision() {
 		}
 	});
 }
+
+function openStartOverlay() {
+    document.getElementById("startOverLay").style.height = "100%";
+}

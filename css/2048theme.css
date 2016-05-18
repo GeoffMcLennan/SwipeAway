@@ -32,9 +32,8 @@ a i.material-icons {
 	padding-right: 10px;
 }
 
-/* COLOR NOT CHANGING WHEN CLICKED ON*/
-div a.icon#settingsIcon:active {
-	color: black !important;
+a i.material-icons:active {
+	color: #7c746b !important;
 }
 
 div#topBar {
@@ -76,6 +75,12 @@ input.inputs {
 	border: 1px solid #8F7A66 !important;
 	background-color: white;
 	box-shadow: none;
+}
+
+/* UGLY INPUTS STILL UGLY */
+form ul#options li input.inputs:active {
+	color: #776E65 !important;
+	box-shadow: none !important;
 }
 
 input.inputs::-webkit-input-placeholder { 

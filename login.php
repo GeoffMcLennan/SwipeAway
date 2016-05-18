@@ -29,11 +29,11 @@
 		<h1 id="titleText">SwipeAway</h1>
 	</div>
 	
-	<form>
+	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">
 		<ul id="options">
 			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
-			<li><a class="btn btn-default" id="playButton" href="" rel="external">Login</a></li>
+			<li><a class="btn btn-default" id="logsubmit" href="" rel="external">Login</a></li>
 		</ul>
 	</form>
 </body>

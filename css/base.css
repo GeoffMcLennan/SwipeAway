@@ -18,7 +18,7 @@ div#desktop {
 
 /* Game container */
 div#container {
-	position: absolute;
+	position: relative;
 	border: 1px black solid;
 	border-width: 1px 0;
 	overflow: hidden;
@@ -184,7 +184,6 @@ form {
 }
 
 /* Start Overlay */
-
 div#overlayTitle {
 	padding-top: 20px;
 	text-align: center;
@@ -234,11 +233,9 @@ div#options a.button:nth-child(1) {
 /* Position overlay on top of game screen */
 div#overlay {
 	z-index: 10;
-	position: fixed;
+	position: absolute;
 	height: 100%;
 	width: 100%;
-	left: 0;
- 	top: 0;
  	background-color: rgba(255,255,255, 1.0);
 
 }

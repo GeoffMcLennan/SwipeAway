@@ -14,6 +14,10 @@ $(document).ready(function() {
 	$("a#su_submit").click(function() {
 		$("form#signup").submit();
 	});
+	
+	$("a#logsubmit").click(function() {
+		$("form#login").submit();
+	});
 });  		
 
 function refreshMargin() {

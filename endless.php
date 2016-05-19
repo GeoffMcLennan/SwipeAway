@@ -22,6 +22,19 @@
 </div>
 
 <div id="container">
+	<!--OVERLAY CODE-->
+	<div id="startOverlay">
+		<div id="overlayTitle">
+			<h1>Endless Mode</h1>
+		</div>
+
+		<h2 id="requiredScore">5 lives. Unlimited Obstacals</h2>
+		
+		<div id="options">
+			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" rel="external">Start</a>
+		</div>
+		</div>
 	<div id="ui">
 		<div id="lives"></div>
 		<div id="score"><span id="cScore">0</span></span></div>

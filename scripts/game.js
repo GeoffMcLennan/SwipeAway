@@ -10,7 +10,15 @@ $(document).ready(function() {
 	generateSprites($lanes);
 	//gameStart = setInterval('tick();', $tickLength);
 	$("a#start").click(function() {
-		startGame();
+		$("div#startOverlay").fadeOut("slow", function() {
+			startGame();
+		});
+	});
+	$(document).on("swipeup", function(e) {
+		e.preventDefault();
+	});
+	$(document).on("swipedown", function(e) {
+		e.preventDefault();
 	});
 });
 
@@ -59,6 +67,7 @@ function initialize() {
 
 	// Initializes Start Overlay
 	$("div#startOverlay").css("height", "100%");
+	$("span#putLevel").html($levelNum);
 	$("span#putScore").html($scorePass);
 
 

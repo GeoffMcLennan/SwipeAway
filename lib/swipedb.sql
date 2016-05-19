@@ -1,4 +1,4 @@
-USE a3694388_swipedb;
+USE swipedb;
 
 CREATE TABLE members (
 	id INTEGER unsigned NOT NULL auto_increment,

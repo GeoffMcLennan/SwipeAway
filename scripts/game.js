@@ -10,7 +10,10 @@ $(document).ready(function() {
 	generateSprites($lanes);
 	//gameStart = setInterval('tick();', $tickLength);
 	$("a#start").click(function() {
-		startGame();
+		$("div#startOverlay").fadeOut("slow", function() {
+			startGame();
+		});
+
 	});
 });
 

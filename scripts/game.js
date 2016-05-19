@@ -8,7 +8,17 @@ $(document).ready(function() {
 	});
 	initialize();
 	generateSprites($lanes);
+
 	gameStart = setInterval('tick();', $tickLength);
+
+	//gameStart = setInterval('tick();', $tickLength);
+	$("a#start").click(function() {
+		$("div#startOverlay").fadeOut("slow", function() {
+			startGame();
+		});
+
+	});
+
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -53,6 +63,12 @@ function initialize() {
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
+
+	// Initializes Start Overlay
+	$("div#startOverlay").css("height", "100%");
+	$("span#putLevel").html($levelNum);
+	$("span#putScore").html($scorePass);
+
 }
 
 // Helps the goddamn orientation bullshit.
@@ -311,5 +327,7 @@ function collision() {
 function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
 }
-
-function open
+    //loads game paused overlay on clicking pause button
+function openPauseOverlay() {
+    document.getElementById("pauseOverLay").style.height = "100%";
+}

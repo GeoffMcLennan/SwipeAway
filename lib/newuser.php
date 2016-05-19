@@ -98,9 +98,15 @@
 	$qry = 'INSERT INTO members(username, email, password) VALUES("'.$user.'","'.$email.'","'.md5($_POST['pass1']).'")';
 	$result = mysqli_query($link, $qry);
 
-	// Confirm row creation and link to home page.
+	// Get the newly created user ID
+	$id = mysqli_insert_id($link);
+	echo $id;
+
+	// Confirm row creation, set user variables, and link to home page.
 	if ($result) {
-		header("Location: ".HOME."/index.html");
+		$_SESSION['SESS_MEMBER_ID'] = $id;
+		$_SESSION['SESS_USERNAME'] = $user;
+		header("Location: " . HOME . "/index.php");
 		exit();
 	} else {
 		die("Row creation failure.");

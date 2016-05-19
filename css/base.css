@@ -1,15 +1,19 @@
-body {
+html body {
 	margin: 0;
 	padding: 0;
 	position: relative;
 	-webkit-text-size-adjust: none;
-	background-color:#FAF8EF !important;
+	background-color:#FAF8EF;
 }
 
 /* Extra UI that appears on desktop version */
 div#desktop {
 	text-align: center;
 	color: #776E65;
+	background-color: #FAF8EF;
+}
+
+.ui-mobile {
 	background-color: #FAF8EF;
 }
 
@@ -33,6 +37,7 @@ div#container {
 div#ui {
 	border: 1px #776E65 solid;
 	border-width: 1px 0;
+	background-color: #FAF8EF; 
 }
 
 div#progress {
@@ -51,11 +56,19 @@ div#cProgress {
 
 div#lives {
 	float: left;
+	font-size: ;
+	color: #f73636;
 	display: inline-block;
 	height: 100%;
 	border: 1px #776E65 solid;
-	border-right: 2px #776E65 solid !important;
+	border-right: 0px !important;
 	border-width: 0 1px;
+	overflow: hidden
+}
+
+div#lives i.material-icons{
+	padding-top: 1px;
+	padding-left: 5px;
 }
 
 div#score {
@@ -95,8 +108,7 @@ div.target {
 img.circle {
     width: 30px;
     height: 30px;
-    -webkit-filter: sepia(100%); 
-    filter: sepia(100%);
+    filter: sepia 100%;
 } 
 
 h2#innerText {

@@ -8,7 +8,13 @@ $(document).ready(function() {
 	});
 	initialize();
 	generateSprites($lanes);
-	gameStart = setInterval('tick();', $tickLength);
+	//gameStart = setInterval('tick();', $tickLength);
+	$("a#start").click(function() {
+		$("div#startOverlay").fadeOut("slow", function() {
+			startGame();
+		});
+
+	});
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -114,6 +120,12 @@ function generateSprites(trackNum) {
     $margin = ($height / 2) - 15;
 
     $("img.circle").css("margin-top", $margin + "px");
+}
+
+// Starts the game from start overlay
+function startGame() {
+	$("div#startOverlay").hide();
+	gameStart = setInterval('tick();', $tickLength);
 }
 
 $time = 0;

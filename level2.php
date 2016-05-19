@@ -11,6 +11,7 @@
 	$tickLength = 5;
 	$gameLength = 60000;
 	$scorePass = 40;
+	$levelNum = 2;
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
@@ -21,6 +22,19 @@
 </div>
 
 <div id="container">
+<!--OVERLAY CODE-->
+	<div id="startOverlay">
+		<div id="overlayTitle">
+			<h1>Level <span id="putLevel"></span></h1>
+		</div>
+
+		<h2 id="requiredScore">Score needed: <span id="putScore"></span>pts</h2>
+		
+		<div id="options">
+			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" rel="external">Start</a>
+		</div>
+		</div>
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>

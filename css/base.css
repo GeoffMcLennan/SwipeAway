@@ -89,6 +89,10 @@ img.circle {
     height: 30px;
 } 
 
+h2#requiredScore {
+	color: #8F7A66;
+}
+
 /* 
 //--------------------------------------
 //START OF JESSE'S CSS
@@ -194,6 +198,7 @@ div#overlayTitle {
 div#centerOptions {
 	text-align: center;
 }
+
 div#options {
 	text-align: center;
 	left: 0;
@@ -236,7 +241,8 @@ div#startOverlay {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-
+	background-color: rgba(255,255,255, 0.9);
+	text-align: center;
 }
 /* 
 //--------------------------------------
@@ -309,9 +315,3 @@ table#table {
 table, th, td {
 	border: 2px solid #8F7A66;
 } 
-
-
-
-
-
-

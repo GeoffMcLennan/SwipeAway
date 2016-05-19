@@ -3,16 +3,18 @@
 <head>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+	
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
 	<script>
 	$lanes = 4;
 	$tickLength = 5;
-	$lives = 5;
-	$cLives = 5;
+	$gameLength = 60000;
+	$scorePass = 40;
+	$levelNum = 3;
 	</script>
-	<script src="scripts/endless.js"></script>
+	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
 
 </head>
@@ -22,9 +24,23 @@
 </div>
 
 <div id="container">
+	<!--OVERLAY CODE-->
+	<div id="startOverlay">
+		<div id="overlayTitle">
+			<h1>Level <span id="putLevel"></span></h1>
+		</div>
+
+		<h2 id="requiredScore">Score needed: <span id="putScore"></span>pts</h2>
+		
+		<div id="options">
+			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+			<a class="button" id="start" rel="external">Start</a>
+		</div>
+		
+	</div>
 	<div id="ui">
-		<div id="lives"></div>
-		<div id="score"><span id="cScore">0</span></span></div>
+		<div id="progress"><div id="cProgress"></div></div>
+		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>
 		<div id="pause"><img src="images/pause.png" id="pause"></div>
 		<!-- UI Bar -->
 	</div>

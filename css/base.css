@@ -317,11 +317,11 @@ table, th, td {
 } 
 
 #tableheader {
-    color: #776E65;
-    background-color: #EDC53F;
+    color: white;
+    background-color: #BBADA0;
 }
 
 #userScore {
-    color: #776E65;
-    background-color: #EDC53F;
+    color: white;
+    background-color: #BBADA0;
 }

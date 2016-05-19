@@ -9,9 +9,6 @@ $(document).ready(function() {
 	initialize();
 	generateSprites($lanes);
 
-	gameStart = setInterval('tick();', $tickLength);
-
-	//gameStart = setInterval('tick();', $tickLength);
 	$("a#start").click(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
@@ -135,6 +132,12 @@ function generateSprites(trackNum) {
     $margin = ($height / 2) - 15;
 
     $("img.circle").css("margin-top", $margin + "px");
+}
+
+// Starts the game from start overlay
+function startGame() {
+	$("div#startOverlay").hide();
+	gameStart = setInterval('tick();', $tickLength);
 }
 
 $time = 0;
@@ -337,10 +340,6 @@ function collision() {
 	});
 }
 
-    //loads game start overlay on game load
-function openStartOverlay() {
-    document.getElementById("startOverLay").style.height = "100%";
-}
     //loads game paused overlay on clicking pause button
 function openPauseOverlay() {
     $("div#pauseOverlay").show();

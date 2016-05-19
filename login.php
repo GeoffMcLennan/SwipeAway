@@ -1,3 +1,9 @@
+<?php
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +27,31 @@
 </head>
 <body>
 	<div id="topBar">
-		<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+		<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 		<a href="signup.php" class="account" rel="external">Sign Up</a>
 	</div>
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
 	</div>
+
+	<div id="phperr">
+		<?php
+			if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) > 0) {
+				foreach ($_SESSION['ERRMSG_ARR'] as $error) {
+					echo $error . "<br>";
+				}
+
+				unset($_SESSION['ERRMSG_ARR']);
+			}
+		?>
+	</div>
 	
 	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">
 		<ul id="options">
 			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
-			<li><a class="btn btn-default" id="logsubmit" href="" rel="external">Login</a></li>
+			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>
 	</form>
 </body>

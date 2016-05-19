@@ -50,10 +50,12 @@
 			$_SESSION["SESS_USERNAME"] = $member["username"];
 			session_write_close();
 			header("location: " . HOME . "/index.html");
+			exit();
 		} else {
 			$errmsg_arr[]="Login Failed";
-			$_SESSION["ERRMSG_ARR"]=$errmsg_arr;
+			$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 			header("location: " . HOME . "/login.php");
+			exit();
 		}
 	} else {
 		die("Query Failed");

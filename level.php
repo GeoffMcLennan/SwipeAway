@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div id="topBar">
-	<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+	<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 	</div>
 	
 	<div id="subTitle">
@@ -29,13 +29,13 @@
 	</div>
 	
 	<div id="levels">
-		<a href="level1.html" class="level" rel="external">1</a>
-		<a href="level2.html" class="level" rel="external">2</a>
-		<a href="level3.html" class="level" rel="external">3</a>
+		<a href="level1.php" class="level" id="level1" rel="external">1</a>
+		<a href="level2.php" class="level" id="level2" rel="external">2</a>
+		<a href="level3.php" class="level" id="level3" rel="external">3</a>
 	</div>
 
 	<div id="endless">
-		<a id="endlessBtn" href="endless.html" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>
+		<a id="endlessBtn" href="endless.php" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>
 	</div>
 
 </body>

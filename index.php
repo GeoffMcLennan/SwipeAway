@@ -19,20 +19,26 @@
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
+</head>
 <body>
 	<div id="topBar">
-		<a href="index.html" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+		<a href="settings.php" class="icon" id="settingsIcon" rel="external"><i class="material-icons">settings</i></a>
+		<a href=# id="soundIcon" class="icon" rel="external"><i class="material-icons">volume_up</i></a>
+		<a href="login.php" class="account" rel="external">Login</a>
+		<a href="signup.php" class="account" id="signup" rel="external">Sign Up</a>
 	</div>
 	
-	<div id="subTitle">
-		<h1>Highscores</h1>
+	<div id="title">
+		<h1 id="titleText">SwipeAway</h1>
 	</div>
-	
-    <div id="levels">
-        <table id="table">
-            <?php include '/lib/scores.php';?>
-        </table>
-    </div>
 
+
+	<form>
+		<ul id="options">
+			<li><a class="btn btn-default" id="playButton" href="level1.php" rel="external">Play</a></li>
+			<li><a class="btn btn-default" id="levelButton" href="level.php" rel="external">Level</a></li>
+			<li><a class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
+		</ul>
+	</form>
 </body>
 </html>

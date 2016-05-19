@@ -315,3 +315,13 @@ table#table {
 table, th, td {
 	border: 2px solid #8F7A66;
 } 
+
+#tableheader {
+    color: #776E65;
+    background-color: #EDC53F;
+}
+
+#userScore {
+    color: #776E65;
+    background-color: #EDC53F;
+}

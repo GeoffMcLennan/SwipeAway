@@ -100,7 +100,7 @@
 
 	// Confirm row creation and link to home page.
 	if ($result) {
-		header("Location: ".HOME."/index.html");
+		header("Location: /index.php");
 		exit();
 	} else {
 		die("Row creation failure.");

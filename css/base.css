@@ -244,6 +244,22 @@ div#startOverlay {
 	background-color: rgba(255,255,255, 0.9);
 	text-align: center;
 }
+
+/* Countdown Timer */
+div#countdown {
+
+}
+p#count {
+	margin: auto;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	width: 100px;
+	height: 200px;
+	position: absolute;
+	font-size: 10em;
+}
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS

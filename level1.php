@@ -36,6 +36,10 @@
 		</div>
 		
 	</div>
+	<!-- COUNTDOWN TIMER -->
+	<div id="countdown">
+		<p id="count">3</p>
+	</div>
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>

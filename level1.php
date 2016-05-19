@@ -22,40 +22,22 @@
 	</div>
 
 <div id="container">
-	<!--OVERLAY CODE FOR GAME START-->
-	<div id="startOverlay">
-		<div id="overlayTitle">
-			<h1>Level <span id="putLevel"></span></h1>
-		</div>
 
-		<h2 id="requiredScore">Score needed: <span id="putScore"></span>pts</h2>
-		
-		<div id="options">
-			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-			<a class="button" id="start" rel="external">Start</a>
-		</div>
-	</div>
+	<!-- Game start overlay -->
+	<?php require_once('lib/startoverlay.php'); ?>
 
+	<!-- Level passed overlay -->
+	<?php require_once('lib/levelpassed.php'); ?>
 
-	<div id="ui">
+	<!-- Level failed overlay -->
+	<?php require_once('lib/levelfailed.php'); ?>
+
+    <div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause"></div>
+		<div id="pause" ><img src="images/pause.png" id="pause"></div>  
     </div>
-    <!-- OVERLAY CODE FOR PAUSE GAME-->
-	<div id="pauseOverlay" class="overlay">
-		<div id="overlayTitle">
-            <h1>Game Paused</h1>
-	    </div>
-	
-	    <h2 id="requiredScore">Score needed: <span id="putScore"></span>pts</h2>
 
-        <div id="options">
-			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-			<a class="button" id="start" rel="external">Continue</a>
-		</div>
-	</div>
-    <span onclick="openPauseOverlay()"></span>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">

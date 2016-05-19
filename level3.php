@@ -25,15 +25,15 @@
 
 <div id="container">
 	<div id="startOverlay">
-		<!--OVERLAY CODE BEING A PEICE OF SHIT-->
+		<!--OVERLAY CODE BEING A PIECE OF SHIT-->
 		<div id="overlayTitle">
 			<h1>Level</h1>
 		</div>
 		
 		<div id="centerOptions">
 			<div id="options">
-				<a class="button" id="quit" href="home.html" rel="external">Quit&nbsp</a>
-				<a class="button" id="start" href="level.html" rel="external">Start</a>
+				<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+				<a class="button" id="start" rel="external">Start</a>
 			</div>
 		</div>
 	</div>
@@ -44,14 +44,15 @@
 			<h1>Level <span id="putLevel"></span></h1>
 		</div>
 
-		<h2 id="requiredScore">Score needed: <span id="putScore"></span>pts</h2>
-		
-		<div id="options">
-			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-			<a class="button" id="start" rel="external">Start</a>
-		</div>
-		
-	</div>
+	<!-- Game start overlay -->
+	<?php require_once('lib/startoverlay.php'); ?>
+
+	<!-- Level passed overlay -->
+	<?php require_once('lib/levelpassed.php'); ?>
+
+	<!-- Level failed overlay -->
+	<?php require_once('lib/levelfailed.php'); ?>
+
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>
@@ -70,6 +71,7 @@
 	<div class="track" id="t4">
 		<!-- Track 4 -->
 	</div>
+</div>
 </div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>

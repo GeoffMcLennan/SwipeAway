@@ -16,7 +16,12 @@ $(document).ready(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
 		});
-
+	});
+	$(document).on("swipeup", function(e) {
+		e.preventDefault();
+	});
+	$(document).on("swipedown", function(e) {
+		e.preventDefault();
 	});
 
 });
@@ -68,6 +73,13 @@ function initialize() {
 	$("div#startOverlay").css("height", "100%");
 	$("span#putLevel").html($levelNum);
 	$("span#putScore").html($scorePass);
+
+	// Hides other overlays
+	$("div#passedOverlay").hide();
+	$("div#failedOverlay").hide();
+    $("div#pauseOverlay").hide();
+
+
 
 }
 
@@ -143,6 +155,7 @@ function tick() {
 	$current = ($progress / $gameLength) * 100;
 	if ($current >= 100) {
 		clearInterval(gameStart);
+		gameEnd();
 	} else {
 		$("div#cProgress").css("width", $current + "%");
 	}
@@ -323,11 +336,22 @@ function collision() {
 		}
 	});
 }
+
     //loads game start overlay on game load
 function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
 }
     //loads game paused overlay on clicking pause button
-function openPauseOverlay() {
-    document.getElementById("pauseOverLay").style.height = "100%";
+function openpauseOverlay() {
+    document.getElementById("pauseOverlay").style.height = "100%";
+    }
+
+function gameEnd() {
+	if ($cScore >= $scorePass) {
+		$("span#cScore").html($cScore);
+		$("div#passedOverlay").show();
+	} else {
+		$("span#cScore").html($cScore);
+		$("div#failedOverlay").show();
+	}
 }

@@ -1,4 +1,4 @@
-USE a3694388_swipedb;
+USE swipedb;
 
 CREATE TABLE members (
 	id INTEGER unsigned NOT NULL auto_increment,
@@ -11,7 +11,7 @@ CREATE TABLE members (
 
 CREATE TABLE scores (
 	score_id INTEGER unsigned NOT NULL auto_increment,
-	id INTEGER unsigned NOT NULL default 0,
+	username varchar(100) NOT NULL default '',
 	score INTEGER unsigned default 0,
 	PRIMARY KEY (score_id),
 	FOREIGN KEY (id) REFERENCES members(id)

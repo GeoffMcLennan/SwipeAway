@@ -101,7 +101,7 @@ img.circle {
     filter: sepia(100%);
 } 
 
-h2#requiredScore {
+h2#innerText {
 	color: #8F7A66;
 }
 
@@ -248,7 +248,7 @@ div#options a.button:nth-child(1) {
 }
 
 /* Position overlay on top of game screen */
-div#startOverlay {
+div.overlay {
 	z-index: 10;
 	position: absolute;
 	height: 100%;
@@ -328,3 +328,13 @@ table#table {
 table, th, td {
 	border: 2px solid #8F7A66;
 } 
+
+#tableheader {
+    color: white;
+    background-color: #BBADA0;
+}
+
+#userScore {
+    color: white;
+    background-color: #BBADA0;
+}

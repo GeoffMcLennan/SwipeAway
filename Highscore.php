@@ -33,8 +33,5 @@
             <?php include '/lib/scores.php';?>
         </table>
     </div>
-
-</div>
-
 </body>
 </html>

@@ -342,9 +342,9 @@ function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
 }
     //loads game paused overlay on clicking pause button
-function openpauseOverlay() {
-    document.getElementById("pauseOverlay").style.height = "100%";
-    }
+function openPauseOverlay() {
+    $("div#pauseOverlay").show();
+}
 
 function gameEnd() {
 	if ($cScore >= $scorePass) {

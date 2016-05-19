@@ -8,7 +8,7 @@
 	</h2>
 	
 	<div id="options">
-		<a class="button" id="quit" href="home.html" rel="external">Quit&nbsp</a>
+		<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
 		<a class="button" id="start" href="level.html" rel="external">Next Level</a>
 	</div>
 </div>

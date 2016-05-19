@@ -24,25 +24,6 @@
 </div>
 
 <div id="container">
-	<div id="startOverlay">
-		<!--OVERLAY CODE BEING A PIECE OF SHIT-->
-		<div id="overlayTitle">
-			<h1>Level</h1>
-		</div>
-		
-		<div id="centerOptions">
-			<div id="options">
-				<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-				<a class="button" id="start" rel="external">Start</a>
-			</div>
-		</div>
-	</div>
-    <span onload="openstartOverlay()"></span>
-	<!--OVERLAY CODE-->
-	<div id="startOverlay">
-		<div id="overlayTitle">
-			<h1>Level <span id="putLevel"></span></h1>
-		</div>
 
 	<!-- Game start overlay -->
 	<?php require_once('lib/startoverlay.php'); ?>
@@ -53,10 +34,13 @@
 	<!-- Level failed overlay -->
 	<?php require_once('lib/levelfailed.php'); ?>
 
+    <!-- Game paused overlay-->
+    <?php require_once('lib/pauseoverlay.php');?>
+
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause"></div>
+		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">

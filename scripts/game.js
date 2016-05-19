@@ -13,7 +13,12 @@ $(document).ready(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
 		});
-
+	});
+	$(document).on("swipeup", function(e) {
+		e.preventDefault();
+	});
+	$(document).on("swipedown", function(e) {
+		e.preventDefault();
 	});
 });
 

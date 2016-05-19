@@ -59,6 +59,7 @@ function initialize() {
 
 	// Initializes Start Overlay
 	$("div#startOverlay").css("height", "100%");
+	$("span#putLevel").html($levelNum);
 	$("span#putScore").html($scorePass);
 
 

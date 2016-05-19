@@ -51,7 +51,7 @@ function initialize() {
 
 	$uiLeft = $("div#ui").width() - $("div#pause").width();
 	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
-	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
+	$("div#score").css({"width": (0.4 * $uiLeft) - 4 + "px",
 						"line-height": $("div#score").height() + "px"});
 	$("span#cScore").html("0");
 	$("span#scorePass").html($scorePass);

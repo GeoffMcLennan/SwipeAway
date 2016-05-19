@@ -70,6 +70,9 @@ function initialize() {
 	$("span#putLevel").html($levelNum);
 	$("span#putScore").html($scorePass);
 
+	// Hides other overlays
+	$("div#passedOverlay").hide();
+	$("div#failedOverlay").hide();
 
 
 }
@@ -152,6 +155,7 @@ function tick() {
 	$current = ($progress / $gameLength) * 100;
 	if ($current >= 100) {
 		clearInterval(gameStart);
+		gameEnd();
 	} else {
 		$("div#cProgress").css("width", $current + "%");
 	}
@@ -333,4 +337,12 @@ function collision() {
 	});
 }
 
-
+function gameEnd() {
+	if ($cScore >= $scorePass) {
+		$("span#cScore").html($cScore);
+		$("div#passedOverlay").show();
+	} else {
+		$("span#cScore").html($cScore);
+		$("div#failedOverlay").show();
+	}
+}

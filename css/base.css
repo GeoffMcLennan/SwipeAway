@@ -89,7 +89,7 @@ img.circle {
     height: 30px;
 } 
 
-h2#requiredScore {
+h2#innerText {
 	color: #8F7A66;
 }
 
@@ -236,7 +236,7 @@ div#options a.button:nth-child(1) {
 }
 
 /* Position overlay on top of game screen */
-div#startOverlay {
+div.overlay {
 	z-index: 10;
 	position: absolute;
 	height: 100%;

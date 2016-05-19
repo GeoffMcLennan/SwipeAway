@@ -3,11 +3,14 @@ body {
 	padding: 0;
 	position: relative;
 	-webkit-text-size-adjust: none;
+	background-color:#FAF8EF !important;
 }
 
 /* Extra UI that appears on desktop version */
 div#desktop {
 	text-align: center;
+	color: #776E65;
+	background-color: #FAF8EF;
 }
 
 /* Error that displays if user is playing in portrait mode */
@@ -19,15 +22,16 @@ div#desktop {
 /* Game container */
 div#container {
 	position: relative;
-	border: 1px black solid;
+	border: 1px #776E65 solid;
 	border-width: 1px 0;
 	overflow: hidden;
 	cursor: default;	
+	background-color: #FAF8EF;
 	-webkit-user-select: none;
 }
 
 div#ui {
-	border: 1px black solid;
+	border: 1px #776E65 solid;
 	border-width: 1px 0;
 }
 
@@ -35,25 +39,28 @@ div#progress {
 	float: left;
 	display: inline-block;
 	height: 100%;
-	border: 1px black solid;
+	border: 1px #776E65 solid;
+	border-right: 2px #776E65 solid !important;
 	border-width: 0 1px;
 }
 
 div#cProgress {
 	height: 100%;
-	background-color: red;
+	background-color: #EDCF72;
 }
 
 div#lives {
 	float: left;
 	display: inline-block;
 	height: 100%;
-	border: 1px black solid;
+	border: 1px #776E65 solid;
+	border-right: 2px #776E65 solid !important;
 	border-width: 0 1px;
 }
 
 div#score {
 	float: left;
+	color: #8F7A66;
 	display: inline-block;
 	height: 100%;
 	font-size: 150%;
@@ -67,14 +74,15 @@ div#pause {
 
 div.track {
 	width: 100%;
-	border:1px black solid;
+	border:1px #776E65 solid;
 	border-width: 1px 0;
 	position: relative;
 }
 
 div.obstacle {
 	width: 30px;
-	background-color: red;
+	background-color: #F65E3B;
+	border-radius: 2px;
 	margin: 0 30px;
 	height: 100%;
 }
@@ -87,6 +95,8 @@ div.target {
 img.circle {
     width: 30px;
     height: 30px;
+    -webkit-filter: sepia(100%); 
+    filter: sepia(100%);
 } 
 
 h2#innerText {
@@ -189,7 +199,7 @@ form {
 
 /* Start Overlay */
 div#overlayTitle {
-	padding-top: 20px;
+	padding-top: 40px;
 	text-align: center;
 	padding-bottom: 10px;
 	line-height: 0;
@@ -244,6 +254,7 @@ div.overlay {
 	background-color: rgba(255,255,255, 0.9);
 	text-align: center;
 }
+
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS

@@ -58,7 +58,7 @@ function initialize() {
 						"margin": "0 5px"});
 
 	$uiLeft = $("div#ui").width() - $("div#pause").width() - $("div#lives").width();
-	$("div#score").css({"width": $uiLeft - 2 + "px",
+	$("div#score").css({"width": $uiLeft - 4 + "px",
 						"line-height": $("div#score").height() + "px"});
 	$("span#cScore").html("0");
 

@@ -70,8 +70,6 @@ div#score {
 div#pause {
 	float: right;
 	display: inline-block;
-	-webkit-filter: sepia(100%); 
-	filter: sepia(100%);
 }
 
 div.track {

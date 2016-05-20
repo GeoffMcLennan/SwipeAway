@@ -34,10 +34,13 @@
 	<!-- Level failed overlay -->
 	<?php require_once('lib/levelfailed.php'); ?>
 
+    <!-- Game paused overlay-->
+    <?php require_once('lib/pauseoverlay.php');?>
+
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause"></div>
+		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">
@@ -52,6 +55,7 @@
 	<div class="track" id="t4">
 		<!-- Track 4 -->
 	</div>
+</div>
 </div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>

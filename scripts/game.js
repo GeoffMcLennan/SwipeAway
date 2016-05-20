@@ -8,13 +8,14 @@ $(document).ready(function() {
 	});
 	initialize();
 	generateSprites($lanes);
-
-	gameStart = setInterval('tick();', $tickLength);
-
-	//gameStart = setInterval('tick();', $tickLength);
-	$("a#start").click(function() {
+    $("a#start").click(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
+
+	//gameStart = setInterval('tick();', $tickLength);
+
+	//gameStart = setInterval('tick();', $tickLength);
+
 		});
 	});
 	$(document).on("swipeup", function(e) {
@@ -341,12 +342,13 @@ function collision() {
 function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
 }
-    //loads game paused overlay on clicking pause button
+
+    //opens pause overlay and stops obstacle movement
 function openPauseOverlay() {
     $("div#pauseOverlay").show();
     clearInterval(gameStart);
 }
-
+    //closes pause overlay and resumes obstacle movement
 function closePauseOverlay(){
     $("div#pauseOverlay").hide();
     gameStart = setInterval('tick();', $tickLength);   

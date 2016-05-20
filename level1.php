@@ -3,7 +3,10 @@
 <head>
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 	<meta name="viewport" content="width=device-width, user-scalable=no">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.js"></script>
 	<script>
@@ -37,10 +40,9 @@
 
     <div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
-		<div id="score"><span id="cScore">0</span> / <span id="scorePass"></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>  
+		<div id="score">Score: <span id="cScore">0</span> / <span id="scorePass"></span></div>
+		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div> 
     </div>
-
 		<!-- UI Bar -->
 	<div class="track" id="t1">
 		<!-- Track 1 -->

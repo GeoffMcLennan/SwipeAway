@@ -185,15 +185,8 @@ function generate() {
 	$leftInit = $("div#container").width() + 2;
 
 	// Applies height and left values to obstacle and inserts it into the lane
-    $selectTarget = Math.floor(Math.random() * 2) + 1;
-    if ($selectTarget == 1) {
-        $target.css({"height": $trackHeight, "left": $leftInit});
-        $($trackId).append($target);
-    } else {
-        $target.css({"height": ($trackHeight * 2), "left": $leftInit});
-        $target.css({"height": $trackHeight, "left": $leftInit});
-        $($trackId).append($target);
-    }
+    $target.css({"height": $trackHeight, "left": $leftInit});
+    $($trackId).append($target);
 	$topInit = $target.css("top");
 	$target.css("top", "0");
 

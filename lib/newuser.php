@@ -15,7 +15,7 @@
 
 	// Connect to database
 
-	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error());
+	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error($link));
 
 	// Function to sanitize form inputs
 	function clean($str, $link) {
@@ -98,9 +98,19 @@
 	$qry = 'INSERT INTO members(username, email, password) VALUES("'.$user.'","'.$email.'","'.md5($_POST['pass1']).'")';
 	$result = mysqli_query($link, $qry);
 
-	// Confirm row creation and link to home page.
+	// Get the newly created user ID
+	$id = mysqli_insert_id($link);
+	echo $id;
+
+	// Confirm row creation, set user variables, and link to home page.
 	if ($result) {
+<<<<<<< HEAD
 		header("Location: /index.php");
+=======
+		$_SESSION['SESS_MEMBER_ID'] = $id;
+		$_SESSION['SESS_USERNAME'] = $user;
+		header("Location: " . HOME . "/index.php");
+>>>>>>> master
 		exit();
 	} else {
 		die("Row creation failure.");

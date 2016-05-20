@@ -1,13 +1,20 @@
-body {
+html body {
 	margin: 0;
 	padding: 0;
 	position: relative;
 	-webkit-text-size-adjust: none;
+	background-color:#FAF8EF;
 }
 
 /* Extra UI that appears on desktop version */
 div#desktop {
 	text-align: center;
+	color: #776E65;
+	background-color: #FAF8EF;
+}
+
+.ui-mobile {
+	background-color: #FAF8EF;
 }
 
 /* Error that displays if user is playing in portrait mode */
@@ -19,62 +26,81 @@ div#desktop {
 /* Game container */
 div#container {
 	position: relative;
-	border: 1px black solid;
+	border: 1px #BBADA0 solid;
 	border-width: 1px 0;
 	overflow: hidden;
 	cursor: default;	
+	background-color: #FAF8EF;
 	-webkit-user-select: none;
 }
 
 div#ui {
-	border: 1px black solid;
+	border: 1px #BBADA0 solid;
 	border-width: 1px 0;
+	background-color: #BBADA0; 
 }
 
 div#progress {
+	background-color: white;
 	float: left;
 	display: inline-block;
 	height: 100%;
-	border: 1px black solid;
+	border: 1px #BBADA0 solid;
 	border-width: 0 1px;
 }
 
 div#cProgress {
 	height: 100%;
-	background-color: red;
+	background-color: #EDCF72;
 }
 
 div#lives {
 	float: left;
+	font-size: ;
+	color: #f73636;
 	display: inline-block;
 	height: 100%;
-	border: 1px black solid;
+	border: 1px #BBADA0 solid;
+	border-right: 0px !important;
 	border-width: 0 1px;
+	overflow: hidden
+}
+
+div#lives i.material-icons{
+	padding-top: 1px;
+	padding-left: 5px;
+	text-shadow: none;
 }
 
 div#score {
 	float: left;
+	color: white;
 	display: inline-block;
 	height: 100%;
 	font-size: 150%;
 	text-align: center;
+	text-shadow: none;
 }
 
 div#pause {
 	float: right;
 	display: inline-block;
+    
 }
 
 div.track {
 	width: 100%;
-	border:1px black solid;
+	border:1px #BBADA0 solid;
 	border-width: 1px 0;
 	position: relative;
+	color: #776E65;
+	margin: auto 0;
 }
 
 div.obstacle {
 	width: 30px;
-	background-color: red;
+	background-color: #F65E3B;
+	border-radius: 2px;
 	margin: 0 30px;
 	height: 100%;
 }
@@ -84,10 +110,23 @@ div.target {
 	position: absolute;
 }
 
-img.circle {
-    width: 30px;
-    height: 30px;
+/* Vertically align Sprites and size */
+div.track .material-icons { 
+	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+	font-size: 36px; 
 } 
+
+/* For using img as sprites  
+// NOTE: BREAKS LEVELS WITHOUT EVERYTHING ELSE CHANGED TO 
+// HANDLE .IMG AS SPRITES */
+
+/*img.circle {
+    width: 30px;
+    height: 30px;*/
+
+ 
 
 h2#innerText {
 	color: #8F7A66;
@@ -189,7 +228,7 @@ form {
 
 /* Start Overlay */
 div#overlayTitle {
-	padding-top: 20px;
+	padding-top: 40px;
 	text-align: center;
 	padding-bottom: 10px;
 	line-height: 0;
@@ -231,6 +270,10 @@ div#options a#start:active {
 	background-color: #d6b444;
 }
 
+div#options a#continue:active {
+       background-color: #d6b444;
+}
+
 div#options a.button:nth-child(1) {
 	margin-left: 0;
 }
@@ -244,6 +287,17 @@ div.overlay {
 	background-color: rgba(255,255,255, 0.9);
 	text-align: center;
 }
+
+
+div#pauseOverlay {
+	z-index: 10;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255,255,255, 0.9);
+	text-align: center;
+}
+
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS
@@ -317,11 +371,11 @@ table, th, td {
 } 
 
 #tableheader {
-    color: #776E65;
-    background-color: #EDC53F;
+    color: white;
+    background-color: #BBADA0;
 }
 
 #userScore {
-    color: #776E65;
-    background-color: #EDC53F;
+    color: white;
+    background-color: #BBADA0;
 }

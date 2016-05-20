@@ -49,7 +49,7 @@
 			$_SESSION["SESS_MEMBER_ID"] = $member["id"];
 			$_SESSION["SESS_USERNAME"] = $member["username"];
 			session_write_close();
-			header("location: " . HOME . "/index.html");
+			header("location: " . HOME . "/index.php");
 			exit();
 		} else {
 			$errmsg_arr[]="Login Failed";

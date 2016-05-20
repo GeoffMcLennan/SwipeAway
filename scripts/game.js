@@ -8,7 +8,7 @@ $(document).ready(function() {
 	});
 	initialize();
 	generateSprites($lanes);
-	//gameStart = setInterval('tick();', $tickLength);
+
 	$("a#start").click(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
@@ -20,6 +20,7 @@ $(document).ready(function() {
 	$(document).on("swipedown", function(e) {
 		e.preventDefault();
 	});
+
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -51,12 +52,12 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
-	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
-						"width": (0.075 * $height) - 2 + "px"});
+	$("img#pause").css({"height": (0.075 * $height) - 1 + "px",
+						"width": (0.075 * $height) - 1 + "px"});
 
 	$uiLeft = $("div#ui").width() - $("div#pause").width();
 	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
-	$("div#score").css({"width": (0.4 * $uiLeft) - 3 + "px",
+	$("div#score").css({"width": (0.4 * $uiLeft) - 4 + "px",
 						"line-height": $("div#score").height() + "px"});
 	$("span#cScore").html("0");
 	$("span#scorePass").html($scorePass);
@@ -73,6 +74,8 @@ function initialize() {
 	// Hides other overlays
 	$("div#passedOverlay").hide();
 	$("div#failedOverlay").hide();
+    $("div#pauseOverlay").hide();
+
 
 
 }
@@ -118,7 +121,7 @@ function generateSprites(trackNum) {
 
     // Puts a sprite in each array with the given margin value
     for (j = 1; j <= $lanes; j++) {
-    	$sprite = $('<img src="images/circle.png" class="circle">');
+    	$sprite = $('<i id="circle" class="material-icons">brightness_1</i>');
     	$sprite.css("margin-left", pos[j - 1] - 15 + "px");
         $sprite.attr("id", ("s" + j));
     	$("#t" + j).append($sprite);
@@ -128,7 +131,7 @@ function generateSprites(trackNum) {
     $height = $("div.track").height();
     $margin = ($height / 2) - 15;
 
-    $("img.circle").css("margin-top", $margin + "px");
+    $("i#circle").css("margin-top", $margin + "px");
 }
 
 // Starts the game from start overlay
@@ -335,6 +338,17 @@ function collision() {
 			}
 		}
 	});
+}
+
+    //loads game paused overlay on clicking pause button
+function openPauseOverlay() {
+    $("div#pauseOverlay").show();
+    clearInterval(gameStart);
+}
+
+function closePauseOverlay(){
+    $("div#pauseOverlay").hide();
+    gameStart = setInterval('tick();', $tickLength);   
 }
 
 function gameEnd() {

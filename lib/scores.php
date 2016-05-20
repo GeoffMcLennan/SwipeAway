@@ -29,18 +29,18 @@ if ($result1) {
 if ($sessScore == null) {
     $sql1 = "INSERT INTO scores (username, score)
         VALUES ('$sessUser', $score)";
-    if ($conn->query($sql1) === TRUE) {
+    /*if ($conn->query($sql1) === TRUE) {
         echo "New record created";
     } else {
         echo "Error: " . $sql1 . "<br>" . $conn->error;
-    }
+    }*/
 } else if ($sessScore < $score) {
     $sql2 = "UPDATE scores SET score=$score WHERE username='$sessUser'";
-    if ($conn->query($sql2) === TRUE) {
+    /*if ($conn->query($sql2) === TRUE) {
         echo "Record updated successfully";
     } else {
         echo "Error updating record: " . $conn->error;
-    }
+    }*/
 }
 
 // Select id and score from scores tables in descending order.

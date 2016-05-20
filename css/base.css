@@ -85,6 +85,7 @@ div#score {
 div#pause {
 	float: right;
 	display: inline-block;
+    
 }
 
 div.track {
@@ -269,12 +270,26 @@ div#options a#start:active {
 	background-color: #d6b444;
 }
 
+div#options a#continue:active {
+       background-color: #d6b444;
+}
+
 div#options a.button:nth-child(1) {
 	margin-left: 0;
 }
 
 /* Position overlay on top of game screen */
 div.overlay {
+	z-index: 10;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(255,255,255, 0.9);
+	text-align: center;
+}
+
+
+div#pauseOverlay {
 	z-index: 10;
 	position: absolute;
 	height: 100%;

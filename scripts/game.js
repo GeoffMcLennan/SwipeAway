@@ -8,7 +8,7 @@ $(document).ready(function() {
 	});
 	initialize();
 	generateSprites($lanes);
-	//gameStart = setInterval('tick();', $tickLength);
+
 	$("a#start").click(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
@@ -20,6 +20,7 @@ $(document).ready(function() {
 	$(document).on("swipedown", function(e) {
 		e.preventDefault();
 	});
+
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -73,6 +74,8 @@ function initialize() {
 	// Hides other overlays
 	$("div#passedOverlay").hide();
 	$("div#failedOverlay").hide();
+    $("div#pauseOverlay").hide();
+
 
 
 }
@@ -335,6 +338,17 @@ function collision() {
 			}
 		}
 	});
+}
+
+    //loads game paused overlay on clicking pause button
+function openPauseOverlay() {
+    $("div#pauseOverlay").show();
+    clearInterval(gameStart);
+}
+
+function closePauseOverlay(){
+    $("div#pauseOverlay").hide();
+    gameStart = setInterval('tick();', $tickLength);   
 }
 
 function gameEnd() {

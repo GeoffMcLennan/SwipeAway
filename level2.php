@@ -35,10 +35,13 @@
 	<!-- Level failed overlay -->
 	<?php require_once('lib/levelfailed.php'); ?>
 
+    <!-- Game paused overlay-->
+    <?php require_once('lib/pauseoverlay.php');?>
+
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
 		<div id="score">Score: <span id="cScore">0</span> / <span id="scorePass"></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause"></div>
+		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">

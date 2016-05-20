@@ -1,3 +1,10 @@
+<?php
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,19 +26,12 @@
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
-</head>
 <body>
-	<div id="topBar">
-		<a href="settings.php" class="icon" id="settingsIcon" rel="external"><i class="material-icons">settings</i></a>
-		<a href=# id="soundIcon" class="icon" rel="external"><i class="material-icons">volume_up</i></a>
-		<a href="login.php" class="account" rel="external">Login</a>
-		<a href="signup.php" class="account" id="signup" rel="external">Sign Up</a>
-	</div>
+	<?php require_once('lib/topbar.php') ?>
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
 	</div>
-
 
 	<form>
 		<ul id="options">

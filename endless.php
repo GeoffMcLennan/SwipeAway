@@ -38,7 +38,7 @@
 		</div>
 	<div id="ui">
 		<div id="lives"></div>
-		<div id="score"><span id="cScore">0</span></span></div>
+		<div id="score">Score: <span id="cScore">0</span></span></div>
 		<div id="pause"><img src="images/pause.png" id="pause"></div>
 		<!-- UI Bar -->
 	</div>

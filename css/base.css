@@ -26,7 +26,7 @@ div#desktop {
 /* Game container */
 div#container {
 	position: relative;
-	border: 1px #776E65 solid;
+	border: 1px #BBADA0 solid;
 	border-width: 1px 0;
 	overflow: hidden;
 	cursor: default;	
@@ -35,17 +35,17 @@ div#container {
 }
 
 div#ui {
-	border: 1px #776E65 solid;
+	border: 1px #BBADA0 solid;
 	border-width: 1px 0;
-	background-color: #FAF8EF; 
+	background-color: #BBADA0; 
 }
 
 div#progress {
+	background-color: white;
 	float: left;
 	display: inline-block;
 	height: 100%;
-	border: 1px #776E65 solid;
-	border-right: 2px #776E65 solid !important;
+	border: 1px #BBADA0 solid;
 	border-width: 0 1px;
 }
 
@@ -60,7 +60,7 @@ div#lives {
 	color: #f73636;
 	display: inline-block;
 	height: 100%;
-	border: 1px #776E65 solid;
+	border: 1px #BBADA0 solid;
 	border-right: 0px !important;
 	border-width: 0 1px;
 	overflow: hidden
@@ -69,15 +69,17 @@ div#lives {
 div#lives i.material-icons{
 	padding-top: 1px;
 	padding-left: 5px;
+	text-shadow: none;
 }
 
 div#score {
 	float: left;
-	color: #8F7A66;
+	color: white;
 	display: inline-block;
 	height: 100%;
 	font-size: 150%;
 	text-align: center;
+	text-shadow: none;
 }
 
 div#pause {
@@ -87,9 +89,11 @@ div#pause {
 
 div.track {
 	width: 100%;
-	border:1px #776E65 solid;
+	border:1px #BBADA0 solid;
 	border-width: 1px 0;
 	position: relative;
+	color: #776E65;
+	margin: auto 0;
 }
 
 div.obstacle {
@@ -105,11 +109,23 @@ div.target {
 	position: absolute;
 }
 
-img.circle {
-    width: 30px;
-    height: 30px;
-    filter: sepia 100%;
+/* Vertically align Sprites and size */
+div.track .material-icons { 
+	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+	font-size: 36px; 
 } 
+
+/* For using img as sprites  
+// NOTE: BREAKS LEVELS WITHOUT EVERYTHING ELSE CHANGED TO 
+// HANDLE .IMG AS SPRITES */
+
+/*img.circle {
+    width: 30px;
+    height: 30px;*/
+
+ 
 
 h2#innerText {
 	color: #8F7A66;

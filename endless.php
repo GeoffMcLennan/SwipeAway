@@ -42,12 +42,12 @@
 
 <div id="container">
 	<!--OVERLAY CODE-->
-	<div id="startOverlay">
+	<div id="startOverlay" class="overlay">
 		<div id="overlayTitle">
 			<h1>Endless Mode</h1>
 		</div>
 
-		<h2 id="requiredScore">5 lives. Unlimited Obstacals</h2>
+		<h2 id="innerText">5 lives. Unlimited Obstacles</h2>
 		
 		<div id="options">
 			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>

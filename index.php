@@ -19,7 +19,6 @@
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
-</head>
 <body>
 	<div id="topBar">
 		<a href="settings.php" class="icon" id="settingsIcon" rel="external"><i class="material-icons">settings</i></a>

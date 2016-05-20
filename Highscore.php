@@ -30,7 +30,7 @@
 	
     <div id="levels">
         <table id="table">
-            <?php include '/lib/scores.php';?>
+            <?php include 'lib/scores.php';?>
         </table>
     </div>
 </body>

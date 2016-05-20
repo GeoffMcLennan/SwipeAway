@@ -13,7 +13,13 @@ $(document).ready(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
 		});
+	});
 
+	$(document).on("swipeup", function(e) {
+		e.preventDefault();
+	});
+	$(document).on("swipedown", function(e) {
+		e.preventDefault();
 	});
 });
 
@@ -65,6 +71,10 @@ function initialize() {
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
+
+	// Hides unnecessary overlays
+	$("div#endOverlay").hide();
+	$("div#pauseOverlay").hide();
 
 }
 
@@ -328,8 +338,9 @@ function collision() {
 		setLives();
 	}
 
-	if ($cLives == 0) {
+	if ($cLives <= 0) {
 		clearInterval(gameStart);
+		gameEnd();
 	}
 }
 
@@ -346,4 +357,33 @@ function setLives() {
 	$("img#heart").css({"height": $uiHeight,
 						"width": $uiHeight,
 						"margin": "0 5px"});
+}
+
+function openPauseOverlay() {
+    $("div#pauseOverlay").show();
+    clearInterval(gameStart);
+}
+
+function closePauseOverlay(){
+    $("div#pauseOverlay").hide();
+    gameStart = setInterval('tick();', $tickLength);   
+}
+
+function gameEnd() {
+	$("div#endOverlay").show();
+	$test = 'test';
+	$.ajax({
+		type: 'POST',
+		url: 'lib/updatehiscore.php',
+		data: { score : $cScore}, 
+		complete: function (response) {
+			$text = response.responseText;
+			if ($text.localeCompare('true') == 0) {
+				$("h2#congrats").html("You have a new highscore!");
+			}
+		},
+		error: function () {
+
+		}
+	});
 }

@@ -4,28 +4,27 @@
 		session_start();
 	}
 
-	if(isset($_SESSION['SESS_MEMBER_ID'])) {
-		
-	}
 ?>
 
-<div id="passedOverlay" class="overlay">
+<div id="endOverlay" class="overlay">
 	<div id="overlayTitle">
 		<h1>Game Over</h1>
 	</div>
 
-	<h2 id="innerText">
+	<h2 class="innerText">
 	You scored: <span id="cScore"></span>pts 
 	</h2>
 	
 	<?php 
 		if(isset($_SESSION['SESS_MEMBER_ID'])) {
-			echo '<h2 id="innerText">Your Highscore: ' . $highscore . '</h2>';
+			echo '<h2 class="innerText">Your Highscore: ' . $highscore . 'pts</h2>';
 		}
 	?>
+
+	<h2 class="innerText" id="congrats"></h2>
 	
 	<div id="options">
-		<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-		<a class="button" id="start" href="level.php" rel="external">Next Level</a>
+		<a class="button" id="quit" href="index.php" rel="external">Quit</a>
+		<a class="button" id="start" href="endless.php" rel="external">Retry</a>
 	</div>
 </div>

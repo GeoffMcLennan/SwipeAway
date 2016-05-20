@@ -100,7 +100,7 @@ img.circle {
     filter: sepia(100%);
 } 
 
-h2#innerText {
+h2.innerText {
 	color: #8F7A66;
 }
 

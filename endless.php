@@ -4,6 +4,11 @@
 		session_start();
 	}
 
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+
 	// Include database connection info
 	require_once('lib/config_local.php');
 
@@ -41,26 +46,30 @@
 </div>
 
 <div id="container">
-	<!--OVERLAY CODE-->
+	<!-- Game start overlay -->
 	<div id="startOverlay" class="overlay">
 		<div id="overlayTitle">
 			<h1>Endless Mode</h1>
 		</div>
 
-		<h2 id="innerText">5 lives. Unlimited Obstacles</h2>
+		<h2 class="innerText">5 lives. Unlimited Obstacles</h2>
 		
 		<div id="options">
-			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
+			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp;</a>
 			<a class="button" id="start" rel="external">Start</a>
 		</div>
 	</div>
 
+	<!-- Game over overlay -->
 	<?php require_once("lib/endlessover.php"); ?>
+
+	<!-- Game pause overlay -->
+	<?php require_once('lib/pauseoverlay.php');?>
 
 	<div id="ui">
 		<div id="lives"></div>
 		<div id="score"><span id="cScore">0</span></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause"></div>
+		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
 		<!-- UI Bar -->
 	</div>
 	<div class="track" id="t1">

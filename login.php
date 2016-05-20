@@ -44,7 +44,7 @@ include 'lib/cookieId.php';
 		?>
 	</div>
 	
-	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">
+	<form method="post" id="login" data-ajax="false" action="lib/validate.php">
 		<ul id="options">
 			<li><input type="text" id="userText" class="inputs" name="username" placeholder="Username" value="<?php if   (isset($_SESSION["SESS_USERNAME"])) { echo $_COOKIE[$cookie_name]; } ?>" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>

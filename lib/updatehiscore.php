@@ -5,7 +5,7 @@
 	}
 
 	// Include database connection info
-	require_once('config_local.php');
+	require_once('config_host.php');
 
 	if (isset($_SESSION['SESS_MEMBER_ID'])) {
 		$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error($link));

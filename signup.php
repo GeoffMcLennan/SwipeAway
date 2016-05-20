@@ -5,7 +5,7 @@
 	}
 
 	// Include database connection info
-	require_once('lib/config_local.php');
+	require_once('lib/config_host.php');
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,7 @@
 		?>
 	</div>
 	
-	<form method="POST" id="signup" data-ajax="false" action="/SwipeAway/lib/newuser.php">
+	<form method="POST" id="signup" data-ajax="false" action="lib/newuser.php">
 		<ul id="options">
 			<li><input type="text" class="inputs" name="username" placeholder="Username" rel="external"></li>
 			<li><input type="email" class="inputs" name="email" placeholder="Email" rel="external"></li>

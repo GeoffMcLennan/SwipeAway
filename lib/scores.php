@@ -3,7 +3,7 @@ if (!isset($_SESSION)){
 	session_start();
 }
 
-require_once("config_local.php");
+require_once("config_host.php");
 
 $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 

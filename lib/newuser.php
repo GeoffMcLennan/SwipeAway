@@ -5,7 +5,7 @@
 	}
 
 	// Include database connection info
-	require_once('config_local.php');
+	require_once('config_host.php');
 
 	// Array that stores validation errors
 	$errmsg_arr = array();
@@ -90,7 +90,7 @@
 	if ($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		session_write_close();
-		header('Location: '.HOME.'/signup.php');
+		header('Location: /signup.php');
 		exit();
 	}
 
@@ -106,7 +106,7 @@
 	if ($result) {
 		$_SESSION['SESS_MEMBER_ID'] = $id;
 		$_SESSION['SESS_USERNAME'] = $user;
-		header("Location: " . HOME . "/index.php");
+		header("Location: /index.php");
 		exit();
 	} else {
 		die("Row creation failure.");

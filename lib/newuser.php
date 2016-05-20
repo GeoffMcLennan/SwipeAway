@@ -104,9 +104,13 @@
 
 	// Confirm row creation, set user variables, and link to home page.
 	if ($result) {
+<<<<<<< HEAD
+		header("Location: /index.php");
+=======
 		$_SESSION['SESS_MEMBER_ID'] = $id;
 		$_SESSION['SESS_USERNAME'] = $user;
 		header("Location: " . HOME . "/index.php");
+>>>>>>> master
 		exit();
 	} else {
 		die("Row creation failure.");

@@ -26,7 +26,13 @@ $i = 0;
 // Prints the rank, id, and the score.
 while ($score = mysqli_fetch_assoc($result)) {
     $i++;
-    echo "<tr><td>" . $i . "</td>" . "<td>" . $score['username'] . "</td>" . "<td>" . $score['highscore'] . "</td></tr>";
+    if ($i <= 5) {
+    	echo "<tr><td>" . $i . "</td>" . "<td>" . $score['username'] . "</td>" . "<td>" . $score['highscore'] . "</td></tr>";
+    } else {
+    	if ($sessUser == $score['username']) {
+    		echo "<tr id='userScore'><td>" . $index . "</td>" . "<td>" . $sessUser . "</td>" . "<td>" . $score . "</td></tr>"; 
+    	}
+    }
 
 }
 

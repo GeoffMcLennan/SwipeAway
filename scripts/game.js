@@ -76,7 +76,10 @@ function initialize() {
 	$("div#failedOverlay").hide();
     $("div#pauseOverlay").hide();
 
-
+	jQuery("div.target").on("swipedown", function(event) {
+		alert("fml");
+    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
+	});
 
 }
 
@@ -218,7 +221,7 @@ function setObsListeners() {
 			$target.append($block);
 
 			$($newId).append($target);
-			setObsListeners();
+
 		// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
 		} else {
 			easterEgg();
@@ -359,4 +362,12 @@ function gameEnd() {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").show();
 	}
+}
+
+// Play sound on swipe NOT WORKING
+function swipeAudio() {
+	jQuery("div.target").on("swipedown", function(event) {
+		alert("fml");
+    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
+	});
 }

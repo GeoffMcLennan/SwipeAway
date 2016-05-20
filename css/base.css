@@ -57,7 +57,7 @@ div#cProgress {
 div#lives {
 	float: left;
 	font-size: ;
-	color: #f73636;
+	color: white; /* If we want to use red: #f73636; */
 	display: inline-block;
 	height: 100%;
 	border: 1px #BBADA0 solid;

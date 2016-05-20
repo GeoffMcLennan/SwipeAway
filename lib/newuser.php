@@ -15,7 +15,7 @@
 
 	// Connect to database
 
-	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error());
+	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error($link));
 
 	// Function to sanitize form inputs
 	function clean($str, $link) {

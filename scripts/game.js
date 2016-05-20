@@ -169,7 +169,7 @@ function tick() {
 // Generates a new obstacle off-screen, to the right.
 function generate() {
 	// Randomly selects lane to spawn in
-	$track = Math.floor(Math.random() * $lanes) + 1
+	$track = Math.floor(Math.random() * $lanes) + 1;
 	$trackId = "#t" + $track;
 
 	// Creates target
@@ -185,8 +185,15 @@ function generate() {
 	$leftInit = $("div#container").width() + 2;
 
 	// Applies height and left values to obstacle and inserts it into the lane
-	$target.css({"height": $trackHeight, "left": $leftInit});
-	$($trackId).append($target);
+    $selectTarget = Math.floor(Math.random() * 2) + 1;
+    if ($selectTarget == 1) {
+        $target.css({"height": $trackHeight, "left": $leftInit});
+        $($trackId).append($target);
+    } else {
+        $target.css({"height": ($trackHeight * 2), "left": $leftInit});
+        $target.css({"height": $trackHeight, "left": $leftInit});
+        $($trackId).append($target);
+    }
 	$topInit = $target.css("top");
 	$target.css("top", "0");
 

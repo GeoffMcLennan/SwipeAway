@@ -13,7 +13,13 @@ $(document).ready(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
 		});
+	});
 
+	$(document).on("swipeup", function(e) {
+		e.preventDefault();
+	});
+	$(document).on("swipedown", function(e) {
+		e.preventDefault();
 	});
 });
 
@@ -45,14 +51,16 @@ function initialize() {
 		$height = $("div#container").height();
 	}
 
-	// Set the number of lives
-	setLives();
+	
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
 	$uiHeight = $("div#ui").css("height");
 	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
 						"width": (0.075 * $height) - 2 + "px"});
+
+	// Set the number of lives
+	setLives();
 	$("img#heart").css({"height": (0.075 * $height) - 2 + "px",
 						"width": (0.075 * $height) - 2 + "px",
 						"margin": "0 5px"});
@@ -65,6 +73,10 @@ function initialize() {
 	$gameHeight = $height - $("div#ui").height() - 2;
 	$laneHeight = ($gameHeight / $lanes) - 2;
 	$("div.track").css({"height": $laneHeight, "width": $width});
+
+	// Hides unnecessary overlays
+	$("div#endOverlay").hide();
+	$("div#pauseOverlay").hide();
 
 }
 
@@ -109,7 +121,7 @@ function generateSprites(trackNum) {
 
     // Puts a sprite in each array with the given margin value
     for (j = 1; j <= $lanes; j++) {
-    	$sprite = $('<img src="images/circle.png" class="circle">');
+    	$sprite = $('<i id="circle" class="material-icons">brightness_1</i>');
     	$sprite.css("margin-left", pos[j - 1] - 15 + "px");
         $sprite.attr("id", ("s" + j));
     	$("#t" + j).append($sprite);
@@ -119,7 +131,7 @@ function generateSprites(trackNum) {
     $height = $("div.track").height();
     $margin = ($height / 2) - 15;
 
-    $("img.circle").css("margin-top", $margin + "px");
+    $("i#circle").css("margin-top", $margin + "px");
 }
 
 // Starts the game from start overlay
@@ -328,8 +340,9 @@ function collision() {
 		setLives();
 	}
 
-	if ($cLives == 0) {
+	if ($cLives <= 0) {
 		clearInterval(gameStart);
+		gameEnd();
 	}
 }
 
@@ -337,13 +350,44 @@ function setLives() {
 	$("div#lives").empty();
 	for (i = 1; i <= $lives; i++) {
 		if (i <= $cLives) {
-			$("div#lives").append('<img src="images/heart.png" id="heart">');
+			$("div#lives").append('<i class="material-icons">favorite</i>');
 		} else {
-			$("div#lives").append("<img src='images/empty_heart.png' id='heart'>")
+			$("div#lives").append('<i class="material-icons">favorite_border</i>')
 		}
 	}
+
+	$("i.material-icons").css("line-height", $uiHeight);
 
 	$("img#heart").css({"height": $uiHeight,
 						"width": $uiHeight,
 						"margin": "0 5px"});
+}
+
+function openPauseOverlay() {
+    $("div#pauseOverlay").show();
+    clearInterval(gameStart);
+}
+
+function closePauseOverlay(){
+    $("div#pauseOverlay").hide();
+    gameStart = setInterval('tick();', $tickLength);   
+}
+
+function gameEnd() {
+	$("div#endOverlay").show();
+	$test = 'test';
+	$.ajax({
+		type: 'POST',
+		url: 'lib/updatehiscore.php',
+		data: { score : $cScore}, 
+		complete: function (response) {
+			$text = response.responseText;
+			if ($text.localeCompare('true') == 0) {
+				$("h2#congrats").html("You have a new highscore!");
+			}
+		},
+		error: function () {
+
+		}
+	});
 }

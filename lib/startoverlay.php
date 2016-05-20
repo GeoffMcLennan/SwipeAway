@@ -3,7 +3,7 @@
 		<h1>Level <span id="putLevel"></span></h1>
 	</div>
 
-	<h2 id="innerText">Score needed: <span id="putScore"></span>pts</h2>
+	<h2 class="innerText">Score needed: <span id="putScore"></span>pts</h2>
 	
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>

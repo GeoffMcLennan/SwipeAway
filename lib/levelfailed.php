@@ -3,7 +3,7 @@
 		<h1>Level Failed</h1>
 	</div>
 
-	<h2 id="innerText">
+	<h2 class="innerText">
 	You scored: <span id="cScore"></span> / <span id="scorePass"></span>
 	</h2>
 

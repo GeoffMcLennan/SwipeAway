@@ -16,6 +16,9 @@ $(document).ready(function() {
 
 	//gameStart = setInterval('tick();', $tickLength);
 
+	$("a#start").click(function() {
+		$("div#startOverlay").fadeOut("slow", function() {
+			startGame();
 		});
 	});
 	$(document).on("swipeup", function(e) {
@@ -56,8 +59,8 @@ function initialize() {
 
 	// Sets height of UI bar and lanes.
 	$("div#ui").css("height", (0.075 * $height) - 2 + "px");
-	$("img#pause").css({"height": (0.075 * $height) - 2 + "px",
-						"width": (0.075 * $height) - 2 + "px"});
+	$("img#pause").css({"height": (0.075 * $height) - 1 + "px",
+						"width": (0.075 * $height) - 1 + "px"});
 
 	$uiLeft = $("div#ui").width() - $("div#pause").width();
 	$("div#progress").css("width", (0.6 * $uiLeft) - 2 + "px");
@@ -125,7 +128,7 @@ function generateSprites(trackNum) {
 
     // Puts a sprite in each array with the given margin value
     for (j = 1; j <= $lanes; j++) {
-    	$sprite = $('<img src="images/circle.png" class="circle">');
+    	$sprite = $('<i id="circle" class="material-icons">brightness_1</i>');
     	$sprite.css("margin-left", pos[j - 1] - 15 + "px");
         $sprite.attr("id", ("s" + j));
     	$("#t" + j).append($sprite);
@@ -135,7 +138,13 @@ function generateSprites(trackNum) {
     $height = $("div.track").height();
     $margin = ($height / 2) - 15;
 
-    $("img.circle").css("margin-top", $margin + "px");
+    $("i#circle").css("margin-top", $margin + "px");
+}
+
+// Starts the game from start overlay
+function startGame() {
+	$("div#startOverlay").hide();
+	gameStart = setInterval('tick();', $tickLength);
 }
 
 $time = 0;
@@ -167,7 +176,7 @@ function tick() {
 // Generates a new obstacle off-screen, to the right.
 function generate() {
 	// Randomly selects lane to spawn in
-	$track = Math.floor(Math.random() * $lanes) + 1
+	$track = Math.floor(Math.random() * $lanes) + 1;
 	$trackId = "#t" + $track;
 
 	// Creates target
@@ -183,8 +192,8 @@ function generate() {
 	$leftInit = $("div#container").width() + 2;
 
 	// Applies height and left values to obstacle and inserts it into the lane
-	$target.css({"height": $trackHeight, "left": $leftInit});
-	$($trackId).append($target);
+    $target.css({"height": $trackHeight, "left": $leftInit});
+    $($trackId).append($target);
 	$topInit = $target.css("top");
 	$target.css("top", "0");
 
@@ -341,9 +350,9 @@ function collision() {
     //loads game start overlay on game load
 function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
-}
 
     //opens pause overlay and stops obstacle movement
+    //loads game paused overlay on clicking pause button
 function openPauseOverlay() {
     $("div#pauseOverlay").show();
     clearInterval(gameStart);

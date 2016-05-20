@@ -6,14 +6,19 @@ $(document).ready(function() {
 	$(window).on("orientationchange", function(event){
 		interval = setInterval("checkOrientation();", 1000);
 	});
+
+	// Initialize the game screen and generate the sprites on the screen.
 	initialize();
 	generateSprites($lanes);
 
+	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
 		$("div#startOverlay").fadeOut("slow", function() {
 			startGame();
 		});
 	});
+
+	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
 	});

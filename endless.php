@@ -65,11 +65,19 @@
 	<?php require_once("lib/endlessover.php"); ?>
 
 	<!-- Game pause overlay -->
-	<?php require_once('lib/pauseoverlay.php');?>
+	<?php require_once('lib/endlesspause.php');?>
 
 	<div id="ui">
 		<div id="lives"></div>
-		<div id="score"><span id="cScore">0</span></span></div>
+		<div id="score">Score: <span id="cScore">0</span></span>
+
+		<?php 
+			if(isset($_SESSION['SESS_MEMBER_ID'])) {
+				echo '    Best: ' . $highscore .'';
+			}
+		?>
+
+		</div>
 		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
 
 		<!-- UI Bar -->

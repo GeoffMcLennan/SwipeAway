@@ -3,7 +3,6 @@
 	if (!isset($_SESSION)) { 	
 		session_start();
 	}
-
 ?>
 
 <div id="endOverlay" class="overlay">
@@ -12,12 +11,12 @@
 	</div>
 
 	<h2 class="innerText">
-	You scored: <span id="cScore"></span>pts 
+	You scored: <span id="cScore"></span> 
 	</h2>
 	
 	<?php 
 		if(isset($_SESSION['SESS_MEMBER_ID'])) {
-			echo '<h2 class="innerText">Your Highscore: ' . $highscore . 'pts</h2>';
+			echo '<h2 class="innerText">Your Highscore: ' . $highscore . '</h2>';
 		}
 	?>
 

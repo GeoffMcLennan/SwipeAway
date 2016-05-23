@@ -27,6 +27,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
+	<audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
 	<?php require_once('lib/topbar.php') ?>
 	
 	<div id="title">

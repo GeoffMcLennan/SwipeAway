@@ -21,6 +21,9 @@ $(document).ready(function() {
 		closePauseOverlay();
 	});
 
+	$("#playButton").click(function() {
+		swipeAudio();
+	});
 
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -374,8 +377,6 @@ function gameEnd() {
 
 // Play sound on swipe NOT WORKING
 function swipeAudio() {
-	jQuery("div.target").on("swipedown", function(event) {
 		alert("fml");
     	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
 }

@@ -1,15 +1,16 @@
 $.mobile.pushStateEnabled = false;
 
-//adds margin to menu screens based on orientation
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
 	$(window).on("orientationchange", function(event) {
 		refreshMargin();
 	});
-	$( "#soundIcon" ).click(function(event) {
-		sound();	
-	});
+
 	refreshMargin();
+
+	$("#soundIcon").click(function() {
+		soundChange();	
+	});
 
 	$("a#su_submit").click(function() {
 		$("form#signup").submit();
@@ -20,6 +21,7 @@ $(document).ready(function() {
 	});
 });  		
 
+//adds margin to menu screens based on orientation
 function refreshMargin() {
 
 	if (window.innerHeight > window.innerWidth) {
@@ -33,7 +35,8 @@ function refreshMargin() {
 	}
 }
 
-function sound() {
+//changes visial representation of sound icon
+function soundChange() {
 	var icon = document.getElementById('soundIcon');
 	if (icon.innerHTML === '<i class="material-icons">volume_up</i>') {
 		icon.innerHTML = '<i class="material-icons">volume_off</i>';

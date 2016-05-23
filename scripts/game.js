@@ -10,10 +10,18 @@ $(document).ready(function() {
 	generateSprites($lanes);
 
 	$("a#start").click(function() {
-		$("div#startOverlay").fadeOut("slow", function() {
-			startGame();
-		});
+		startGame();
 	});
+
+	$("div#pause").click(function() {
+		openPauseOverlay();
+	});
+
+	$("a#resume").click(function() {
+		closePauseOverlay();
+	});
+
+
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
 	});
@@ -135,12 +143,6 @@ function generateSprites(trackNum) {
     $margin = ($height / 2) - 15;
 
     $("i#circle").css("margin-top", $margin + "px");
-}
-
-// Starts the game from start overlay
-function startGame() {
-	$("div#startOverlay").hide();
-	gameStart = setInterval('tick();', $tickLength);
 }
 
 $time = 0;
@@ -343,24 +345,30 @@ function collision() {
 	});
 }
 
+// Starts the game from start overlay
+function startGame() {
+	$("div#startOverlay").fadeOut(300);
+	gameStart = setInterval('tick();', $tickLength);
+}
+
     //loads game paused overlay on clicking pause button
-function openPauseOverlay() {
-    $("div#pauseOverlay").show();
-    clearInterval(gameStart);
+function openPauseOverlay() { 
+    $("div#pauseOverlay").fadeIn(300); 
+    clearInterval(gameStart); 
 }
 
 function closePauseOverlay(){
-    $("div#pauseOverlay").hide();
+    $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
 function gameEnd() {
 	if ($cScore >= $scorePass) {
 		$("span#cScore").html($cScore);
-		$("div#passedOverlay").show();
+		$("div#passedOverlay").fadeIn(300);
 	} else {
 		$("span#cScore").html($cScore);
-		$("div#failedOverlay").show();
+		$("div#failedOverlay").fadeIn(300);
 	}
 }
 

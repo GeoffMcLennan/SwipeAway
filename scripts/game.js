@@ -374,9 +374,7 @@ function gameEnd() {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").show();
 	}
-<<<<<<< HEAD
 }
-=======
 }
 
 // Play sound on swipe NOT WORKING
@@ -386,4 +384,3 @@ function swipeAudio() {
     	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
 	});
 }
->>>>>>> d89683d86ae6b78bb99eecf6409e220f11bd3a52

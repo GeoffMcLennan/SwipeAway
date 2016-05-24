@@ -31,7 +31,6 @@ $(document).ready(function() {
 	$(document).on("swipedown", function(e) {
 		e.preventDefault();
 	});
-
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -205,6 +204,8 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
+	var audioSwipe = document.createElement('audio');
+	audioSwipe.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -232,9 +233,11 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
-
+		//Plays sound on swipe
+		audioSwipe.play();
+		
 	});
-
+	
 	// Swipe down listener
 	jQuery("div.target").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
@@ -258,6 +261,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -374,12 +379,4 @@ function gameEnd() {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").fadeIn(300);
 	}
-}
-
-// Play sound on swipe NOT WORKING
-function swipeAudio() {
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
 }

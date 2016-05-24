@@ -63,7 +63,7 @@
 
 		<?php 
 			if(isset($_SESSION['SESS_MEMBER_ID'])) {
-				echo '<span class="fadeScore">Best: </span>' . $highscore .'';
+				echo '<span class="fadeScore">&nbsp&nbsp&nbspBest: </span>' . $highscore .'';
 			}
 		?>
 

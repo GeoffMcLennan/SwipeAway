@@ -43,29 +43,27 @@
 
 <div id="container">
 	<!-- Game start overlay -->
-	<div id="startOverlay" class="overlay">
-		<div id="overlayTitle">
-			<h1>Endless Mode</h1>
-		</div>
-
-		<h2 class="innerText">5 lives. Unlimited Obstacles</h2>
-		
-		<div id="options">
-			<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp;</a>
-			<a class="button" id="start" rel="external">Start</a>
-		</div>
-	</div>
+	<?php require_once("lib/endlessstart.php"); ?>
 
 	<!-- Game over overlay -->
 	<?php require_once("lib/endlessover.php"); ?>
 
 	<!-- Game pause overlay -->
-	<?php require_once('lib/pauseoverlay.php');?>
+	<?php require_once('lib/endlesspause.php');?>
 
 	<div id="ui">
 		<div id="lives"></div>
-		<div id="score"><span id="cScore">0</span></span></div>
-		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
+		<div id="score"><span class="fadeScore">Score: </span><span id="cScore">0</span></span></span>
+
+
+		<?php 
+			if(isset($_SESSION['SESS_MEMBER_ID'])) {
+				echo '<span class="fadeScore">Best: </span>' . $highscore .'';
+			}
+		?>
+
+		</div>
+		<div id="pause"><img src="images/pause.png" id="pause"></div>
 
 		<!-- UI Bar -->
 	</div>

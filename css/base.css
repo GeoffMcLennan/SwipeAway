@@ -1,16 +1,18 @@
 html body {
-	margin: 0;
-	padding: 0;
-	position: relative;
+  	width: 100%;
+ 	height: 100%;
 	-webkit-text-size-adjust: none;
 	background-color:#FAF8EF;
+}
+
+.ui-body-c, .ui-overlay-c { 
+	background: #FAF8EF; 
 }
 
 /* Extra UI that appears on desktop version */
 div#desktop {
 	text-align: center;
 	color: #776E65;
-	background-color: #FAF8EF;
 }
 
 .ui-mobile {
@@ -30,7 +32,6 @@ div#container {
 	border-width: 1px 0;
 	overflow: hidden;
 	cursor: default;	
-	background-color: #FAF8EF;
 	-webkit-user-select: none;
 }
 
@@ -57,7 +58,7 @@ div#cProgress {
 div#lives {
 	float: left;
 	font-size: ;
-	color: #f73636;
+	color: white; /* If we want to use red: #f73636; */
 	display: inline-block;
 	height: 100%;
 	border: 1px #BBADA0 solid;
@@ -100,7 +101,7 @@ div.track {
 div.obstacle {
 	width: 30px;
 	background-color: #F65E3B;
-	border-radius: 2px;
+	border-radius: 4px;
 	margin: 0 30px;
 	height: 100%;
 }
@@ -110,7 +111,7 @@ div.target {
 	position: absolute;
 }
 
-/* Vertically align Sprites and size */
+/* Vertically/Horizontally align Sprites and size */
 div.track .material-icons { 
 	position: relative;
   	top: 50%;
@@ -128,7 +129,7 @@ div.track .material-icons {
 
  
 
-h2#innerText {
+h2.innerText {
 	color: #8F7A66;
 }
 
@@ -226,7 +227,7 @@ form {
 	margin-right: 0;
 }
 
-/* Start Overlay */
+/* Game Overlays */
 div#overlayTitle {
 	padding-top: 40px;
 	text-align: center;
@@ -284,18 +285,41 @@ div.overlay {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	background-color: rgba(255,255,255, 0.9);
+	background-color: rgba(255,255,255, 0.8);
 	text-align: center;
 }
 
-
-div#pauseOverlay {
-	z-index: 10;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(255,255,255, 0.9);
+/* Style info page */
+body div#info h1 {
 	text-align: center;
+	color: #776E65; 
+	margin: none; /* Not working >:( */
+}
+
+div#content {
+	margin: 0 auto;
+	text-align: center, justify;
+	max-width: 500px;
+	padding: 0 20px;
+}
+
+div#content h2 {
+	text-align: left;
+	color: #8F7A66;
+}
+
+div#content h3, p {
+	color: #776E65;
+	font-size: 18px;
+}
+
+#thanks {
+	text-align: left;
+}
+
+/* Dim score text */
+span.fadeScore {
+	color: #EEE4DA;
 }
 
 /* 
@@ -305,53 +329,7 @@ div#pauseOverlay {
 */
 
 
-/* CSS for level select page. */
-#title {
-    text-align: center;
-    font-size: 50px;
-}
-
-#backButton {
-    position: fixed;
-    padding-left: 20px;
-}
-
-#button1 {
-    margin-top: 6%;
-    margin-left: 20%;
-    width: 60px;
-    height: 60px;
-    font-size: 180%;
-}
-
-#button2 {
-    margin-top: 6%;
-    margin-left: 20%;
-    width: 60px;
-    height: 60px;
-    font-size: 180%;
-}
-
-#button3 {
-    margin-top: 6%;
-    margin-left: 20%;
-    width: 60px;
-    height: 60px;
-    font-size: 180%;
-}
-
-#button4 {
-    margin-top: 8%;
-    margin-left: 39%;
-    width: 200px;
-}
-
-#infinite {
-    margin: 15px;
-    width: 80px;
-    height: 40px;
-}
-/* Style Table*/
+/* Style Highscore Table*/
 div#centerTable {
 
 }

@@ -1,8 +1,8 @@
 body {
 	font-family: "Verdanna", sans-serif;
 }
-.ui-page { 
-    background:#FAF8EF;
+.ui-body-c { 
+    background-color: #FAF8EF !important;
 }
 
 div#title {

@@ -10,10 +10,20 @@ $(document).ready(function() {
 	generateSprites($lanes);
 	//gameStart = setInterval('tick();', $tickLength);
 	$("a#start").click(function() {
-		$("div#startOverlay").fadeOut("slow", function() {
-			startGame();
-		});
+		startGame();
 	});
+
+	$("div#pause").click(function() {
+		openPauseOverlay();
+	});
+
+	$("a#continue").click(function() {
+		closePauseOverlay();
+	});
+
+	$("a#retry").click(function() {
+		retryEndless();
+	})
 
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -136,7 +146,7 @@ function generateSprites(trackNum) {
 
 // Starts the game from start overlay
 function startGame() {
-	$("div#startOverlay").hide();
+	$("div#startOverlay").fadeOut(300);
 	gameStart = setInterval('tick();', $tickLength);
 }
 
@@ -364,17 +374,17 @@ function setLives() {
 }
 
 function openPauseOverlay() {
-    $("div#pauseOverlay").show();
+    $("div#pauseOverlay").fadeIn(300);
     clearInterval(gameStart);
 }
 
 function closePauseOverlay(){
-    $("div#pauseOverlay").hide();
+    $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
 function gameEnd() {
-	$("div#endOverlay").show();
+	$("div#endOverlay").fadeIn(300);
 	$test = 'test';
 	$.ajax({
 		type: 'POST',
@@ -390,4 +400,9 @@ function gameEnd() {
 
 		}
 	});
+}
+
+//**UNFINISHED**. Should jump right back into a new game without showing start overlay
+function retryEndless() {
+	window.location.href = "endless.php";
 }

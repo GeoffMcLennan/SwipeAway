@@ -9,7 +9,6 @@
 
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-		<a class="button" id="start" href="level.html" rel="external">Retry</a>
-
+		<a class="button" id="start" href="level.php" rel="external">Retry</a>
 	</div>
 </div>

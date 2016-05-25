@@ -356,8 +356,12 @@ table#table {
 
 table, th, td {
 	text-shadow: none;
-		width: 500px;
+		width: 320px;
 } 
+
+table#table tr:nth-child(odd) {
+	background-color: #EEE4DA;
+}
 
 #tableheader {
     color: white;

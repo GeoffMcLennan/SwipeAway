@@ -24,6 +24,9 @@
 	} else {
 		$level = 1;
 	}
+
+	// Sets session level variable
+	$_SESSION['level'] = $level;
 ?>
 
 <!DOCTYPE html>

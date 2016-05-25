@@ -67,23 +67,23 @@
 				if ($i <= $level) {
 					echo '<a href="level' .$i. '.php" class="level" id="level' .$i. '" rel="external">' .$i. '</a>';
 				} else {
-					echo '<a class="level" id="level' .$i. '" rel="external">' .$i. '</a>';
+					echo '<a class="level" id="level' .$i. '" rel="external"><i class="material-icons">lock</i></a>';
 				}
 			}
 		?>
 	</div>
 
 	<div id="endless">
-		<a id="endlessBtn" href=<?php 
+		<?php 
 			// Checks to see if endless mode is unlocked
 			// If user $level is less equal to 4, the level is unlocked
 			// If user $level is less than 4, endless is locked
 			if ($level == 4) {
-				echo "endless.php";
+				echo '<a id="endlessBtn" href="endless.php" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
 			} else {
-				echo '""';
+				echo '<a id="endlessBtn" rel="external"><i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
 			}
-		?> rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>
+		?>
 	</div>
 
 </body>

@@ -5,7 +5,7 @@
 		echo '<div id="topBar">
 			<a href="settings.php" class="icon" id="settingsIcon" rel="external"><i class="material-icons">settings</i></a>
 			<a href=# id="soundIcon" class="icon" rel="external"><i class="material-icons">volume_up</i></a>
-			<a href="loggedout.php" class="account" rel="external">Log out</a>
+			<a href="lib/logout.php" class="account" rel="external">Log out</a>
 			<a class="account" id="signup">Welcome ' . $_SESSION["SESS_USERNAME"] . '</a>
 		</div>';
 

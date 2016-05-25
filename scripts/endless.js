@@ -386,7 +386,6 @@ function closePauseOverlay(){
 
 function gameEnd() {
 	$("div#endOverlay").fadeIn(300);
-	$test = 'test';
 	$.ajax({
 		type: 'POST',
 		url: 'lib/updatehiscore.php',

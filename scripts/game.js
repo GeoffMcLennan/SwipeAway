@@ -366,15 +366,31 @@ function openPauseOverlay() {
     clearInterval(gameStart); 
 }
 
+// Resumes game when resume button is clicked.
 function closePauseOverlay(){
     $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
+// When the time limit is reached, display the proper overlay
+// If logged in, update progress in database
 function gameEnd() {
 	if ($cScore >= $scorePass) {
 		$("span#cScore").html($cScore);
 		$("div#passedOverlay").fadeIn(300);
+
+		// Update database
+		$.ajax({
+			type: 'POST',
+			url: 'lib/updatelevel.php',
+			data: { level : $levelNum },
+			complete: function (response) {
+				
+			},
+			error: function() {
+				
+			}
+		});
 	} else {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").fadeIn(300);

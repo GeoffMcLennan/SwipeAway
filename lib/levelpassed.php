@@ -9,6 +9,6 @@
 	
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit&nbsp</a>
-		<a class="button" id="start" href="level.php" rel="external">Next Level</a>
+		<a class="button" id="start" href=<?php echo "lib/nextlvl.php?level=".$level; ?> rel="external">Next Level</a>
 	</div>
 </div>

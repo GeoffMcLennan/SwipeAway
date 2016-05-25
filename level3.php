@@ -1,3 +1,15 @@
+<?php
+	
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+
+	// Current level declaration
+	$level = 3;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

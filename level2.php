@@ -18,6 +18,8 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
+	
+	<title>SwipeAway - Level 2</title>
 </head>
 <body>
 <div id="desktop">

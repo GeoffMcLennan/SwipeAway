@@ -16,11 +16,11 @@
 	
 	<?php 
 		if(isset($_SESSION['SESS_MEMBER_ID'])) {
-			echo '<h2 class="innerText">Your Highscore: ' . $highscore . '</h2>';
+			echo '<h2 class="innerText">Your Best: ' . $highscore . '</h2>';
 		}
 	?>
 
-	<h2 class="innerText" id="congrats"></h2>
+	<h2 class="innerText" id="congrats"><img id="crown" src="images/crown.png">&nbsp</h2>
 	
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit</a>

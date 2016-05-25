@@ -326,6 +326,12 @@ span.fadeScore {
 	color: #EEE4DA;
 }
 
+/* Crown for getting a new highscore */
+#crown {
+	height: 64px;
+	width: 68px;
+}
+
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS
@@ -340,16 +346,17 @@ div#centerTable {
 
 table#table {
 	color: #776E65;
+	font-size: 24px;
 	margin: 0  auto;
 	border-collapse: collapse;
 	text-align: center;
-	border: none;
-	width: 310px;
+	display: block;
 
 }
 
 table, th, td {
-	border: 2px solid #8F7A66;
+	text-shadow: none;
+		width: 500px;
 } 
 
 #tableheader {

@@ -18,6 +18,8 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
+	
+	<title>SwipeAway - Level 1</title>
 </head>
 <body>
 	<audio id="swipe" src="http://localhost/swipeaway/audio/psst1.ogg" type="audio/ogg"></audio>

@@ -39,7 +39,8 @@
 	</script>
 	<script src="scripts/endless.js"></script>
 	<script src="scripts/swipemod.js"></script>
-
+	
+	<title>SwipeAway - Endless</title>
 </head>
 <body>
 <div id="desktop">

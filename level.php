@@ -18,6 +18,8 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<title>SwipeAway - Level Select</title>
 </head>
 <body>
 	<div id="topBar">

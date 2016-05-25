@@ -20,6 +20,6 @@
 
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit</a>
-		<a class="button" id="continue" onclick="closePauseOverlay()" rel="external">Continue</a>
+		<a class="button" id="continue" rel="external">Continue</a>
 	</div>
 </div>

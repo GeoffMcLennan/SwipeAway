@@ -6,6 +6,8 @@ $(document).ready(function() {
 	$(window).on("orientationchange", function(event){
 		interval = setInterval("checkOrientation();", 1000);
 	});
+
+	// Initialize the game screen and generate the sprites on the screen.
 	initialize();
 	generateSprites($lanes);
     $("a#start").click(function() {
@@ -16,11 +18,20 @@ $(document).ready(function() {
 
 	//gameStart = setInterval('tick();', $tickLength);
 
+	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
-		$("div#startOverlay").fadeOut("slow", function() {
-			startGame();
-		});
+		startGame();
 	});
+
+	$("div#pause").click(function() {
+		openPauseOverlay();
+	});
+
+	$("a#resume").click(function() {
+		closePauseOverlay();
+	});
+
+	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
 	});
@@ -142,12 +153,6 @@ function generateSprites(trackNum) {
     $margin = ($height / 2) - 15;
 
     $("i#circle").css("margin-top", $margin + "px");
-}
-
-// Starts the game from start overlay
-function startGame() {
-	$("div#startOverlay").hide();
-	gameStart = setInterval('tick();', $tickLength);
 }
 
 $time = 0;
@@ -350,29 +355,38 @@ function collision() {
 	});
 }
 
+<<<<<<< HEAD
     //loads game start overlay on game load
 function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
 
     //opens pause overlay and stops obstacle movement
+=======
+// Starts the game from start overlay
+function startGame() {
+	$("div#startOverlay").fadeOut(300);
+	gameStart = setInterval('tick();', $tickLength);
+}
+
+>>>>>>> c02f34c6ce751a9da69d032e2ff04e4e1541e258
     //loads game paused overlay on clicking pause button
-function openPauseOverlay() {
-    $("div#pauseOverlay").show();
-    clearInterval(gameStart);
+function openPauseOverlay() { 
+    $("div#pauseOverlay").fadeIn(300); 
+    clearInterval(gameStart); 
 }
     //closes pause overlay and resumes obstacle movement
 function closePauseOverlay(){
-    $("div#pauseOverlay").hide();
+    $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
 function gameEnd() {
 	if ($cScore >= $scorePass) {
 		$("span#cScore").html($cScore);
-		$("div#passedOverlay").show();
+		$("div#passedOverlay").fadeIn(300);
 	} else {
 		$("span#cScore").html($cScore);
-		$("div#failedOverlay").show();
+		$("div#failedOverlay").fadeIn(300);
 	}
 }
 }

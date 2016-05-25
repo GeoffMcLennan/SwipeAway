@@ -24,6 +24,6 @@
 	
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit</a>
-		<a class="button" id="start" href="endless.php" rel="external">Retry</a>
+		<a class="button" id="retry" rel="external">Retry</a>
 	</div>
 </div>

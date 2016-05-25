@@ -41,7 +41,8 @@
 
 	<div id="ui">
 		<div id="progress"><div id="cProgress"></div></div>
-		<div id="score">Score: <span id="cScore">0</span> / <span id="scorePass"></span></div>
+		<div id="score"><span class="fadeScore">Score: </span><span id="cScore">0</span>
+			<span class="fadeScore"> / <span id="scorePass"></span></span></div>
 		<div id="pause"><img src="images/pause.png" id="pause" onclick="openPauseOverlay()"></div>
 		<!-- UI Bar -->
 	</div>

@@ -25,7 +25,13 @@
 			$result = mysqli_query($link, $qry);
 		}
 
-		echo $level;
+		if ($level == 4) {
+			if (isset($_SESSION['SESS_MEMBER_ID']) && isset($_SESSION['SESS_USERNAME'])) {
+				$qry = "UPDATE members SET ach001=1 WHERE id='" . $id . "'";
+				$result = mysqli_query($link, $qry);
+			}
+			echo "true";
+		}
 
 	}
 

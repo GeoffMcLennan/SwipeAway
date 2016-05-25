@@ -6,9 +6,12 @@ $(document).ready(function() {
 	$(window).on("orientationchange", function(event){
 		interval = setInterval("checkOrientation();", 1000);
 	});
+
+	// Initialize the game screen and generate the sprites on the screen.
 	initialize();
 	generateSprites($lanes);
 
+	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
 		startGame();
 	});
@@ -21,17 +24,13 @@ $(document).ready(function() {
 		closePauseOverlay();
 	});
 
-	$("#playButton").click(function() {
-		swipeAudio();
-	});
-
+	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
 	});
 	$(document).on("swipedown", function(e) {
 		e.preventDefault();
 	});
-
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -53,6 +52,7 @@ function initialize() {
 		}
 
 		$("div#container").css("height", $height - 2 + "px");
+		window.scrollTo(0, 1);
 	// Sets up screen for a PC.
 	} else {
 		$("div#container").css({"height": "400px", "width": "750px",
@@ -204,6 +204,8 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
+	var audioSwipe = document.createElement('audio');
+	audioSwipe.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -231,9 +233,11 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
-
+		//Plays sound on swipe
+		audioSwipe.play();
+		
 	});
-
+	
 	// Swipe down listener
 	jQuery("div.target").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
@@ -257,6 +261,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -373,10 +379,4 @@ function gameEnd() {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").fadeIn(300);
 	}
-}
-
-// Play sound on swipe NOT WORKING
-function swipeAudio() {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
 }

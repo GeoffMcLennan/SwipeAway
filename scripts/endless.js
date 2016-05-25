@@ -53,6 +53,7 @@ function initialize() {
 		}
 
 		$("div#container").css("height", $height - 2 + "px");
+		window.scrollTo(0, 1);
 	// Sets up screen for a PC.
 	} else {
 		$("div#container").css({"height": "400px", "width": "750px",

@@ -118,18 +118,9 @@ div.track .material-icons {
   	transform: translateY(-50%);
 	font-size: 36px; 
 } 
-
-/* For using img as sprites  
-// NOTE: BREAKS LEVELS WITHOUT EVERYTHING ELSE CHANGED TO 
-// HANDLE .IMG AS SPRITES */
-
-/*img.circle {
-    width: 30px;
-    height: 30px;*/
-
  
-
 h2.innerText {
+	text-align: center;
 	color: #8F7A66;
 }
 
@@ -160,6 +151,12 @@ div#title {
 
 #titleText {
 	font-size: 60px;
+}
+
+#logoutText {
+    font-size: 20px;
+    text-align: center;
+    color: #776E65;
 }
 
 /* Style anchors as buttons*/

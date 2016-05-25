@@ -19,6 +19,7 @@ $(document).ready(function() {
 	$("a#logsubmit").click(function() {
 		$("form#login").submit();
 	});
+	soundButton();
 });  		
 
 //adds margin to menu screens based on orientation
@@ -43,6 +44,18 @@ function soundChange() {
 	} else {
 		icon.innerHTML = '<i class="material-icons">volume_up</i>';
 	}
+}
+
+//button sound kind of working
+function soundButton() {
+	var audioElement = document.createElement('audio');
+	audioElement.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
+	$('#options').click(function() {
+		audioElement.play();
+	});
+	$('.material-icons').click(function() {
+		audioElement.play();
+	});
 }
 
 

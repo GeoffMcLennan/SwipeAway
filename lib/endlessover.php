@@ -20,7 +20,7 @@
 		}
 	?>
 
-	<h2 class="innerText" id="congrats"><img id="crown" src="images/crown.png">&nbsp</h2>
+	<h2 class="innerText" id="congrats"></h2>
 	
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit</a>

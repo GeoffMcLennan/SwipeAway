@@ -3,6 +3,8 @@
 	if (!isset($_SESSION)) { 	
 		session_start();
 	}
+require 'lib/cookieId.php';
+//require 'lib/existingUser.php';
 ?>
 
 <!DOCTYPE html>

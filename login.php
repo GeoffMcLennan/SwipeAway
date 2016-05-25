@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-include 'lib/cookieId.php';
+require 'lib/cookieId.php';
+//require 'lib/existingUser.php';
 ?>
 <html>
 <head>
@@ -46,7 +47,7 @@ include 'lib/cookieId.php';
 	
 	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">
 		<ul id="options">
-			<li><input type="text" id="userText" class="inputs" name="username" placeholder="Username" value="<?php if   (isset($_SESSION["SESS_USERNAME"])) { echo $_COOKIE[$cookie_name]; } ?>" rel="external"></li>
+			<li><input type="text" id="userText" class="inputs" name="username" placeholder="Username" value="<?php if   (isset($_COOKIE[$cookie_name])) { echo $_COOKIE[$cookie_name]; } ?>" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
 			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>

@@ -385,7 +385,10 @@ function gameEnd() {
 			url: 'lib/updatelevel.php',
 			data: { level : $levelNum },
 			complete: function (response) {
-				
+				$text = response.responseText;
+				if ($text.localeCompare('true') == 0) {
+					// Achievement 1 pop up here
+				}
 			},
 			error: function() {
 				

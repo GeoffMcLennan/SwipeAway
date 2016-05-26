@@ -86,12 +86,6 @@ function initialize() {
 	$("div#passedOverlay").hide();
 	$("div#failedOverlay").hide();
     $("div#pauseOverlay").hide();
-
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
-
 }
 
 // Helps the goddamn orientation bullshit.
@@ -204,8 +198,7 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
-	var audioSwipe = document.createElement('audio');
-	audioSwipe.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
+	var audioSwipe = document.getElementById('audSwipe');
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -300,9 +293,7 @@ $cScore = 0;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
-	var audioRemove = document.createElement('audio');
-	audioRemove.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-16.mp3');
-
+	var audioRemove = document.getElementById("audRemove");
 	$blocks.each(function() {
 		$newLeft = parseInt($(this).css("left")) - 1;
 		$(this).css("left", $newLeft + "px");
@@ -329,9 +320,7 @@ function collision() {
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
-	var audioCollide = document.createElement('audio');
-	audioCollide.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-19.mp3');
-	
+	var audioCollide = document.getElementById('audCollide');	
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {

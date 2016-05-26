@@ -284,7 +284,10 @@ function randomIntForInterval(){
 }
 
 // Moves all obstacles by 1 pixel.
-$cScore = 0;
+$cScore = 98;
+// Stores achievement status for this run
+$ach002 = false;
+$ach003 = false;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
@@ -301,6 +304,25 @@ function move() {
 	});
 
 	$("span#cScore").html($cScore);
+	
+	// Check for ach002/ach003 (Get 100/500 points in endless)
+	if (($cScore == 100 && !$ach002) || ($cScore == 500 && !ach003)) {
+		$.ajax({
+			type: 'POST',
+			url: 'lib/achscore.php',
+			data: { score : $cScore },
+			complete: function (response) {
+				$text = response.responseText;
+				alert($text);
+				if ($text.localeCompare('ach002') == 0) {
+					$ach002 = true;
+				}
+				if ($text.localCompare('ach003') == 0) {
+					$ach003 = true;
+				}
+			}
+		});
+	}
 	collision();
 }
 

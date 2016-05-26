@@ -40,5 +40,7 @@
 			<li><a class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
 		</ul>
 	</form>
+	
+	<audio preload="auto" id="audClick" src='http://www.soundjay.com/button/sounds/button-10.mp3'>
 </body>
 </html>

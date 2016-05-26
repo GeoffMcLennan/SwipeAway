@@ -1,7 +1,19 @@
-<?php 
+<?php
 	// Start Session
 	if (!isset($_SESSION)) { 	
 		session_start();
+	}
+
+	// Include database connection info
+	require_once('lib/config_local.php');
+
+	if (isset($_SESSION['SESS_MEMBER_ID'])) {
+		$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error($link));
+
+		$qry = "SELECT * FROM members WHERE id='" . $_SESSION['SESS_MEMBER_ID'] . "'";
+		$result = mysqli_query($link, $qry);
+		$member = mysqli_fetch_assoc($result);
+		$highscore = $member['highscore'];
 	}
 ?>
 
@@ -20,6 +32,6 @@
 
 	<div id="options">
 		<a class="button" id="quit" href="index.php" rel="external">Quit</a>
-		<a class="button" id="continue" rel="external">Continue</a>
+		<a class="button" id="resume" rel="external">Resume</a>
 	</div>
 </div>

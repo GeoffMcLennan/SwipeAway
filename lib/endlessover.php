@@ -16,7 +16,7 @@
 	
 	<?php 
 		if(isset($_SESSION['SESS_MEMBER_ID'])) {
-			echo '<h2 class="innerText">Your Highscore: ' . $highscore . '</h2>';
+			echo '<h2 class="innerText">Your Best: ' . $highscore . '</h2>';
 		}
 	?>
 

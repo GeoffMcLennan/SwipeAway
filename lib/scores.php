@@ -11,8 +11,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sessUser = $_SESSION["SESS_USERNAME"];
-$sessId = $_SESSION["SESS_MEMBER_ID"];
+if (isset($_SESSION['SESS_MEMBER_ID'])) {
+    $sessUser = $_SESSION["SESS_USERNAME"];
+    $sessId = $_SESSION["SESS_MEMBER_ID"];
+}
 
 // Select id and score from scores tables in descending order.
 $sql = "SELECT * FROM members ORDER BY highscore DESC";
@@ -27,10 +29,10 @@ $i = 0;
 while ($score = mysqli_fetch_assoc($result)) {
     $i++;
     if ($i <= 5) {
-    	echo "<tr><td>" . $i . "</td>" . "<td>" . $score['username'] . "</td>" . "<td>" . $score['highscore'] . "</td></tr>";
+    	echo "<tr><td>" . $i . "</td>" . "<td><span data-role='none'><a href=profile.php?id=". $score['id'] ." rel='external'>" . $score['username'] . "</a></span></td>" . "<td>" . $score['highscore'] . "</td></tr>";
     } else {
     	if ($sessUser == $score['username']) {
-    		echo "<tr id='userScore'><td>" . $index . "</td>" . "<td>" . $sessUser . "</td>" . "<td>" . $score . "</td></tr>"; 
+    		echo "<tr id='userScore'><td>" . $i . "</td>" . "<td>" . $sessUser . "</td>" . "<td>" . $score['highscore'] . "</td></tr>"; 
     	}
     }
 

@@ -25,8 +25,11 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>SwipeAway - Home</title>
 </head>
 <body>
+	<audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
 	<?php require_once('lib/topbar.php') ?>
 	
 	<div id="title">
@@ -40,5 +43,7 @@
 			<li><a class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
 		</ul>
 	</form>
+	
+	<audio preload="auto" id="audClick" src='http://www.soundjay.com/button/sounds/button-10.mp3'>
 </body>
 </html>

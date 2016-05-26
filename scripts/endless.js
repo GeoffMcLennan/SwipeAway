@@ -1,5 +1,6 @@
 
 $.mobile.pushStateEnabled = false;
+var audioClick = new Audio('audio/tick.ogg');
 
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
@@ -8,21 +9,28 @@ $(document).ready(function() {
 	});
 	initialize();
 	generateSprites($lanes);
-	//gameStart = setInterval('tick();', $tickLength);
+
+	// Initialize click sound
+	var audioClick = document.getElementById("audioClick");
+
 	$("a#start").click(function() {
 		startGame();
+		audioClick.play();
 	});
 
 	$("div#pause").click(function() {
 		openPauseOverlay();
+		audioClick.play();
 	});
 
-	$("a#continue").click(function() {
+	$("a#resume").click(function() {
 		closePauseOverlay();
+		audioClick.play();
 	});
 
 	$("a#retry").click(function() {
 		retryEndless();
+		audioClick.play();
 	})
 
 	$(document).on("swipeup", function(e) {
@@ -53,6 +61,7 @@ function initialize() {
 		}
 
 		$("div#container").css("height", $height - 2 + "px");
+		window.scrollTo(0, 1);
 	// Sets up screen for a PC.
 	} else {
 		$("div#container").css({"height": "400px", "width": "750px",
@@ -158,6 +167,13 @@ function tick() {
 	// Generates obstacle, randomly selects an interval, and resets timer
 	/*if ($time >= $interval) {
 		generate();
+	if ($time >= $interval) {
+		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
+			if (Math.random() >= 0.05) {
+				generate();
+			} else {
+				generate2();
+			}
 		$interval = randomIntForInterval();
 		$time = 0;
 	}*/
@@ -210,12 +226,11 @@ function generateScrambler() {
 	// Creates target
 	$target = $('<div></div>');
 	$target.addClass("target2");
-	// Creates obstacle
+    // Creates obstacle
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
 	$target.append($block);
-
-	// Gets height and initial left value for new obstacle
+    	// Gets height and initial left value for new obstacle
 	$trackHeight = $($trackId).height() * 4;
 	$leftInit = $("div#container").width() + 2;
 
@@ -223,10 +238,35 @@ function generateScrambler() {
 	$target.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($target);
 	$target.css("top", "0");
+
+function generate2() {
+	// Randomly selects lane to spawn in
+	$track = Math.floor(Math.random() * ($lanes-1)) + 1;
+	$trackId = "#t" + $track;
+
+	// Creates target
+	$target = $('<div></div>');
+	$target.addClass("target");
+	$target.addClass("twoLane");
+
+	// Gets height and initial left value for the 2 by 1 obstacle
+	$trackHeight = $($trackId).height()*2;
+	$leftInit = $("div#container").width() + 2;
+
+	// Applies height and left values to obstacle and inserts it into the lane
+    $target.css({"height": $trackHeight + "px", "left": $leftInit});
+    $($trackId).append($target);
+	$topInit = $target.css("top");
+	$target.css("top", "0");
+
+	// Attaches swipe listeners to obstacle
+	setObsListeners();
 }
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
+	var audioSwipe = document.getElementById("audioSwipe");
+
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -254,7 +294,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
-
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 
 	// Swipe down listener
@@ -280,6 +321,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -316,9 +359,15 @@ function randomIntForScrambler() {
     return Math.floor(Math.random() * (1001) + (600*$tickLength));
 }
 
-// Moves all obstacles by 1 pixel.
 $cScore = 0;
+// Stores achievement status for this run
+$ach002 = false;
+$ach003 = false;
+
+// Moves all obstacles by 1 pixel.
 function move() {
+	var audioRemove = document.getElementById("audioRemove");
+
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
@@ -327,12 +376,30 @@ function move() {
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= 0) {
+		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
 		}
 	});
 	$("span#cScore").html($cScore);
+	
+	// Check for ach002/ach003 (Get 100/500 points in endless)
+	if (($cScore == 100 && !$ach002) || ($cScore == 500 && !$ach003)) {
+		$.ajax({
+			type: 'POST',
+			url: 'lib/achscore.php',
+			data: { score : $cScore },
+			complete: function (response) {
+				$text = response.responseText;
+				if ($text.localeCompare('ach002') == 0) {
+					$ach002 = true;
+				}
+				if ($text.localeCompare('ach003') == 0) {
+					$ach003 = true;
+				}
+			}
+		});
+	}
 	collision();
 }
 
@@ -353,42 +420,90 @@ function moveScrambler() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
+	var audioRemove = document.getElementById("audioRemove");
+	
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
+    var spritePos3 = $("#s3").offset().left;
+    var spritePos4 = $("#s4").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
 	
 	$colFlag = 0;
 	$(block).each(function() {
-		var object = $(this).offset().left;
-		if ($(this).parent().is("#t1")) {
-			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
+
+		// If its a two lane obstacle, check sprites in current lane and lane below
+		// Else if its a one lane obstacle, only check sprites in current lane
+		if ($(this).hasClass('twoLane')) {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t2")) {
-			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t3")) {
-            var spritePos3 = $("#s3").offset().left;
-			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
+			if ($(this).parent().is("#t3")) {   
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t4")) {
-            var spritePos3 = $("#s3").offset().left;
-            var spritePos4 = $("#s4").offset().left;
-			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
+		} else {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t3")) {
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t4")) {	            
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
 		}
 	});
@@ -433,7 +548,6 @@ function closePauseOverlay(){
 
 function gameEnd() {
 	$("div#endOverlay").fadeIn(300);
-	$test = 'test';
 	$.ajax({
 		type: 'POST',
 		url: 'lib/updatehiscore.php',
@@ -450,7 +564,6 @@ function gameEnd() {
 	});
 }
 
-//**UNFINISHED**. Should jump right back into a new game without showing start overlay
 function retryEndless() {
 	window.location.href = "endless.php";
 }

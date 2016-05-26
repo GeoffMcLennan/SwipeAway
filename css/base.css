@@ -118,18 +118,9 @@ div.track .material-icons {
   	transform: translateY(-50%);
 	font-size: 36px; 
 } 
-
-/* For using img as sprites  
-// NOTE: BREAKS LEVELS WITHOUT EVERYTHING ELSE CHANGED TO 
-// HANDLE .IMG AS SPRITES */
-
-/*img.circle {
-    width: 30px;
-    height: 30px;*/
-
  
-
 h2.innerText {
+	text-align: center;
 	color: #8F7A66;
 }
 
@@ -160,6 +151,12 @@ div#title {
 
 #titleText {
 	font-size: 60px;
+}
+
+#logoutText {
+    font-size: 20px;
+    text-align: center;
+    color: #776E65;
 }
 
 /* Style anchors as buttons*/
@@ -213,6 +210,8 @@ form {
 	background-color: #CDC1B4;
 	color: #776E65;
 	text-shadow: none;
+	width: 1000px;
+	text-align: center;
 }
 
 #levels a:active {
@@ -271,8 +270,12 @@ div#options a#start:active {
 	background-color: #d6b444;
 }
 
-div#options a#continue:active {
-       background-color: #d6b444;
+div#options a#resume:active {
+    background-color: #d6b444;
+}
+
+div#options a#retry:active {
+	background-color: #d6b444;
 }
 
 div#options a.button:nth-child(1) {
@@ -293,7 +296,6 @@ div.overlay {
 body div#info h1 {
 	text-align: center;
 	color: #776E65; 
-	margin: none; /* Not working >:( */
 }
 
 div#content {
@@ -322,6 +324,12 @@ span.fadeScore {
 	color: #EEE4DA;
 }
 
+/* Crown for getting a new highscore */
+#crown {
+	height: 64px;
+	width: 68px;
+}
+
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS
@@ -330,30 +338,56 @@ span.fadeScore {
 
 
 /* Style Highscore Table*/
-div#centerTable {
-
-}
-
-table#table {
+table.table {
 	color: #776E65;
-	margin: 0  auto;
+	font-size: 24px;
+	margin: 0  auto 50px auto;
 	border-collapse: collapse;
 	text-align: center;
-	border: none;
-	width: 310px;
+	display: block;
 
 }
 
 table, th, td {
-	border: 2px solid #8F7A66;
+	text-shadow: none;
+		width: 320px;
 } 
+
+table.table tr:nth-child(odd) {
+	background-color: #EEE4DA;
+}
 
 #tableheader {
     color: white;
     background-color: #BBADA0;
 }
 
+div#scores a {
+	color: #776E65;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+div#scores a:hover {
+	color: #A09386;
+}
+
 #userScore {
     color: white;
     background-color: #BBADA0;
+}
+
+table#achs {
+	width: 100%;
+}
+
+div#achs {
+	width: 100%;
+	max-width: 700px;
+	margin: 0  auto;
+}
+
+table#achs tr td:nth-child(1) {
+	width: auto;
+	padding: 0 10px;
 }

@@ -30,7 +30,7 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
-
+    <script src="scripts/mainloop.js"></script>
 </head>
 <body>
 <div id="desktop">

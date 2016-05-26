@@ -11,6 +11,8 @@ $(document).ready(function() {
 	initialize();
 	generateSprites($lanes);
 
+	//gameStart = setInterval('tick();', $tickLength);
+
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
 		startGame();
@@ -23,7 +25,7 @@ $(document).ready(function() {
 	$("a#resume").click(function() {
 		closePauseOverlay();
 	});
-
+    
 	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -353,7 +355,12 @@ function collision() {
 	});
 }
 
-// Starts the game from start overlay
+    //loads game start overlay on game load
+function openStartOverlay() {
+    document.getElementById("startOverLay").style.height = "100%";
+}
+    //opens pause overlay and stops obstacle movement
+    // Starts the game from start overlay
 function startGame() {
 	$("div#startOverlay").fadeOut(300);
 	gameStart = setInterval('tick();', $tickLength);
@@ -365,8 +372,9 @@ function openPauseOverlay() {
     clearInterval(gameStart); 
 }
 
-// Resumes game when resume button is clicked.
-function closePauseOverlay(){
+    //closes pause overlay and resumes obstacle movement
+    // Resumes game when resume button is clicked.
+function closePauseOverlay() {
     $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }

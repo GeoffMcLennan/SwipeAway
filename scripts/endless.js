@@ -198,6 +198,7 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
+	var audioSwipe = document.getElementById('audSwipe');
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -225,6 +226,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 
 	});
 
@@ -251,6 +254,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -286,6 +291,7 @@ function randomIntForInterval(){
 // Moves all obstacles by 1 pixel.
 $cScore = 0;
 function move() {
+	var audioRemove = document.getElementById("audRemove");
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
@@ -297,6 +303,7 @@ function move() {
 		if ($newLeft <= 0) {
 			$(this).remove();
 			$cScore += 1;
+			audioRemove.play();
 		}
 	});
 
@@ -313,6 +320,7 @@ function collision() {
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
+	var audioCollide = document.getElementById('audCollide');
 	
 	$colFlag = 0;
 	$(block).each(function() {
@@ -321,12 +329,14 @@ function collision() {
 			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t2")) {
 			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t3")) {
@@ -334,6 +344,7 @@ function collision() {
 			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t4")) {
@@ -342,6 +353,7 @@ function collision() {
 			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioCollide.play();
 			}
 		}
 	});

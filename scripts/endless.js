@@ -20,7 +20,7 @@ $(document).ready(function() {
 		audioClick.play();
 	});
 
-	$("a#continue").click(function() {
+	$("a#resume").click(function() {
 		closePauseOverlay();
 		audioClick.play();
 	});

@@ -165,7 +165,12 @@ function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
-		generate();
+		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
+			if (Math.random() >= 0.05) {
+				generate();
+			} else {
+				generate2();
+			}
 		$interval = randomIntForInterval();
 		$time = 0;
 	}
@@ -197,6 +202,34 @@ function generate() {
 	// Applies height and left values to obstacle and inserts it into the lane
 	$target.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($target);
+	$topInit = $target.css("top");
+	$target.css("top", "0");
+
+	// Attaches swipe listeners to obstacle
+	setObsListeners();
+}
+
+function generate2() {
+	// Randomly selects lane to spawn in
+	$track = Math.floor(Math.random() * ($lanes-1)) + 1;
+	$trackId = "#t" + $track;
+
+	// Creates target
+	$target = $('<div></div>');
+	$target.addClass("target");
+	$target.addClass("twoLane");
+	// Creates obstacle
+	$block = $('<div></div>');
+	$block.addClass("obstacle");
+	$target.append($block);
+
+	// Gets height and initial left value for the 2 by 1 obstacle
+	$trackHeight = $($trackId).height()*2;
+	$leftInit = $("div#container").width() + 2;
+
+	// Applies height and left values to obstacle and inserts it into the lane
+    $target.css({"height": $trackHeight + "px", "left": $leftInit});
+    $($trackId).append($target);
 	$topInit = $target.css("top");
 	$target.css("top", "0");
 
@@ -351,41 +384,83 @@ function collision() {
     // Left position of each sprite.
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
+    var spritePos3 = $("#s3").offset().left;
+    var spritePos4 = $("#s4").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
 	
 	$colFlag = 0;
 	$(block).each(function() {
-		var object = $(this).offset().left;
-		if ($(this).parent().is("#t1")) {
-			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
-				audioRemove.play();
+
+		// If its a two lane obstacle, check sprites in current lane and lane below
+		// Else if its a one lane obstacle, only check sprites in current lane
+		if ($(this).hasClass('twoLane')) {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t2")) {
-			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
-				audioRemove.play();
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t3")) {
-            var spritePos3 = $("#s3").offset().left;
-			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
-				audioRemove.play();
+			if ($(this).parent().is("#t3")) {   
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t4")) {
-            var spritePos3 = $("#s3").offset().left;
-            var spritePos4 = $("#s4").offset().left;
-			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
-				$(this).remove();
-				$colFlag += 1;
-				audioRemove.play();
+		} else {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t3")) {
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t4")) {	            
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					$colFlag += 1;
+					audioRemove.play();
+				}
 			}
 		}
 	});

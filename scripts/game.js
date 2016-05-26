@@ -396,7 +396,6 @@ function collision() {
     }
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
-	
 	$(block).each(function() {
 
 		// If its a two lane obstacle, check sprites in current lane and lane below

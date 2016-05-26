@@ -11,7 +11,9 @@ $(document).ready(function() {
 	generateSprites($lanes);
 
 	// Initialize click sound
-	var audioClick = document.getElementById("audioClick");
+	audioClick = document.getElementById("audioClick");
+	audioRemove = document.getElementById("audioRemove");
+	audioSwipe = document.getElementById("audioSwipe");
 
 	$("a#start").click(function() {
 		startGame();
@@ -113,7 +115,7 @@ function checkOrientation() {
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     // Width between sprites
-    var genRange = parseInt($("#container").css("width")) * 0.5 / $lanes;
+    var genRange = parseInt($("#container").css("width")) * 0.7 / $lanes;
     var skew = parseInt($("#container").css("width")) * 0.2 / $lanes;
 
     // Array containing possible positions
@@ -160,16 +162,17 @@ function startGame() {
 
 $time = 0;
 $interval = 0;
+$interval2 = 0;
 function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
 		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
 			if (Math.random() >= 0.5) {
+				generate();
+			} else if (Math.random() >= 0.1) {
 				generate2();
-			} else if (Math.random() >= 0.4) {
-				generate2();
-			} else {
+			} else if (Math.random() <= 0.1) {
                 generateScrambler();
             }
 		$interval = randomIntForInterval();
@@ -204,24 +207,28 @@ function generate() {
 	// Applies height and left values to obstacle and inserts it into the lane
 	$target.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($target);
-	$topInit = $target.css("top");
+	//$topInit = $target.css("top");
 	$target.css("top", "0");
 
 	// Attaches swipe listeners to obstacle
 	setObsListeners();
 }
 
+// Generates the scrambler
 function generateScrambler() {
     $trackId = "#t1";
+    
 	// Creates target
 	$target = $('<div></div>');
 	$target.addClass("target");
     $target.addClass("scrambler");
     // Creates obstacle
+    
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
 	$target.append($block);
-    	// Gets height and initial left value for new obstacle
+    
+    // Gets height and initial left value for new obstacle
 	$trackHeight = $($trackId).height() * 4;
 	$leftInit = $("div#container").width() + 2;
 
@@ -241,6 +248,11 @@ function generate2() {
 	$target.addClass("target");
     $target.addClass("target1");
 	$target.addClass("twoLane");
+    
+    // Creates obstacle
+	$block = $('<div></div>');
+	$block.addClass("obstacle");
+	$target.append($block);
 
 	// Gets height and initial left value for the 2 by 1 obstacle
 	$trackHeight = $($trackId).height()*2;
@@ -258,7 +270,6 @@ function generate2() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
-	var audioSwipe = document.getElementById("audioSwipe");
 
 	// Swipe up listener
 	jQuery("div.target1").on("swipeup", function(event) {
@@ -357,7 +368,6 @@ $ach003 = false;
 
 // Moves all obstacles by 1 pixel.
 function move() {
-	var audioRemove = document.getElementById("audioRemove");
 
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;

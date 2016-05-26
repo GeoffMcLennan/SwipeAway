@@ -37,6 +37,7 @@
 	$lives = 5;
 	$cLives = 5;
 	</script>
+	<script src="scripts/menus.js"></script>
 	<script src="scripts/endless.js"></script>
 	<script src="scripts/swipemod.js"></script>
 	<script src="scripts/mainloop.js"></script>

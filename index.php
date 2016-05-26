@@ -3,6 +3,8 @@
 	if (!isset($_SESSION)) { 	
 		session_start();
 	}
+//require 'lib/cookieId.php';
+//require 'lib/existingUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +31,9 @@
 	<title>SwipeAway - Home</title>
 </head>
 <body>
+	<?php require_once('lib/topbar.php');
 	<audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
-	<?php require_once('lib/topbar.php') ?>
+    require_once('lib/topbar.php') ?>
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
@@ -44,6 +47,6 @@
 		</ul>
 	</form>
 	
-	<audio preload="auto" id="audClick" src='http://www.soundjay.com/button/sounds/button-10.mp3'>
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

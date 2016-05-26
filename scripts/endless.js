@@ -96,7 +96,6 @@ function initialize() {
 	// Hides unnecessary overlays
 	$("div#endOverlay").hide();
 	$("div#pauseOverlay").hide();
-
 }
 
 // Helps the goddamn orientation bullshit.
@@ -161,35 +160,26 @@ function startGame() {
 
 $time = 0;
 $interval = 0;
-$interval2 = 0;
 function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
-	/*if ($time >= $interval) {
-		generate();
 	if ($time >= $interval) {
 		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-			if (Math.random() >= 0.05) {
-				generate();
-			} else {
+			if (Math.random() >= 0.5) {
 				generate2();
-			}
+			} else if (Math.random() >= 0.4) {
+				generate2();
+			} else {
+                generateScrambler();
+            }
 		$interval = randomIntForInterval();
 		$time = 0;
-	}*/
+	}
     
-    if ($time >= $interval2) {
-        
-        generateScrambler();
-        $interval2 = randomIntForScrambler();
-        $time = 0;
-    }
-
 	// Increments time value
 	$time += $tickLength;
 
 	move();
-    moveScrambler();
 }
 
 // Generates a new obstacle off-screen, to the right.
@@ -201,6 +191,7 @@ function generate() {
 	// Creates target
 	$target = $('<div></div>');
 	$target.addClass("target");
+    $target.addClass("target1");
 	// Creates obstacle
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
@@ -222,10 +213,10 @@ function generate() {
 
 function generateScrambler() {
     $trackId = "#t1";
-
 	// Creates target
 	$target = $('<div></div>');
-	$target.addClass("target2");
+	$target.addClass("target");
+    $target.addClass("scrambler");
     // Creates obstacle
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
@@ -238,6 +229,7 @@ function generateScrambler() {
 	$target.css({"height": $trackHeight, "left": $leftInit});
 	$($trackId).append($target);
 	$target.css("top", "0");
+}
 
 function generate2() {
 	// Randomly selects lane to spawn in
@@ -247,6 +239,7 @@ function generate2() {
 	// Creates target
 	$target = $('<div></div>');
 	$target.addClass("target");
+    $target.addClass("target1");
 	$target.addClass("twoLane");
 
 	// Gets height and initial left value for the 2 by 1 obstacle
@@ -268,7 +261,7 @@ function setObsListeners() {
 	var audioSwipe = document.getElementById("audioSwipe");
 
 	// Swipe up listener
-	jQuery("div.target").on("swipeup", function(event) {
+	jQuery("div.target1").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) - 1;
@@ -282,7 +275,8 @@ function setObsListeners() {
 			$(this).remove();
 
 			$target = $('<div></div>');
-			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			$target.addClass("target1").css({"left": $left, "height": $height, "top": "0"});
+            $target.addClass("target");
 			
 			$block = $('<div></div>');
 			$block.addClass("obstacle");
@@ -299,7 +293,7 @@ function setObsListeners() {
 	});
 
 	// Swipe down listener
-	jQuery("div.target").on("swipedown", function(event) {
+	jQuery("div.target1").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) + 1;
 		$newId = "#t" + $newLane;
@@ -310,7 +304,8 @@ function setObsListeners() {
 			$(this).remove();
 
 			$target = $('<div></div>');
-			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			$target.addClass("target1").css({"left": $left, "height": $height, "top": "0"});
+            $target.addClass("target");
 			
 			$block = $('<div></div>');
 			$block.addClass("obstacle");
@@ -355,10 +350,6 @@ function randomIntForInterval(){
     return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
-function randomIntForScrambler() {
-    return Math.floor(Math.random() * (1001) + (600*$tickLength));
-}
-
 $cScore = 0;
 // Stores achievement status for this run
 $ach002 = false;
@@ -372,15 +363,26 @@ function move() {
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
 	$blocks.each(function() {
-		$newLeft = parseInt($(this).css("left")) - 1;
-		$(this).css("left", $newLeft + "px");
+        if ($(this).hasClass('scrambler')) {
+            $newLeft = parseInt($(this).css("left")) - 1;
+            $(this).css("left", $newLeft + "px");
 
-		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
-			$(this).remove();
-			$cScore += 1;
-		}
+            // Deletes any obstacles that have travelled to the right off screen.
+            if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
+                $(this).remove();
+            }
+        } else {
+            $newLeft = parseInt($(this).css("left")) - 1;
+            $(this).css("left", $newLeft + "px");
+
+            // Deletes any obstacles that have travelled to the right off screen.
+            if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
+                $(this).remove();    
+                $cScore += 1;
+            }
+        }
 	});
+    
 	$("span#cScore").html($cScore);
 	
 	// Check for ach002/ach003 (Get 100/500 points in endless)
@@ -403,21 +405,6 @@ function move() {
 	collision();
 }
 
-function moveScrambler() {
-    $scrambler = $(".target2");
-	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
-    
-    $scrambler.each(function() {
-		$newLeft = parseInt($(this).css("left")) - 1;
-		$(this).css("left", $newLeft + "px");
-
-		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= 0) {
-			$(this).remove();
-		}
-    });
-}
-
 // Removes obstacle if it collides with a sprite.
 function collision() {
 	var audioRemove = document.getElementById("audioRemove");
@@ -434,10 +421,21 @@ function collision() {
 	
 	$colFlag = 0;
 	$(block).each(function() {
-
+        // If the scrambler's position reaches 0, remove obstacles and sprites, and generate new sprites.
+        if ($(this).hasClass('scrambler')) {
+            var object = $(this).offset().left;
+			if (object == 0) {
+                $(block).remove();
+                $("#s1").remove();
+                $("#s2").remove();
+                $("#s3").remove();
+                $("#s4").remove();
+				generateSprites();
+			}
+        }
 		// If its a two lane obstacle, check sprites in current lane and lane below
 		// Else if its a one lane obstacle, only check sprites in current lane
-		if ($(this).hasClass('twoLane')) {
+		else if ($(this).hasClass('twoLane')) {
 			var object = $(this).offset().left;
 			if ($(this).parent().is("#t1")) {
 				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {

@@ -734,4 +734,4 @@ else if (typeof module === 'object' && module !== null && typeof module.exports 
 }
 
 })(this);
-MainLoop.setUpdate(update).setDraw(draw).start();
+MainLoop.start()

@@ -9,6 +9,11 @@ div#title {
 	color: #776E65; 
 }
 
+.title {
+	color: #776E65;
+	text-align: center;
+}
+
 div#phperr {
 	color: red;
 	text-align: center;

@@ -12,9 +12,9 @@
 		<?php
 			$level++;
 			if ($level <= 3) {
-				echo '<a class="button" id="start" href="level'.$level.'.php" rel="external">Next Level</a>';
+				echo '<a class="button" id="start" href="level'.$level.'.php" rel="external">Next</a>';
 			} else {
-				echo '<a class="button" id="start" href="endless.php" rel="external">Next Level</a>';
+				echo '<a class="button" id="start" href="endless.php" rel="external">Next</a>';
 			}
 		?>
 	</div>

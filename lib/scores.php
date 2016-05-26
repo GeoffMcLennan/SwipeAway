@@ -29,7 +29,7 @@ $i = 0;
 while ($score = mysqli_fetch_assoc($result)) {
     $i++;
     if ($i <= 5) {
-    	echo "<tr><td>" . $i . "</td>" . "<td>" . $score['username'] . "</td>" . "<td>" . $score['highscore'] . "</td></tr>";
+    	echo "<tr><td>" . $i . "</td>" . "<td><span data-role='none'><a href=profile.php?id=". $score['id'] ." rel='external'>" . $score['username'] . "</a></span></td>" . "<td>" . $score['highscore'] . "</td></tr>";
     } else {
     	if ($sessUser == $score['username']) {
     		echo "<tr id='userScore'><td>" . $i . "</td>" . "<td>" . $sessUser . "</td>" . "<td>" . $score['highscore'] . "</td></tr>"; 

@@ -49,6 +49,8 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<title>SwipeAway - Level Select</title>
 </head>
 <body>
 	<div id="topBar">
@@ -67,7 +69,7 @@
 				if ($i <= $level) {
 					echo '<a href="level' .$i. '.php" class="level" id="level' .$i. '" rel="external">' .$i. '</a>';
 				} else {
-					echo '<a class="level" id="level' .$i. '" rel="external"><i class="material-icons">lock</i></a>';
+					echo '<a class="level" id="level' .$i. '" rel="external"><img src="images/lock.png"></a>';
 				}
 			}
 		?>
@@ -81,7 +83,7 @@
 			if ($level == 4) {
 				echo '<a id="endlessBtn" href="endless.php" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
 			} else {
-				echo '<a id="endlessBtn" rel="external"><i class="material-icons">lock</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
+				echo '<a id="endlessBtn" rel="external"><img src="images/lock.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
 			}
 		?>
 	</div>

@@ -27,17 +27,13 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>SwipeAway - Home</title>
 </head>
 <body>
 	<?php require_once('lib/topbar.php');
-    /*if (isset($_POST['checkbox'])) {
-        echo "cookie not set!";
-    } else {
-        echo $_COOKIE[$cookie_name]; 
-    }
-    echo $_SESSION["SESS_USERNAME"];*/
-        //echo $_COOKIE['userInfo'];
-    ?>
+	<audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
+    require_once('lib/topbar.php') ?>
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>

@@ -155,11 +155,17 @@ function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
-		// Generatet 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-		if (Math.random() >= 0.25) {
-			generate();
+
+		// If in level 3, occasionally spawn 2 lane obstacles, otherwise only 1 lane obstacles
+		if ($lanes >= 4) {	
+			// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
+			if (Math.random() >= 0.25) {
+				generate();
+			} else {
+				generate2();
+			}
 		} else {
-			generate2();
+			generate();
 		}
 		$interval = randomIntForInterval();
 		$time = 0;

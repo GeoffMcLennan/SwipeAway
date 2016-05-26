@@ -111,7 +111,7 @@ function checkOrientation() {
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     // Width between sprites
-    var genRange = parseInt($("#container").css("width")) * 0.5 / $lanes;
+    var genRange = parseInt($("#container").css("width")) * 0.7 / $lanes;
     var skew = parseInt($("#container").css("width")) * 0.2 / $lanes;
 
     // Array containing possible positions
@@ -161,7 +161,7 @@ function tick() {
 		// If in level 3, occasionally spawn 2 lane obstacles, otherwise only 1 lane obstacles
 		if ($lanes >= 4) {	
 			// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-			if (Math.random() >= 0.05) {
+			if (Math.random() >= 0.25) {
 				generate();
 			} else {
 				generate2();

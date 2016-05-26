@@ -24,6 +24,7 @@
 	<script>
 	$lanes = 3;
 	$tickLength = 5;
+	$speed = 1;
 	$gameLength = 60000;
 	$scorePass = 40;
 	$levelNum = 2;

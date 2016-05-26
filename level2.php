@@ -1,3 +1,15 @@
+<?php
+	
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+
+	// Current level declaration
+	$level = 2;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +30,14 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
+	<script src="scripts/mainloop.min.js"></script>
 	
 	<title>SwipeAway - Level 2</title>
 </head>
 <body>
-<div id="desktop">
-<h1>SwipeAway</h1>
-</div>
+	<div id="desktop">
+		<h1>SwipeAway</h1>
+	</div>
 
 <div id="container">
 

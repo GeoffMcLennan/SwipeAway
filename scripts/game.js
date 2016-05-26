@@ -12,6 +12,8 @@ $(document).ready(function() {
 	initialize();
 	generateSprites($lanes);
 
+	//gameStart = setInterval('tick();', $tickLength);
+
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
 		startGame();
@@ -27,7 +29,7 @@ $(document).ready(function() {
 		closePauseOverlay();
 		audioClick.play();
 	});
-
+    
 	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -202,8 +204,9 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
-	var audioSwipe = new Audio('audio/psst1.ogg');
 
+	var audioSwipe = new Audio('audio/psst1.ogg');
+	
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -298,7 +301,7 @@ $cScore = 0;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
-
+	var audioRemove = document.getElementById("audRemove");
 	$blocks.each(function() {
 		$newLeft = parseInt($(this).css("left")) - 1;
 		$(this).css("left", $newLeft + "px");
@@ -307,6 +310,8 @@ function move() {
 		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
+			// Sound upon travelling off the screen
+			audioRemove.play();
 		}
 	});
 
@@ -324,7 +329,7 @@ function collision() {
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
-	
+	var audioCollide = document.getElementById('audCollide');	
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {
@@ -357,7 +362,12 @@ function collision() {
 	});
 }
 
-// Starts the game from start overlay
+    //loads game start overlay on game load
+function openStartOverlay() {
+    document.getElementById("startOverLay").style.height = "100%";
+}
+    //opens pause overlay and stops obstacle movement
+    // Starts the game from start overlay
 function startGame() {
 	$("div#startOverlay").fadeOut(300);
 	gameStart = setInterval('tick();', $tickLength);
@@ -369,15 +379,35 @@ function openPauseOverlay() {
     clearInterval(gameStart); 
 }
 
-function closePauseOverlay(){
+    //closes pause overlay and resumes obstacle movement
+    // Resumes game when resume button is clicked.
+function closePauseOverlay() {
     $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
+// When the time limit is reached, display the proper overlay
+// If logged in, update progress in database
 function gameEnd() {
 	if ($cScore >= $scorePass) {
 		$("span#cScore").html($cScore);
 		$("div#passedOverlay").fadeIn(300);
+
+		// Update database
+		$.ajax({
+			type: 'POST',
+			url: 'lib/updatelevel.php',
+			data: { level : $levelNum },
+			complete: function (response) {
+				$text = response.responseText;
+				if ($text.localeCompare('true') == 0) {
+					// Achievement 1 pop up here
+				}
+			},
+			error: function() {
+				
+			}
+		});
 	} else {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").fadeIn(300);

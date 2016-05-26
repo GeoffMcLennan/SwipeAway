@@ -204,7 +204,7 @@ function generate() {
 // Sets the listeners for obstacles.
 function setObsListeners() {
 	var audioSwipe = new Audio('audio/psst1.ogg');
-	
+
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -293,9 +293,15 @@ function randomIntForInterval(){
     return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
-// Moves all obstacles by 1 pixel.
+
 $cScore = 0;
+// Stores achievement status for this run
+$ach002 = false;
+$ach003 = false;
+
+// Moves all obstacles by 1 pixel.
 function move() {
+	var audioRemove = document.getElementById("audRemove");
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 
@@ -307,10 +313,29 @@ function move() {
 		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
+			audioRemove.play();
 		}
 	});
 
 	$("span#cScore").html($cScore);
+	
+	// Check for ach002/ach003 (Get 100/500 points in endless)
+	if (($cScore == 100 && !$ach002) || ($cScore == 500 && !$ach003)) {
+		$.ajax({
+			type: 'POST',
+			url: 'lib/achscore.php',
+			data: { score : $cScore },
+			complete: function (response) {
+				$text = response.responseText;
+				if ($text.localeCompare('ach002') == 0) {
+					$ach002 = true;
+				}
+				if ($text.localeCompare('ach003') == 0) {
+					$ach003 = true;
+				}
+			}
+		});
+	}
 	collision();
 }
 
@@ -324,6 +349,7 @@ function collision() {
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
+	var audioCollide = document.getElementById('audCollide');
 	
 	$colFlag = 0;
 	$(block).each(function() {
@@ -401,7 +427,6 @@ function closePauseOverlay(){
 
 function gameEnd() {
 	$("div#endOverlay").fadeIn(300);
-	$test = 'test';
 	$.ajax({
 		type: 'POST',
 		url: 'lib/updatehiscore.php',
@@ -418,7 +443,6 @@ function gameEnd() {
 	});
 }
 
-//**UNFINISHED**. Should jump right back into a new game without showing start overlay
 function retryEndless() {
 	window.location.href = "endless.php";
 }

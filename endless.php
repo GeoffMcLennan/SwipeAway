@@ -39,13 +39,14 @@
 	</script>
 	<script src="scripts/endless.js"></script>
 	<script src="scripts/swipemod.js"></script>
+	<script src="scripts/mainloop.js"></script>
 	
 	<title>SwipeAway - Endless</title>
 </head>
 <body>
-<div id="desktop">
-<h1>SwipeAway</h1>
-</div>
+	<div id="desktop">
+		<h1>SwipeAway</h1>
+	</div>
 
 <div id="container">
 	<!-- Game start overlay -->
@@ -88,5 +89,6 @@
 </div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>
+
 </body>
 </html>

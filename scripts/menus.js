@@ -47,9 +47,8 @@ function soundChange() {
 }
 
 //button sound kind of working
-function soundButton() {
-	var audioElement = document.createElement('audio');
-	audioElement.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
+/*function soundButton() {
+	var audioElement = document.getElementById('audClick');	
 	$('#options').click(function() {
 		audioElement.play();
 	});
@@ -57,5 +56,5 @@ function soundButton() {
 		audioElement.play();
 	});
 }
-
+*/
 

@@ -302,6 +302,8 @@ $cScore = 0;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
+	var audioRemove = document.createElement('audio');
+	audioRemove.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-16.mp3');
 
 	$blocks.each(function() {
 		$newLeft = parseInt($(this).css("left")) - 1;
@@ -311,6 +313,8 @@ function move() {
 		if ($newLeft <= 0) {
 			$(this).remove();
 			$cScore += 1;
+			// Sound upon travelling off the screen
+			audioRemove.play();
 		}
 	});
 
@@ -327,23 +331,28 @@ function collision() {
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
+	var audioCollide = document.createElement('audio');
+	audioCollide.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-19.mp3');
 	
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {
 			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t2")) {
 			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t3")) {
             var spritePos3 = $("#s3").offset().left;
 			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t4")) {
@@ -351,6 +360,7 @@ function collision() {
             var spritePos4 = $("#s4").offset().left;
 			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 	});
@@ -393,7 +403,10 @@ function gameEnd() {
 			url: 'lib/updatelevel.php',
 			data: { level : $levelNum },
 			complete: function (response) {
-				
+				$text = response.responseText;
+				if ($text.localeCompare('true') == 0) {
+					// Achievement 1 pop up here
+				}
 			},
 			error: function() {
 				

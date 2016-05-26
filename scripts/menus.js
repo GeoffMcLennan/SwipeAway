@@ -46,7 +46,7 @@ function sound() {
 //button sound kind of working
 function soundButton() {
 	var audioElement = document.createElement('audio');
-	audioElement.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
+	audioElement.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-10.mp3');
 	$('#options').click(function() {
 		audioElement.play();
 	});

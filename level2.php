@@ -72,5 +72,9 @@
 </div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>
+
+<audio preload="auto" id="audioSwipe" src="audio/psst1.ogg">
+<audio preload="auto" id="audioRemove" src="audio/pop.ogg">
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

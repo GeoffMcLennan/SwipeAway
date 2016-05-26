@@ -1,6 +1,5 @@
 
 $.mobile.pushStateEnabled = false;
-var audioClick = new Audio('audio/tick.ogg');
 
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
@@ -12,7 +11,8 @@ $(document).ready(function() {
 	initialize();
 	generateSprites($lanes);
 
-	//gameStart = setInterval('tick();', $tickLength);
+	// Initialize click sound
+	var audioClick = document.getElementById("audioClick");
 
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
@@ -205,7 +205,7 @@ function generate() {
 // Sets the listeners for obstacles.
 function setObsListeners() {
 
-	var audioSwipe = new Audio('audio/psst1.ogg');
+	var audioSwipe = document.getElementById("audioSwipe");
 	
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
@@ -301,7 +301,6 @@ $cScore = 0;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
-	var audioRemove = document.getElementById("audRemove");
 	$blocks.each(function() {
 		$newLeft = parseInt($(this).css("left")) - 1;
 		$(this).css("left", $newLeft + "px");
@@ -310,8 +309,6 @@ function move() {
 		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
-			// Sound upon travelling off the screen
-			audioRemove.play();
 		}
 	});
 
@@ -321,7 +318,8 @@ function move() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
-	var audioRemove = new Audio('audio/pop.ogg');
+	var audioRemove = document.getElementById("audioRemove");
+	
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.

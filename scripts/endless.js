@@ -158,6 +158,7 @@ function tick() {
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
 		generate();
+        generateScrambler();
 		$interval = randomIntForInterval();
 		$time = 0;
 	}
@@ -194,6 +195,23 @@ function generate() {
 
 	// Attaches swipe listeners to obstacle
 	setObsListeners();
+}
+
+function generateScrambler() {
+    if ($lanes = 4) {
+    $target = $('<div></div>');
+	$target.addClass("target");
+    $block = $('<div></div>');
+	$block.addClass("obstacle");
+	$target.append($block);
+    $target.css({"height": $trackHeight, "left": $leftInit});
+    $("#t1").append($target);
+    $("#t2").append($target);
+    $("#t3").append($target);
+    $("#t4").append($target);
+	$topInit = $target.css("top");
+	$target.css("top", "0"); 
+    }
 }
 
 // Sets the listeners for obstacles.

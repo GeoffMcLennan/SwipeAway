@@ -193,7 +193,7 @@ function generate() {
     $($trackId).append($target);
 	$topInit = $target.css("top");
 	$target.css("top", "0");
-
+    
 	// Attaches swipe listeners to obstacle
 	setObsListeners();
 }

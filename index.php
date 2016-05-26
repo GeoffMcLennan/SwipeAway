@@ -36,7 +36,7 @@
         echo $_COOKIE[$cookie_name]; 
     }
     echo $_SESSION["SESS_USERNAME"];*/
-        echo $_COOKIE['userInfo'];
+        //echo $_COOKIE['userInfo'];
     ?>
 	
 	<div id="title">

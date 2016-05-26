@@ -21,7 +21,7 @@
 	}
 	
 	$user = $_POST['username'];
-	
+
 	$pass = $_POST['password'];
 	
 	$user = clean($user, $link);
@@ -48,8 +48,8 @@
 			$member = mysqli_fetch_assoc($result);
 			$_SESSION["SESS_MEMBER_ID"] = $member["id"];
 			$_SESSION["SESS_USERNAME"] = $member["username"];
-            $_SESSION["SESS_PASS"] = $member["password"];
 			session_write_close();
+            
 			header("location: " . HOME . "/index.php");
 			exit();
 		} else {

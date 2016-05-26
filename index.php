@@ -3,7 +3,7 @@
 	if (!isset($_SESSION)) { 	
 		session_start();
 	}
-require 'lib/cookieId.php';
+//require 'lib/cookieId.php';
 //require 'lib/existingUser.php';
 ?>
 
@@ -29,7 +29,15 @@ require 'lib/cookieId.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
-	<?php require_once('lib/topbar.php') ?>
+	<?php require_once('lib/topbar.php');
+    /*if (isset($_POST['checkbox'])) {
+        echo "cookie not set!";
+    } else {
+        echo $_COOKIE[$cookie_name]; 
+    }
+    echo $_SESSION["SESS_USERNAME"];*/
+        echo $_COOKIE['userInfo'];
+    ?>
 	
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>

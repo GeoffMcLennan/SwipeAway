@@ -159,7 +159,7 @@ function tick() {
 		// If in level 3, occasionally spawn 2 lane obstacles, otherwise only 1 lane obstacles
 		if ($lanes >= 4) {	
 			// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-			if (Math.random() >= 0.25) {
+			if (Math.random() >= 0.05) {
 				generate();
 			} else {
 				generate2();
@@ -284,22 +284,47 @@ function setObsListeners() {
 		$newLane = parseInt($parentId) + 1;
 		$newId = "#t" + $newLane;
 
-		if($newLane <= $lanes) {
-			$left = $(this).css("left");
-			$height = $(this).css("height");
-			$(this).remove();
+		// If 2 lane obstacle, lock to first 3 lanes, otherwise use all 4
+		if ($(this).hasClass('twoLane')) {
+			if($newLane <= $lanes - 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
 
-			$target = $('<div></div>');
-			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
-			
-			$block = $('<div></div>');
-			$block.addClass("obstacle");
-			$target.append($block);
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+				$target.addClass("twoLane");
+				
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
 
-			$($newId).append($target);
-			setObsListeners();
+				$($newId).append($target);
+				setObsListeners();
+			} else {
+				easterEgg();
+			}
 		} else {
-			easterEgg();
+			// If the new lane is a valid lane, destroy current obstacle and generate a 
+			// new one with the same parameters
+			if($newLane >= 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
+
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
+
+				$($newId).append($target);
+
+			// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
+			} else {
+				easterEgg();
+			}
 		}
 		//Plays sound on swipe
 		audioSwipe.play();
@@ -364,36 +389,72 @@ function collision() {
     // Left position of each sprite.
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
+    var spritePos3 = $("#s3").offset().left;
+    var spritePos4 = $("#s4").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
-	var audioCollide = document.getElementById('audCollide');	
+	
 	$(block).each(function() {
-		var object = $(this).offset().left;
-		if ($(this).parent().is("#t1")) {
-			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
-				$(this).remove();
-				audioRemove.play();
+
+		// If its a two lane obstacle, check sprites in current lane and lane below
+		// Else if its a one lane obstacle, only check sprites in current lane
+		if ($(this).hasClass('twoLane')) {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t2")) {
-			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
-				$(this).remove();
-				audioRemove.play();
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t3")) {
-            var spritePos3 = $("#s3").offset().left;
-			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
-				$(this).remove();
-				audioRemove.play();
+			if ($(this).parent().is("#t3")) {   
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t4")) {
-            var spritePos3 = $("#s3").offset().left;
-            var spritePos4 = $("#s4").offset().left;
-			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
-				$(this).remove();
-				audioRemove.play();
+		} else {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t3")) {
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t4")) {	            
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
 		}
 	});

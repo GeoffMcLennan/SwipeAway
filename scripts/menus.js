@@ -19,7 +19,6 @@ $(document).ready(function() {
 	$("a#logsubmit").click(function() {
 		$("form#login").submit();
 	});
-	soundButton();
 });  		
 
 //adds margin to menu screens based on orientation

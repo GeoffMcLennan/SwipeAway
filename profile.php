@@ -4,22 +4,18 @@
 		session_start();
 	}
 
-	// Start Session
-	if (!isset($_SESSION)) { 	
-		session_start();
-	}
-
 	// Include database connection info
 	require_once('lib/config_local.php');
 
-	if (isset($_SESSION['SESS_MEMBER_ID'])) {
-		$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die('Failed to connect to server: ' . mysqli_error($link));
+	// Get id for profile from URL
+	$id = $_GET['id'];
 
-		$qry = "SELECT * FROM members WHERE id='" . $_SESSION['SESS_MEMBER_ID'] . "'";
-		$result = mysqli_query($link, $qry);
-		$member = mysqli_fetch_assoc($result);
-		$highscore = $member['highscore'];
-	}
+	// Connect to db and get user information
+	$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE) or die ("Failed to connect to server " . mysqli_error());
+
+	$infoqry = "SELECT * FROM members WHERE id=" . $id;
+	$infoobj = mysqli_query($link, $infoqry);
+	$info = mysqli_fetch_assoc($infoobj);
 ?>
 
 <!DOCTYPE html>
@@ -50,24 +46,56 @@
 	<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 	</div>
 	
-	<div id="info">
-		<h1>Profile</h1>
-	</div>
-
-	<h2 class="innerText">Welcome back <?php echo $_SESSION["SESS_USERNAME"] ?>!</h2>
-
-	<h2 class="innerText">Your BEST score is: <?php echo $highscore;?></h2>
-
-	<div id="info">
-		<h1>Local Highscores</h1>
-	</div>
+	<h1 class="title"><?php echo $info['username']; ?></h1>
 	
+	<h2 class="title">User Scores - Endless Mode</h2>
 	<div id="levels">
-        <table id="table">
-            <?php include 'lib/scores.php';?>
+        <table class="table">
+            <?php
+            	//Get users scores
+            	$scoreqry = "SELECT * FROM scores WHERE id=".$id." ORDER BY score DESC";
+            	$scoreobj = mysqli_query($link, $scoreqry);
+
+            	if (mysqli_num_rows($scoreobj) == 0) {
+            		echo "This user has no scores for endless mode.";
+            	} else {
+            		echo '<tr><td id="tableheader">Rank</td><td id="tableheader">Score</td></tr>';
+
+            		// Print out all scores
+            		$i = 1;
+            		while ($score = mysqli_fetch_assoc($scoreobj)) {
+            			echo '<tr><td>'. $i++ .'</td><td>'. $score['score'] .'</td></tr>';
+            		}
+            	}
+            ?>
         </table>
     </div>
-	
+
+    <h2 class="title">Achievements</h2>
+    <div id="achs">
+    	<table class="table" id="achs">
+    		<tr><td id="tableheader">Status</td><td id="tableheader">Achievement</td><td id="tableheader">Description</td></tr>
+    		<?php
+    			require_once('lib/achievements.php');
+    			$i = 1;
+    			foreach ($achs as $title => $desc) {
+    				// Generate achievement db column name
+    				$achId = 'ach' . str_pad($i++, 3, '0', STR_PAD_LEFT);
+    				
+    				echo '<tr><td>';
+    				// If achievement is locked (0) display lock, if unlocked (1) display trophy.
+    				if ($info[$achId] == 1) {
+    					echo '<img src="images/trophy.png">';
+    				} else {
+    					echo '<img src="images/lock.png">';
+    				}
+    				// Display achievement name and description
+    				echo '</td><td>'. $title .'</td><td>'. $desc .'</td></tr>';
+
+    			}
+    		?>
+    	</table>
+    </div>	
 
 </body>
 </html>

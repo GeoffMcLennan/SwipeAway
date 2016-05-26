@@ -336,10 +336,10 @@ span.fadeScore {
 
 
 /* Style Highscore Table*/
-table#table {
+table.table {
 	color: #776E65;
 	font-size: 24px;
-	margin: 0  auto;
+	margin: 0  auto 50px auto;
 	border-collapse: collapse;
 	text-align: center;
 	display: block;
@@ -351,7 +351,7 @@ table, th, td {
 		width: 320px;
 } 
 
-table#table tr:nth-child(odd) {
+table.table tr:nth-child(odd) {
 	background-color: #EEE4DA;
 }
 
@@ -360,7 +360,32 @@ table#table tr:nth-child(odd) {
     background-color: #BBADA0;
 }
 
+div#scores a {
+	color: #776E65;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+div#scores a:hover {
+	color: #A09386;
+}
+
 #userScore {
     color: white;
     background-color: #BBADA0;
+}
+
+table#achs {
+	width: 100%;
+}
+
+div#achs {
+	width: 100%;
+	max-width: 700px;
+	margin: 0  auto;
+}
+
+table#achs tr td:nth-child(1) {
+	width: auto;
+	padding: 0 10px;
 }

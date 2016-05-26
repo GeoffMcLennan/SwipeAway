@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- Local Stylesheets -->
-	<link rel="stylesheet" href="css/base.css">	
+	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/2048theme.css">
 	
 	<!-- 3rd Party Stylesheets + Icon Font -->
@@ -30,8 +30,8 @@
 		<h1>Highscores</h1>
 	</div>
 	
-    <div id="levels">
-        <table id="table">
+    <div id=scores>
+        <table class="table">
             <?php include 'lib/scores.php';?>
         </table>
     </div>

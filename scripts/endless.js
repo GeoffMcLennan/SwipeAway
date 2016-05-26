@@ -11,7 +11,9 @@ $(document).ready(function() {
 	generateSprites($lanes);
 
 	// Initialize click sound
-	var audioClick = document.getElementById("audioClick");
+	audioClick = document.getElementById("audioClick");
+	audioRemove = document.getElementById("audioRemove");
+	audioSwipe = document.getElementById("audioSwipe");
 
 	$("a#start").click(function() {
 		startGame();
@@ -114,7 +116,7 @@ function checkOrientation() {
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     // Width between sprites
-    var genRange = parseInt($("#container").css("width")) * 0.5 / $lanes;
+    var genRange = parseInt($("#container").css("width")) * 0.7 / $lanes;
     var skew = parseInt($("#container").css("width")) * 0.2 / $lanes;
 
     // Array containing possible positions
@@ -166,7 +168,7 @@ function tick() {
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
 		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-			if (Math.random() >= 0.05) {
+			if (Math.random() >= 0.) {
 				generate();
 			} else {
 				generate2();
@@ -239,7 +241,6 @@ function generate2() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
-	var audioSwipe = document.getElementById("audioSwipe");
 
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
@@ -337,7 +338,6 @@ $ach003 = false;
 
 // Moves all obstacles by 1 pixel.
 function move() {
-	var audioRemove = document.getElementById("audioRemove");
 
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;

@@ -1,5 +1,6 @@
 
 $.mobile.pushStateEnabled = false;
+var audioClick = new Audio('audio/tick.ogg');
 
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
@@ -14,14 +15,17 @@ $(document).ready(function() {
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
 		startGame();
+		audioClick.play();
 	});
 
 	$("div#pause").click(function() {
 		openPauseOverlay();
+		audioClick.play();
 	});
 
 	$("a#resume").click(function() {
 		closePauseOverlay();
+		audioClick.play();
 	});
 
 	// Override the default function of swiping up and down
@@ -86,12 +90,6 @@ function initialize() {
 	$("div#passedOverlay").hide();
 	$("div#failedOverlay").hide();
     $("div#pauseOverlay").hide();
-
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
-
 }
 
 // Helps the goddamn orientation bullshit.
@@ -204,8 +202,8 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
-	var audioSwipe = document.createElement('audio');
-	audioSwipe.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
+	var audioSwipe = new Audio('audio/psst1.ogg');
+
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -306,7 +304,7 @@ function move() {
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= 0) {
+		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
 		}
@@ -318,6 +316,7 @@ function move() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
+	var audioRemove = new Audio('audio/pop.ogg');
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
@@ -331,17 +330,20 @@ function collision() {
 		if ($(this).parent().is("#t1")) {
 			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
+				audioRemove.play();
 			}
 		}
 		if ($(this).parent().is("#t2")) {
 			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
+				audioRemove.play();
 			}
 		}
 		if ($(this).parent().is("#t3")) {
             var spritePos3 = $("#s3").offset().left;
 			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
+				audioRemove.play();
 			}
 		}
 		if ($(this).parent().is("#t4")) {
@@ -349,6 +351,7 @@ function collision() {
             var spritePos4 = $("#s4").offset().left;
 			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
+				audioRemove.play();
 			}
 		}
 	});

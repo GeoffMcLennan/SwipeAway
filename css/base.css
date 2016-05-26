@@ -294,7 +294,6 @@ div.overlay {
 body div#info h1 {
 	text-align: center;
 	color: #776E65; 
-	margin: none; /* Not working >:( */
 }
 
 div#content {
@@ -337,10 +336,6 @@ span.fadeScore {
 
 
 /* Style Highscore Table*/
-div#centerTable {
-
-}
-
 table#table {
 	color: #776E65;
 	font-size: 24px;

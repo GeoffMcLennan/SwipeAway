@@ -22,7 +22,7 @@
 	<title>SwipeAway - Level 1</title>
 </head>
 <body>
-	<audio id="swipe" src="http://localhost/swipeaway/audio/psst1.ogg" type="audio/ogg"></audio>
+	<audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
 	<div id="desktop">
 		<h1>SwipeAway</h1>
 	</div>

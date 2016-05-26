@@ -1,5 +1,6 @@
 
 $.mobile.pushStateEnabled = false;
+var audioClick = new Audio('audio/tick.ogg');
 
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
@@ -11,18 +12,22 @@ $(document).ready(function() {
 	//gameStart = setInterval('tick();', $tickLength);
 	$("a#start").click(function() {
 		startGame();
+		audioClick.play();
 	});
 
 	$("div#pause").click(function() {
 		openPauseOverlay();
+		audioClick.play();
 	});
 
 	$("a#continue").click(function() {
 		closePauseOverlay();
+		audioClick.play();
 	});
 
 	$("a#retry").click(function() {
 		retryEndless();
+		audioClick.play();
 	})
 
 	$(document).on("swipeup", function(e) {
@@ -198,6 +203,8 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
+	var audioSwipe = new Audio('audio/psst1.ogg');
+	
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -225,7 +232,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
-
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 
 	// Swipe down listener
@@ -251,6 +259,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -294,7 +304,7 @@ function move() {
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= 0) {
+		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
 		}
@@ -306,6 +316,7 @@ function move() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
+	var audioRemove = new Audio('audio/pop.ogg');
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
@@ -321,12 +332,14 @@ function collision() {
 			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioRemove.play();
 			}
 		}
 		if ($(this).parent().is("#t2")) {
 			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioRemove.play();
 			}
 		}
 		if ($(this).parent().is("#t3")) {
@@ -334,6 +347,7 @@ function collision() {
 			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioRemove.play();
 			}
 		}
 		if ($(this).parent().is("#t4")) {
@@ -342,6 +356,7 @@ function collision() {
 			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
 				$colFlag += 1;
+				audioRemove.play();
 			}
 		}
 	});

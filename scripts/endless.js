@@ -152,19 +152,28 @@ function startGame() {
 
 $time = 0;
 $interval = 0;
+$interval2 = 0;
 function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
-	if ($time >= $interval) {
+	/*if ($time >= $interval) {
 		generate();
 		$interval = randomIntForInterval();
 		$time = 0;
-	}
+	}*/
+    
+    if ($time >= $interval2) {
+        
+        generateScrambler();
+        $interval2 = randomIntForScrambler();
+        $time = 0;
+    }
 
 	// Increments time value
 	$time += $tickLength;
 
 	move();
+    moveScrambler();
 }
 
 // Generates a new obstacle off-screen, to the right.
@@ -193,6 +202,27 @@ function generate() {
 
 	// Attaches swipe listeners to obstacle
 	setObsListeners();
+}
+
+function generateScrambler() {
+    $trackId = "#t1";
+
+	// Creates target
+	$target = $('<div></div>');
+	$target.addClass("target2");
+	// Creates obstacle
+	$block = $('<div></div>');
+	$block.addClass("obstacle");
+	$target.append($block);
+
+	// Gets height and initial left value for new obstacle
+	$trackHeight = $($trackId).height() * 4;
+	$leftInit = $("div#container").width() + 2;
+
+	// Applies height and left values to obstacle and inserts it into the lane
+	$target.css({"height": $trackHeight, "left": $leftInit});
+	$($trackId).append($target);
+	$target.css("top", "0");
 }
 
 // Sets the listeners for obstacles.
@@ -282,6 +312,10 @@ function randomIntForInterval(){
     return Math.floor(Math.random() * (601) + (140*$tickLength));
 }
 
+function randomIntForScrambler() {
+    return Math.floor(Math.random() * (1001) + (600*$tickLength));
+}
+
 // Moves all obstacles by 1 pixel.
 $cScore = 0;
 function move() {
@@ -298,9 +332,23 @@ function move() {
 			$cScore += 1;
 		}
 	});
-
 	$("span#cScore").html($cScore);
 	collision();
+}
+
+function moveScrambler() {
+    $scrambler = $(".target2");
+	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
+    
+    $scrambler.each(function() {
+		$newLeft = parseInt($(this).css("left")) - 1;
+		$(this).css("left", $newLeft + "px");
+
+		// Deletes any obstacles that have travelled to the right off screen.
+		if ($newLeft <= 0) {
+			$(this).remove();
+		}
+    });
 }
 
 // Removes obstacle if it collides with a sprite.

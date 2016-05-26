@@ -325,10 +325,10 @@ span.fadeScore {
 	color: #EEE4DA;
 }
 
-/* Crown for getting a new highscore */
-#crown {
-	height: 64px;
-	width: 68px;
+/* Tutorial text */
+h3#tutorial {
+	padding-top: 40px;
+	color: #F65E3B;
 }
 
 /* 

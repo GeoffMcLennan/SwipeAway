@@ -52,8 +52,8 @@ function soundChange() {
 function clickSound() {
 	var audioClick = document.getElementById("audioClick");
 	audioClick.play();
-	/*setTimeout(function() {
-	}, 1);*/
+	setTimeout(function() {
+	}, 2);
 }
 
 //button sound kind of working

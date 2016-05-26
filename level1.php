@@ -1,3 +1,15 @@
+<?php
+	
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+
+	// Current level declaration
+	$level = 1;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +30,7 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
+
 </head>
 <body>
 	<audio id="swipe" src="http://localhost/swipeaway/audio/psst1.ogg" type="audio/ogg"></audio>

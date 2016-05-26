@@ -1,3 +1,15 @@
+<?php
+	
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+
+	// Current level declaration
+	$level = 3;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +30,7 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
-
+    <script src="scripts/mainloop.min.js"></script>
 </head>
 <body>
 <div id="desktop">

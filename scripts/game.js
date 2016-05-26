@@ -10,11 +10,6 @@ $(document).ready(function() {
 	// Initialize the game screen and generate the sprites on the screen.
 	initialize();
 	generateSprites($lanes);
-    $("a#start").click(function() {
-		$("div#startOverlay").fadeOut("slow", function() {
-			startGame();
-
-	//gameStart = setInterval('tick();', $tickLength);
 
 	//gameStart = setInterval('tick();', $tickLength);
 
@@ -30,7 +25,7 @@ $(document).ready(function() {
 	$("a#resume").click(function() {
 		closePauseOverlay();
 	});
-
+    
 	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -38,7 +33,6 @@ $(document).ready(function() {
 	$(document).on("swipedown", function(e) {
 		e.preventDefault();
 	});
-
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -60,6 +54,7 @@ function initialize() {
 		}
 
 		$("div#container").css("height", $height - 2 + "px");
+		window.scrollTo(0, 1);
 	// Sets up screen for a PC.
 	} else {
 		$("div#container").css({"height": "400px", "width": "750px",
@@ -211,6 +206,8 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
+	var audioSwipe = document.createElement('audio');
+	audioSwipe.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -238,9 +235,11 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
-
+		//Plays sound on swipe
+		audioSwipe.play();
+		
 	});
-
+	
 	// Swipe down listener
 	jQuery("div.target").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
@@ -264,6 +263,8 @@ function setObsListeners() {
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -355,46 +356,51 @@ function collision() {
 	});
 }
 
-<<<<<<< HEAD
     //loads game start overlay on game load
 function openStartOverlay() {
     document.getElementById("startOverLay").style.height = "100%";
-
+}
     //opens pause overlay and stops obstacle movement
-=======
-// Starts the game from start overlay
+    // Starts the game from start overlay
 function startGame() {
 	$("div#startOverlay").fadeOut(300);
 	gameStart = setInterval('tick();', $tickLength);
 }
 
->>>>>>> c02f34c6ce751a9da69d032e2ff04e4e1541e258
     //loads game paused overlay on clicking pause button
 function openPauseOverlay() { 
     $("div#pauseOverlay").fadeIn(300); 
     clearInterval(gameStart); 
 }
+
     //closes pause overlay and resumes obstacle movement
-function closePauseOverlay(){
+    // Resumes game when resume button is clicked.
+function closePauseOverlay() {
     $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
+// When the time limit is reached, display the proper overlay
+// If logged in, update progress in database
 function gameEnd() {
 	if ($cScore >= $scorePass) {
 		$("span#cScore").html($cScore);
 		$("div#passedOverlay").fadeIn(300);
+
+		// Update database
+		$.ajax({
+			type: 'POST',
+			url: 'lib/updatelevel.php',
+			data: { level : $levelNum },
+			complete: function (response) {
+				
+			},
+			error: function() {
+				
+			}
+		});
 	} else {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").fadeIn(300);
 	}
-}
-}
-
-// Play sound on swipe NOT WORKING
-function swipeAudio() {
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
 }

@@ -11,6 +11,8 @@ $(document).ready(function() {
 	initialize();
 	generateSprites($lanes);
 
+	//gameStart = setInterval('tick();', $tickLength);
+
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
 		startGame();
@@ -23,7 +25,7 @@ $(document).ready(function() {
 	$("a#resume").click(function() {
 		closePauseOverlay();
 	});
-
+    
 	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -86,12 +88,6 @@ function initialize() {
 	$("div#passedOverlay").hide();
 	$("div#failedOverlay").hide();
     $("div#pauseOverlay").hide();
-
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
-
 }
 
 // Helps the goddamn orientation bullshit.
@@ -204,8 +200,7 @@ function generate() {
 
 // Sets the listeners for obstacles.
 function setObsListeners() {
-	var audioSwipe = document.createElement('audio');
-	audioSwipe.setAttribute('src', 'http://www.soundjay.com/button/sounds/button-09.mp3');
+	var audioSwipe = document.getElementById('audSwipe');
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -300,7 +295,7 @@ $cScore = 0;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
-
+	var audioRemove = document.getElementById("audRemove");
 	$blocks.each(function() {
 		$newLeft = parseInt($(this).css("left")) - 1;
 		$(this).css("left", $newLeft + "px");
@@ -309,6 +304,8 @@ function move() {
 		if ($newLeft <= 0) {
 			$(this).remove();
 			$cScore += 1;
+			// Sound upon travelling off the screen
+			audioRemove.play();
 		}
 	});
 
@@ -325,23 +322,26 @@ function collision() {
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
-	
+	var audioCollide = document.getElementById('audCollide');	
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {
 			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t2")) {
 			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t3")) {
             var spritePos3 = $("#s3").offset().left;
 			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 		if ($(this).parent().is("#t4")) {
@@ -349,12 +349,18 @@ function collision() {
             var spritePos4 = $("#s4").offset().left;
 			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
 				$(this).remove();
+				audioCollide.play();
 			}
 		}
 	});
 }
 
-// Starts the game from start overlay
+    //loads game start overlay on game load
+function openStartOverlay() {
+    document.getElementById("startOverLay").style.height = "100%";
+}
+    //opens pause overlay and stops obstacle movement
+    // Starts the game from start overlay
 function startGame() {
 	$("div#startOverlay").fadeOut(300);
 	gameStart = setInterval('tick();', $tickLength);
@@ -366,8 +372,9 @@ function openPauseOverlay() {
     clearInterval(gameStart); 
 }
 
-// Resumes game when resume button is clicked.
-function closePauseOverlay(){
+    //closes pause overlay and resumes obstacle movement
+    // Resumes game when resume button is clicked.
+function closePauseOverlay() {
     $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }

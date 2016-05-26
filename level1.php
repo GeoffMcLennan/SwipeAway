@@ -30,9 +30,10 @@
 	</script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
+    <script src="scripts/mainloop.js"></script>
+
 </head>
 <body>
-	<audio id="swipe" src="http://localhost/swipeaway/audio/psst1.ogg" type="audio/ogg"></audio>
 	<div id="desktop">
 		<h1>SwipeAway</h1>
 	</div>
@@ -68,5 +69,9 @@
 
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>
+
+<audio preload="auto" id="audSwipe" src='http://www.soundjay.com/button/sounds/button-09.mp3'>
+<audio preload="auto" id="audRemove" src='http://www.soundjay.com/button/sounds/button-16.mp3'>
+<audio preload="auto" id="audCollide" src='http://www.soundjay.com/button/sounds/button-19.mp3'>
 </body>
 </html>

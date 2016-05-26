@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<?php
-//require 'lib/cookieId.php';
-//require 'lib/existingUser.php';
-?>
 <html>
 <head>
 	<!-- Local Stylesheets -->
@@ -56,6 +52,6 @@
 		</ul>
 	</form>
 
-<audio preload="auto" id="audioClick" src="audio/tick.ogg">
+    <audio preload="auto" id="audioClick" src="audio/tick.ogg"></audio>
 </body>
 </html>

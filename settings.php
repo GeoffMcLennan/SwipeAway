@@ -39,5 +39,6 @@
 		</ul>
 	</form>
 
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

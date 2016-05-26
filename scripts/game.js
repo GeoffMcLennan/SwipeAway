@@ -9,13 +9,15 @@ $(document).ready(function() {
 
 	// Initialize the game screen and generate the sprites on the screen.
 	initialize();
-	generateSprites($lanes);
 
 	// Initialize click sound
-	var audioClick = document.getElementById("audioClick");
+	audioClick = document.getElementById("audioClick");
+	audioSwipe = document.getElementById("audioSwipe");
+	audioRemove = document.getElementById("audioRemove");
 
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
+		generateSprites($lanes);
 		startGame();
 		audioClick.play();
 	});
@@ -109,7 +111,7 @@ function checkOrientation() {
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     // Width between sprites
-    var genRange = parseInt($("#container").css("width")) * 0.5 / $lanes;
+    var genRange = parseInt($("#container").css("width")) * 0.7 / $lanes;
     var skew = parseInt($("#container").css("width")) * 0.2 / $lanes;
 
     // Array containing possible positions
@@ -159,7 +161,7 @@ function tick() {
 		// If in level 3, occasionally spawn 2 lane obstacles, otherwise only 1 lane obstacles
 		if ($lanes >= 4) {	
 			// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-			if (Math.random() >= 0.05) {
+			if (Math.random() >= 0.25) {
 				generate();
 			} else {
 				generate2();
@@ -244,8 +246,6 @@ function generate2() {
 // Sets the listeners for obstacles.
 function setObsListeners() {
 
-	var audioSwipe = document.getElementById("audioSwipe");
-	
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -366,7 +366,7 @@ function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
 	$blocks.each(function() {
-		$newLeft = parseInt($(this).css("left")) - 1;
+		$newLeft = parseInt($(this).css("left")) - $speed;
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
@@ -382,18 +382,20 @@ function move() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
-	var audioRemove = document.getElementById("audioRemove");
 	
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
-    var spritePos3 = $("#s3").offset().left;
-    var spritePos4 = $("#s4").offset().left;
+    if ($lanes >= 3) {
+    	var spritePos3 = $("#s3").offset().left;
+    }
+    if ($lanes >= 4) {
+    	var spritePos4 = $("#s4").offset().left;
+    }
     $leftOffset = 25 - $innerMargin;
-    $rightOffset = -$innerMargin;
-	
+    $rightOffset = -$innerMargin;	
 	$(block).each(function() {
 
 		// If its a two lane obstacle, check sprites in current lane and lane below

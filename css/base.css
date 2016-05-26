@@ -109,6 +109,7 @@ div.obstacle {
 div.target {
 	width: 90px;
 	position: absolute;
+	z-index: 9;
 }
 
 /* Vertically/Horizontally align Sprites and size */

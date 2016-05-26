@@ -1,3 +1,5 @@
+//mainloop.js from https://github.com/IceCreamYou/MainLoop.js
+
 /*
  * A main loop useful for games and other animated applications.
  */
@@ -732,3 +734,4 @@ else if (typeof module === 'object' && module !== null && typeof module.exports 
 }
 
 })(this);
+MainLoop.setUpdate(update).setDraw(draw).start();

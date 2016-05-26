@@ -210,6 +210,8 @@ form {
 	background-color: #CDC1B4;
 	color: #776E65;
 	text-shadow: none;
+	width: 1000px;
+	text-align: center;
 }
 
 #levels a:active {
@@ -363,4 +365,12 @@ table#table tr:nth-child(odd) {
 #userScore {
     color: white;
     background-color: #BBADA0;
+}
+
+/* Style Locked level icon*/
+i.material-icons#lock {
+	padding: 0;
+	color: #776E65;
+	width: 19px;
+	left: 100px;
 }

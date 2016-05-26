@@ -155,7 +155,12 @@ function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
-		generate();
+		// Generatet 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
+		if (Math.random() >= 0.25) {
+			generate();
+		} else {
+			generate2();
+		}
 		$interval = randomIntForInterval();
 		$time = 0;
 	}
@@ -189,11 +194,39 @@ function generate() {
 	$target.append($block);
 
 	// Gets height and initial left value for new obstacle
-	$trackHeight = $($trackId).css("height");
+	$trackHeight = $($trackId).height();
 	$leftInit = $("div#container").width() + 2;
 
 	// Applies height and left values to obstacle and inserts it into the lane
-    $target.css({"height": $trackHeight, "left": $leftInit});
+    $target.css({"height": $trackHeight + "px", "left": $leftInit});
+    $($trackId).append($target);
+	$topInit = $target.css("top");
+	$target.css("top", "0");
+
+	// Attaches swipe listeners to obstacle
+	setObsListeners();
+}
+
+function generate2() {
+	// Randomly selects lane to spawn in
+	$track = Math.floor(Math.random() * ($lanes-1)) + 1;
+	$trackId = "#t" + $track;
+
+	// Creates target
+	$target = $('<div></div>');
+	$target.addClass("target");
+	$target.addClass("twoLane");
+	// Creates obstacle
+	$block = $('<div></div>');
+	$block.addClass("obstacle");
+	$target.append($block);
+
+	// Gets height and initial left value for the 2 by 1 obstacle
+	$trackHeight = $($trackId).height()*2;
+	$leftInit = $("div#container").width() + 2;
+
+	// Applies height and left values to obstacle and inserts it into the lane
+    $target.css({"height": $trackHeight + "px", "left": $leftInit});
     $($trackId).append($target);
 	$topInit = $target.css("top");
 	$target.css("top", "0");

@@ -44,6 +44,6 @@
 		</ul>
 	</form>
 	
-	<audio preload="auto" id="audClick" src='http://www.soundjay.com/button/sounds/button-10.mp3'>
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

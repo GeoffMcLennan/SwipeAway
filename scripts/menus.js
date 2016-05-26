@@ -12,6 +12,10 @@ $(document).ready(function() {
 		soundChange();	
 	});
 
+	$("a").click(function() {
+		clickSound();
+	});
+
 	$("a#su_submit").click(function() {
 		$("form#signup").submit();
 	});
@@ -43,6 +47,13 @@ function soundChange() {
 	} else {
 		icon.innerHTML = '<i class="material-icons">volume_up</i>';
 	}
+}
+
+function clickSound() {
+	var audioClick = document.getElementById("audioClick");
+	audioClick.play();
+	/*setTimeout(function() {
+	}, 1);*/
 }
 
 //button sound kind of working

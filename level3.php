@@ -28,6 +28,7 @@
 	$scorePass = 40;
 	$levelNum = 3;
 	</script>
+	<script src="scripts/menus.js"></script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
     <script src="scripts/mainloop.js"></script>

@@ -53,5 +53,7 @@ include 'lib/cookieId.php';
 			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>
 	</form>
+
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

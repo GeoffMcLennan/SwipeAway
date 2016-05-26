@@ -326,8 +326,7 @@ function collision() {
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
     $leftOffset = 25 - $innerMargin;
-    $rightOffset = -$innerMargin;
-	var audioCollide = document.getElementById('audCollide');	
+    $rightOffset = -$innerMargin;	
 	$(block).each(function() {
 		var object = $(this).offset().left;
 		if ($(this).parent().is("#t1")) {

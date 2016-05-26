@@ -28,9 +28,10 @@
 	$scorePass = 50;
 	$levelNum = 1;
 	</script>
+	<script src="scripts/menus.js"></script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
-	   <script src="scripts/mainloop.js"></script>
+	<script src="scripts/mainloop.js"></script>
 	
 	<title>SwipeAway - Level 1</title>
 </head>

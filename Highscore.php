@@ -35,5 +35,7 @@
             <?php include 'lib/scores.php';?>
         </table>
     </div>
+    
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

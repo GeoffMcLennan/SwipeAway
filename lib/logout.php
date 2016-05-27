@@ -4,8 +4,8 @@
 		session_start();
 	}
 
-	session_unset();
-	//session_destroy();
+	//session_unset();
+	session_destroy();
     //setcookie($cookie_name, '', time() - (60*60*24*30), "/");
 
 	require_once('config_local.php');

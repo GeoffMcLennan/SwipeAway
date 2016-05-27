@@ -192,14 +192,6 @@ li {
 	font-size: 4em;
 }
 
-#checkbox {
-    margin: 1px 0 1px 10px;
-}
-
-#checkboxLabel {
-    font-size: 3em;
-}
-
 form {
 	display: block;
 	margin: 0 auto;
@@ -360,7 +352,6 @@ table.table {
 	border-collapse: collapse;
 	text-align: center;
 	display: block;
-
 }
 
 table, th, td {

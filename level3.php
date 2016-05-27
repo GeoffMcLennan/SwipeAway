@@ -26,7 +26,7 @@
 	$tickLength = 5;
 	$speed = 1;
 	$gameLength = 60000;
-	$scorePass = 40;
+	$scorePass = 30;
 	$levelNum = 3;
 	</script>
 	<script src="scripts/menus.js"></script>
@@ -75,7 +75,6 @@
 	<div class="track" id="t4">
 		<!-- Track 4 -->
 	</div>
-</div>
 </div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>

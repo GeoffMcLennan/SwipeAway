@@ -14,7 +14,7 @@ CREATE TABLE members (
 	ach002 TINYINT NOT NULL default 0,				-- Achievement 2: get 100 points in endless; 0 = locked; 1 = unlocked
 	ach003 TINYINT NOT NULL default 0,				-- Achievement 3: get 500 points in endless; 0 = locked; 1 = unlocked
 	sound TINYINT NOT NULL default 1,				-- Holds user sound preference; 0 = sound off; 1 = sound on
-	tutorial TINYINT NOT NULL default 1				-- Holds user tutorial status; 0 = off; 1 = on
+	tutorial TINYINT NOT NULL default 1,			-- Holds user tutorial status; 0 = off; 1 = on
 	PRIMARY KEY (id)
 ) ENGINE=MyISAM;
 

@@ -194,7 +194,7 @@ function generate() {
 	// Creates target
 	$target = $('<div></div>');
 	$target.addClass("target");
-    $target.addClass("target1");
+	
 	// Creates obstacle
 	$block = $('<div></div>');
 	$block.addClass("obstacle");
@@ -272,7 +272,7 @@ function generate2() {
 function setObsListeners() {
 
 	// Swipe up listener
-	jQuery("div.target1").on("swipeup", function(event) {
+	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) - 1;
@@ -283,11 +283,13 @@ function setObsListeners() {
 		if($newLane >= 1) {
 			$left = $(this).css("left");
 			$height = $(this).css("height");
-			$(this).remove();
 
 			$target = $('<div></div>');
-			$target.addClass("target1").css({"left": $left, "height": $height, "top": "0"});
-            $target.addClass("target");
+			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+            if ($(this).hasClass("twoLane")) {
+				$target.addClass("twoLane")
+			}
+			$(this).remove();
 			
 			$block = $('<div></div>');
 			$block.addClass("obstacle");
@@ -304,28 +306,52 @@ function setObsListeners() {
 	});
 
 	// Swipe down listener
-	jQuery("div.target1").on("swipedown", function(event) {
+	jQuery("div.target").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) + 1;
 		$newId = "#t" + $newLane;
 
-		if($newLane <= $lanes) {
-			$left = $(this).css("left");
-			$height = $(this).css("height");
-			$(this).remove();
+		// If 2 lane obstacle, lock to first 3 lanes, otherwise use all 4
+		if ($(this).hasClass('twoLane')) {
+			if($newLane <= $lanes - 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
 
-			$target = $('<div></div>');
-			$target.addClass("target1").css({"left": $left, "height": $height, "top": "0"});
-            $target.addClass("target");
-			
-			$block = $('<div></div>');
-			$block.addClass("obstacle");
-			$target.append($block);
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+				$target.addClass("twoLane");
+				
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
 
-			$($newId).append($target);
-			setObsListeners();
+				$($newId).append($target);
+				setObsListeners();
+			} else {
+				easterEgg();
+			}
 		} else {
-			easterEgg();
+			// If the new lane is a valid lane, destroy current obstacle and generate a 
+			// new one with the same parameters
+			if($newLane >= 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
+
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
+
+				$($newId).append($target);
+
+			// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
+			} else {
+				easterEgg();
+			}
 		}
 		//Plays sound on swipe
 		audioSwipe.play();

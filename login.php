@@ -47,7 +47,6 @@
 		<ul id="options">
 			<li><input type="text" id="userText" class="inputs" name="username" placeholder="Username" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
-            <li><input type="checkbox" id="checkbox" name="checkbox" value="remember"><span id="checkboxLabel">Remember me</span></li>
 			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>
 	</form>

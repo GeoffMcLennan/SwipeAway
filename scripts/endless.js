@@ -309,23 +309,47 @@ function setObsListeners() {
 		$newLane = parseInt($parentId) + 1;
 		$newId = "#t" + $newLane;
 
-		if($newLane <= $lanes) {
-			$left = $(this).css("left");
-			$height = $(this).css("height");
-			$(this).remove();
+		// If 2 lane obstacle, lock to first 3 lanes, otherwise use all 4
+		if ($(this).hasClass('twoLane')) {
+			if($newLane <= $lanes - 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
 
-			$target = $('<div></div>');
-			$target.addClass("target1").css({"left": $left, "height": $height, "top": "0"});
-            $target.addClass("target");
-			
-			$block = $('<div></div>');
-			$block.addClass("obstacle");
-			$target.append($block);
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+				$target.addClass("twoLane");
+				
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
 
-			$($newId).append($target);
-			setObsListeners();
+				$($newId).append($target);
+				setObsListeners();
+			} else {
+				easterEgg();
+			}
 		} else {
-			easterEgg();
+			// If the new lane is a valid lane, destroy current obstacle and generate a 
+			// new one with the same parameters
+			if($newLane >= 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
+
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
+
+				$($newId).append($target);
+
+			// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
+			} else {
+				easterEgg();
+			}
 		}
 		//Plays sound on swipe
 		audioSwipe.play();

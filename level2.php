@@ -26,7 +26,7 @@
 	$tickLength = 5;
 	$speed = 1;
 	$gameLength = 60000;
-	$scorePass = 40;
+	$scorePass = 35;
 	$levelNum = 2;
 	</script>
 	<script src="scripts/menus.js"></script>

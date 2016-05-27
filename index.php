@@ -42,9 +42,9 @@
 
 	<form>
 		<ul id="options">
-			<li><a class="btn btn-default" id="playButton" href="level1.php" rel="external">Play</a></li>
-			<li><a class="btn btn-default" id="levelButton" href="level.php" rel="external">Level</a></li>
-			<li><a class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
+			<li><a name="link" class="btn btn-default" id="playButton" href="level1.php" rel="external">Play</a></li>
+			<li><a name="link" class="btn btn-default" id="levelButton" href="level.php" rel="external">Level</a></li>
+			<li><a name="link" class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
 		</ul>
 	</form>
 	

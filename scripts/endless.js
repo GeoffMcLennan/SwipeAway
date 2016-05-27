@@ -30,11 +30,6 @@ $(document).ready(function() {
 		audioClick.play();
 	});
 
-	$("a#retry").click(function() {
-		retryEndless();
-		audioClick.play();
-	})
-
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
 	});
@@ -589,15 +584,11 @@ function gameEnd() {
 		complete: function (response) {
 			$text = response.responseText;
 			if ($text.localeCompare('true') == 0) {
-				$("h2#congrats").html("You have a new highscore!");
+				$("h2#congrats").html('<img id="crown" src="images/crown.png"> You have a new highscore!');
 			}
 		},
 		error: function () {
 
 		}
 	});
-}
-
-function retryEndless() {
-	window.location.href = "endless.php";
 }

@@ -43,7 +43,7 @@
 </head>
 <body>
 	<div id="topBar">
-	<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+	<a name="link" href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 	</div>
 	
 	<h1 class="title"><?php echo $info['username']; ?></h1>

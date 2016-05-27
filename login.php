@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-include 'lib/cookieId.php';
-?>
 <html>
 <head>
 	<!-- Local Stylesheets -->
@@ -48,12 +45,13 @@ include 'lib/cookieId.php';
 	
 	<form method="post" id="login" data-ajax="false" action="/SwipeAway/lib/validate.php">
 		<ul id="options">
-			<li><input type="text" id="userText" class="inputs" name="username" placeholder="Username" value="<?php if   (isset($_SESSION["SESS_USERNAME"])) { echo $_COOKIE[$cookie_name]; } ?>" rel="external"></li>
+			<li><input type="text" id="userText" class="inputs" name="username" placeholder="Username" value="<?php if   (!isset($_COOKIE[$cookie_name])) {echo "cookie not set!"; } else { echo $_COOKIE[$cookie_name]; } ?>" rel="external"></li>
 			<li><input type="password" class="inputs" name="password" placeholder="Password" rel="external"></li>
+            <li><input type="checkbox" id="checkbox" name="checkbox" value="remember"><span id="checkboxLabel">Remember me</span></li>
 			<li><a class="btn btn-default" id="logsubmit" rel="external">Login</a></li>
 		</ul>
 	</form>
 
-<audio preload="auto" id="audioClick" src="audio/tick.ogg">
+    <audio preload="auto" id="audioClick" src="audio/tick.ogg"></audio>
 </body>
 </html>

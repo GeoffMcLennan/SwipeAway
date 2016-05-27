@@ -29,9 +29,10 @@
 	<title>SwipeAway - Home</title>
 </head>
 <body>
-	<audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
-	<?php require_once('lib/topbar.php') ?>
-	
+	<?php 
+    require_once('lib/topbar.php');
+    ?>
+    <audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
 	</div>
@@ -44,6 +45,6 @@
 		</ul>
 	</form>
 	
-<audio preload="auto" id="audioClick" src="audio/tick.ogg">
+    <audio preload="auto" id="audioClick" src="audio/tick.ogg"></audio>
 </body>
 </html>

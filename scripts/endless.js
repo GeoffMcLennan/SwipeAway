@@ -170,9 +170,9 @@ function tick() {
 		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
 			if (Math.random() >= 0.5) {
 				generate();
-			} else if (Math.random() >= 0.1) {
+			} else if (Math.random() <= 0.2) {
 				generate2();
-			} else if (Math.random() <= 0.1) {
+			} else if (Math.random() <= 0.3) {
                 generateScrambler();
             }
 		$interval = randomIntForInterval();
@@ -460,7 +460,7 @@ function collision() {
         // If the scrambler's position reaches 0, remove obstacles and sprites, and generate new sprites.
         if ($(this).hasClass('scrambler')) {
             var object = $(this).offset().left;
-			if (object == 0) {
+			if (object <= 0) {
                 $(block).remove();
                 $("#s1").remove();
                 $("#s2").remove();

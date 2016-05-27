@@ -26,8 +26,8 @@
 	$lanes = 2;
 	$tickLength = 5;
 	$speed = 1;
-	$gameLength = 60000;
-	$scorePass = 50;
+	$gameLength = 55000;
+	$scorePass = 40;
 	$levelNum = 1;
 	</script>
 	<script src="scripts/menus.js"></script>

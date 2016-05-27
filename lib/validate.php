@@ -3,7 +3,6 @@
 	if (!isset($_SESSION)){
 		session_start();
 	}
-
 	require_once("config_local.php");
 	
 	$errmsg_arr = array();
@@ -48,10 +47,10 @@
 			$member = mysqli_fetch_assoc($result);
 			$_SESSION["SESS_MEMBER_ID"] = $member["id"];
 			$_SESSION["SESS_USERNAME"] = $member["username"];
-			session_write_close();
+            session_write_close();
             
-			header("location: " . HOME . "/index.php");
-			exit();
+            header("location: " . HOME . "/index.php");
+            exit();
 		} else {
 			$errmsg_arr[]="Login Failed";
 			$_SESSION['ERRMSG_ARR'] = $errmsg_arr;

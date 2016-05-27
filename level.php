@@ -54,7 +54,7 @@
 </head>
 <body>
 	<div id="topBar">
-	<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+	<a name="link" href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
 	</div>
 	
 	<div id="subTitle">
@@ -67,7 +67,7 @@
 			// If unlocked, link to level page; if locked, link nowhere
 			for ($i = 1; $i <= 3; $i++) {
 				if ($i <= $level) {
-					echo '<a href="level' .$i. '.php" class="level" id="level' .$i. '" rel="external">' .$i. '</a>';
+					echo '<a name="link" href="level' .$i. '.php" class="level" id="level' .$i. '" rel="external">' .$i. '</a>';
 				} else {
 					echo '<a class="level" id="level' .$i. '" rel="external"><img src="images/lock.png"></a>';
 				}
@@ -81,7 +81,7 @@
 			// If user $level is less equal to 4, the level is unlocked
 			// If user $level is less than 4, endless is locked
 			if ($level == 4) {
-				echo '<a id="endlessBtn" href="endless.php" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
+				echo '<a name="link" id="endlessBtn" href="endless.php" rel="external">&#8734&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
 			} else {
 				echo '<a id="endlessBtn" rel="external"><img src="images/lock.png">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Endless</a>';
 			}

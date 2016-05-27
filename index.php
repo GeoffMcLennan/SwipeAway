@@ -3,6 +3,8 @@
 	if (!isset($_SESSION)) { 	
 		session_start();
 	}
+//require 'lib/cookieId.php';
+//require 'lib/existingUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,19 +31,20 @@
 	<title>SwipeAway - Home</title>
 </head>
 <body>
+
 	<?php 
     require_once('lib/topbar.php');
     ?>
-    <audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
+
 	<div id="title">
 		<h1 id="titleText"><img src="images/title2.png"/></h1>
 	</div>
 
 	<form>
 		<ul id="options">
-			<li><a class="btn btn-default" id="playButton" href="level1.php" rel="external">Play</a></li>
-			<li><a class="btn btn-default" id="levelButton" href="level.php" rel="external">Level</a></li>
-			<li><a class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
+			<li><a name="link" class="btn btn-default" id="playButton" href="level1.php" rel="external">Play</a></li>
+			<li><a name="link" class="btn btn-default" id="levelButton" href="level.php" rel="external">Level</a></li>
+			<li><a name="link" class="btn btn-default" id="highscoreButton" href="highscore.php" rel="external">Highscore</a></li>
 		</ul>
 	</form>
 	

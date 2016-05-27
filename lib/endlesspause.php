@@ -31,7 +31,7 @@
 	?>
 
 	<div id="options">
-		<a class="button" id="quit" href="index.php" rel="external">Quit</a>
+		<a name="link" class="button" id="quit" href="index.php" rel="external">Quit</a>
 		<a class="button" id="resume" rel="external">Resume</a>
 	</div>
 </div>

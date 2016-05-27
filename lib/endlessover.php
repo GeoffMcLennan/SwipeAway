@@ -23,7 +23,7 @@
 	<h2 class="innerText" id="congrats"></h2>
 	
 	<div id="options">
-		<a class="button" id="quit" href="index.php" rel="external">Quit</a>
-		<a class="button" id="retry" rel="external">Retry</a>
+		<a name="link" class="button" id="quit" href="index.php" rel="external">Quit</a>
+		<a name="link" class="button" id="retry" rel="external" href ="endless.php">Retry</a>
 	</div>
 </div>

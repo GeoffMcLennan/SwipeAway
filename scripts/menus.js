@@ -1,4 +1,5 @@
 $.mobile.pushStateEnabled = false;
+var audioClick = new Audio('audio/tick.ogg');
 
 $(document).ready(function() {
 	// Recalls intialize function if screen orientation is changed.
@@ -14,6 +15,17 @@ $(document).ready(function() {
 
 	$("a").click(function() {
 		clickSound();
+	});
+	
+	$("a[name='link']").click(function(e) {
+		e.preventDefault();
+
+		target = $(this).attr('href');
+
+		var sound = $("#audioClick");
+		sound.get(0).play();
+
+		setTimeout(checkAudio, 5);
 	});
 
 	$("a#su_submit").click(function() {
@@ -52,19 +64,20 @@ function soundChange() {
 function clickSound() {
 	var audioClick = document.getElementById("audioClick");
 	audioClick.play();
-	/*setTimeout(function() {
-	}, 1);*/
+	setTimeout(function() {
+	}, 2);
 }
 
-//button sound kind of working
-/*function soundButton() {
-	var audioElement = document.getElementById('audClick');	
-	$('#options').click(function() {
-		audioElement.play();
-	});
-	$('.material-icons').click(function() {
-		audioElement.play();
-	});
+// Play sounds in menus http://stackoverflow.com/questions/15008026/click-sound-on-a-tag-before-it-moves-to-another-page
+var target;
+
+function checkAudio() {
+    if($("#audioClick")[0].paused) {
+        window.location.href  = target;
+    } else {
+        setTimeout(checkAudio, 5);
+    }
 }
-*/
+
+
 

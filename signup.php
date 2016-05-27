@@ -34,8 +34,8 @@
 <body>
 
 	<div id="topBar">
-		<a href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
-		<a href="login.php" class="account" rel="external">Login</a>
+		<a name="link" href="index.php" id="icon" rel="external"><i class="material-icons">arrow_back</i></a>
+		<a name="link" href="login.php" class="account" rel="external">Login</a>
 	</div>
 	
 	<div id="title">
@@ -61,7 +61,7 @@
 			<li><input type="password" class="inputs" name="pass1" placeholder="Password" rel="external"></li>
 			<li><input type="password" class="inputs" name="pass2" placeholder="Re-Enter Password" rel="external"></li>
 
-			<li><a class="btn btn-default" id="su_submit" rel="external">Sign Up</a></li>
+			<li><a name="link" class="btn btn-default" id="su_submit" rel="external">Sign Up</a></li>
 		</ul>
 	</form>
 

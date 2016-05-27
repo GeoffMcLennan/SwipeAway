@@ -339,6 +339,12 @@ h3#tutorial {
 	color: #F65E3B;
 }
 
+/* Tutorial text */
+img#tutorial {
+	height: 83px;
+	width: 100px;
+}
+
 /* 
 //--------------------------------------
 //END OF JESSE'S CSS

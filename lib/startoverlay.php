@@ -6,7 +6,7 @@
 	<h2 class="innerText">Score needed: <span id="putScore"></span></h2>
 
 	<div id="tutorial">
-		<img id="tutorial" src="images/tutorial.png">
+		<img id="tutorial" src="images/tutorialv3.png">
 	</div>
 	
 	<div id="options">

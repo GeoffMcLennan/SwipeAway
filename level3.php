@@ -76,7 +76,6 @@
 		<!-- Track 4 -->
 	</div>
 </div>
-</div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>
 

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- Local Stylesheets -->
-	<link rel="stylesheet" href="css/base.css">	
+	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/2048theme.css">
 	
 	<!-- 3rd Party Stylesheets + Icon Font -->
@@ -18,6 +18,8 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<title>SwipeAway - Highscores</title>
 </head>
 <body>
 	<div id="topBar">
@@ -28,10 +30,12 @@
 		<h1>Highscores</h1>
 	</div>
 	
-    <div id="levels">
-        <table id="table">
+    <div id=scores>
+        <table class="table">
             <?php include 'lib/scores.php';?>
         </table>
     </div>
+    
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

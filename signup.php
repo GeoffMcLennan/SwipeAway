@@ -28,6 +28,8 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>SwipeAway - Sign Up</title>
 </head>
 <body>
 
@@ -62,5 +64,7 @@
 			<li><a class="btn btn-default" id="su_submit" rel="external">Sign Up</a></li>
 		</ul>
 	</form>
+
+<audio preload="auto" id="audioClick" src="audio/tick.ogg">
 </body>
 </html>

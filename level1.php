@@ -1,3 +1,15 @@
+<?php
+	
+	// Start Session
+	if (!isset($_SESSION)) { 	
+		session_start();
+	}
+
+	// Current level declaration
+	$level = 1;
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +24,19 @@
 	<script>
 	$lanes = 2;
 	$tickLength = 5;
-	$gameLength = 60000;
-	$scorePass = 50;
+	$speed = 1;
+	$gameLength = 55000;
+	$scorePass = 40;
 	$levelNum = 1;
 	</script>
+	<script src="scripts/menus.js"></script>
 	<script src="scripts/game.js"></script>
 	<script src="scripts/swipemod.js"></script>
+	<script src="scripts/mainloop.js"></script>
+	
+	<title>SwipeAway - Level 1</title>
 </head>
 <body>
-	<audio id="swipe" src="http://localhost/swipeaway/audio/psst1.ogg" type="audio/ogg"></audio>
 	<div id="desktop">
 		<h1>SwipeAway</h1>
 	</div>
@@ -56,5 +72,7 @@
 
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>
+
+<?php require_once('lib/gamesound.php'); ?>
 </body>
 </html>

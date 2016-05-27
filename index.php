@@ -3,6 +3,8 @@
 	if (!isset($_SESSION)) { 	
 		session_start();
 	}
+//require 'lib/cookieId.php';
+//require 'lib/existingUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +27,15 @@
 	
 	<!-- Adjust screen nicely for mobile--> 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	
+	<title>SwipeAway - Home</title>
 </head>
 <body>
-	<?php require_once('lib/topbar.php') ?>
-	
+
+	<?php 
+    require_once('lib/topbar.php');
+    ?>
+
 	<div id="title">
 		<h1 id="titleText">SwipeAway</h1>
 	</div>
@@ -40,5 +47,7 @@
 			<li><a class="btn btn-default" id="highscoreButton" href="Highscore.php" rel="external">Highscore</a></li>
 		</ul>
 	</form>
+	
+    <audio preload="auto" id="audioClick" src="audio/tick.ogg"></audio>
 </body>
 </html>

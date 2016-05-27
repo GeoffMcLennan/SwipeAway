@@ -32,14 +32,17 @@
 	$lives = 5;
 	$cLives = 5;
 	</script>
+	<script src="scripts/menus.js"></script>
 	<script src="scripts/endless.js"></script>
 	<script src="scripts/swipemod.js"></script>
-
+	<script src="scripts/mainloop.js"></script>
+	
+	<title>SwipeAway - Endless</title>
 </head>
 <body>
-<div id="desktop">
-<h1>SwipeAway</h1>
-</div>
+	<div id="desktop">
+		<h1>SwipeAway</h1>
+	</div>
 
 <div id="container">
 	<!-- Game start overlay -->
@@ -58,7 +61,7 @@
 
 		<?php 
 			if(isset($_SESSION['SESS_MEMBER_ID'])) {
-				echo '<span class="fadeScore">Best: </span>' . $highscore .'';
+				echo '<span class="fadeScore">&nbsp&nbsp&nbspBest: </span>' . $highscore .'';
 			}
 		?>
 
@@ -82,5 +85,7 @@
 </div>
 <h2 id="portError">You are holding your phone in portrait mode.<br>
 For the best experience playing our game, please hold your phone in landscape mode.</h2>
+
+<?php require_once('lib/gamesound.php'); ?>
 </body>
 </html>

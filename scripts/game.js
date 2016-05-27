@@ -9,21 +9,29 @@ $(document).ready(function() {
 
 	// Initialize the game screen and generate the sprites on the screen.
 	initialize();
-	generateSprites($lanes);
+
+	// Initialize click sound
+	audioClick = document.getElementById("audioClick");
+	audioSwipe = document.getElementById("audioSwipe");
+	audioRemove = document.getElementById("audioRemove");
 
 	// Initialize the start overlay start game button listener
 	$("a#start").click(function() {
+		generateSprites($lanes);
 		startGame();
+		audioClick.play();
 	});
 
 	$("div#pause").click(function() {
 		openPauseOverlay();
+		audioClick.play();
 	});
 
 	$("a#resume").click(function() {
 		closePauseOverlay();
+		audioClick.play();
 	});
-
+    
 	// Override the default function of swiping up and down
 	$(document).on("swipeup", function(e) {
 		e.preventDefault();
@@ -31,7 +39,6 @@ $(document).ready(function() {
 	$(document).on("swipedown", function(e) {
 		e.preventDefault();
 	});
-
 });
 
 // Sets up appropriate game screen depending on screen size.
@@ -53,6 +60,7 @@ function initialize() {
 		}
 
 		$("div#container").css("height", $height - 2 + "px");
+		window.scrollTo(0, 1);
 	// Sets up screen for a PC.
 	} else {
 		$("div#container").css({"height": "400px", "width": "750px",
@@ -86,12 +94,6 @@ function initialize() {
 	$("div#passedOverlay").hide();
 	$("div#failedOverlay").hide();
     $("div#pauseOverlay").hide();
-
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
-
 }
 
 // Helps the goddamn orientation bullshit.
@@ -109,7 +111,7 @@ function checkOrientation() {
 //Generate sprites depending on the number of tracks.
 function generateSprites(trackNum) {
     // Width between sprites
-    var genRange = parseInt($("#container").css("width")) * 0.5 / $lanes;
+    var genRange = parseInt($("#container").css("width")) * 0.7 / $lanes;
     var skew = parseInt($("#container").css("width")) * 0.2 / $lanes;
 
     // Array containing possible positions
@@ -155,7 +157,18 @@ function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
-		generate();
+
+		// If in level 3, occasionally spawn 2 lane obstacles, otherwise only 1 lane obstacles
+		if ($lanes >= 4) {	
+			// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
+			if (Math.random() >= 0.25) {
+				generate();
+			} else {
+				generate2();
+			}
+		} else {
+			generate();
+		}
 		$interval = randomIntForInterval();
 		$time = 0;
 	}
@@ -189,11 +202,11 @@ function generate() {
 	$target.append($block);
 
 	// Gets height and initial left value for new obstacle
-	$trackHeight = $($trackId).css("height");
+	$trackHeight = $($trackId).height();
 	$leftInit = $("div#container").width() + 2;
 
 	// Applies height and left values to obstacle and inserts it into the lane
-    $target.css({"height": $trackHeight, "left": $leftInit});
+    $target.css({"height": $trackHeight + "px", "left": $leftInit});
     $($trackId).append($target);
 	$topInit = $target.css("top");
 	$target.css("top", "0");
@@ -202,8 +215,37 @@ function generate() {
 	setObsListeners();
 }
 
+function generate2() {
+	// Randomly selects lane to spawn in
+	$track = Math.floor(Math.random() * ($lanes-1)) + 1;
+	$trackId = "#t" + $track;
+
+	// Creates target
+	$target = $('<div></div>');
+	$target.addClass("target");
+	$target.addClass("twoLane");
+	// Creates obstacle
+	$block = $('<div></div>');
+	$block.addClass("obstacle");
+	$target.append($block);
+
+	// Gets height and initial left value for the 2 by 1 obstacle
+	$trackHeight = $($trackId).height()*2;
+	$leftInit = $("div#container").width() + 2;
+
+	// Applies height and left values to obstacle and inserts it into the lane
+    $target.css({"height": $trackHeight + "px", "left": $leftInit});
+    $($trackId).append($target);
+	$topInit = $target.css("top");
+	$target.css("top", "0");
+    
+	// Attaches swipe listeners to obstacle
+	setObsListeners();
+}
+
 // Sets the listeners for obstacles.
 function setObsListeners() {
+
 	// Swipe up listener
 	jQuery("div.target").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
@@ -216,37 +258,14 @@ function setObsListeners() {
 		if($newLane >= 1) {
 			$left = $(this).css("left");
 			$height = $(this).css("height");
-			$(this).remove();
-
-			$target = $('<div></div>');
-			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
 			
-			$block = $('<div></div>');
-			$block.addClass("obstacle");
-			$target.append($block);
-
-			$($newId).append($target);
-
-		// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
-		} else {
-			easterEgg();
-		}
-
-	});
-
-	// Swipe down listener
-	jQuery("div.target").on("swipedown", function(event) {
-		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
-		$newLane = parseInt($parentId) + 1;
-		$newId = "#t" + $newLane;
-
-		if($newLane <= $lanes) {
-			$left = $(this).css("left");
-			$height = $(this).css("height");
-			$(this).remove();
 
 			$target = $('<div></div>');
 			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			if ($(this).hasClass("twoLane")) {
+				$target.addClass("twoLane")
+			}
+			$(this).remove();
 			
 			$block = $('<div></div>');
 			$block.addClass("obstacle");
@@ -254,9 +273,65 @@ function setObsListeners() {
 
 			$($newId).append($target);
 			setObsListeners();
+		// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
 		} else {
 			easterEgg();
 		}
+		//Plays sound on swipe
+		audioSwipe.play();
+		
+	});
+	
+	// Swipe down listener
+	jQuery("div.target").on("swipedown", function(event) {
+		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
+		$newLane = parseInt($parentId) + 1;
+		$newId = "#t" + $newLane;
+
+		// If 2 lane obstacle, lock to first 3 lanes, otherwise use all 4
+		if ($(this).hasClass('twoLane')) {
+			if($newLane <= $lanes - 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
+
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+				$target.addClass("twoLane");
+				
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
+
+				$($newId).append($target);
+				setObsListeners();
+			} else {
+				easterEgg();
+			}
+		} else {
+			// If the new lane is a valid lane, destroy current obstacle and generate a 
+			// new one with the same parameters
+			if($newLane >= 1) {
+				$left = $(this).css("left");
+				$height = $(this).css("height");
+				$(this).remove();
+
+				$target = $('<div></div>');
+				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			
+				$block = $('<div></div>');
+				$block.addClass("obstacle");
+				$target.append($block);
+
+				$($newId).append($target);
+				setObsListeners();
+			// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
+			} else {
+				easterEgg();
+			}
+		}
+		//Plays sound on swipe
+		audioSwipe.play();
 	});
 }
 
@@ -286,7 +361,7 @@ function easterEgg() {
 
 // Generates a random interval that is plus or minus a standard interval relative to the tick length
 function randomIntForInterval(){
-    return Math.floor(Math.random() * (601) + (140*$tickLength));
+    return Math.floor(Math.random() * (601) + (900));
 }
 
 // Moves all obstacles by 1 pixel.
@@ -294,13 +369,12 @@ $cScore = 0;
 function move() {
 	$blocks = $(".target");
 	$offLeft = parseInt($("div#container").css("margin-left")) - 20;
-
 	$blocks.each(function() {
-		$newLeft = parseInt($(this).css("left")) - 1;
+		$newLeft = parseInt($(this).css("left")) - $speed;
 		$(this).css("left", $newLeft + "px");
 
 		// Deletes any obstacles that have travelled to the right off screen.
-		if ($newLeft <= 0) {
+		if ($newLeft <= -60) { //lets obstacles disapear off the end off the screen
 			$(this).remove();
 			$cScore += 1;
 		}
@@ -312,43 +386,92 @@ function move() {
 
 // Removes obstacle if it collides with a sprite.
 function collision() {
+	
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
     var spritePos1 = $("#s1").offset().left;
     var spritePos2 = $("#s2").offset().left;
+    if ($lanes >= 3) {
+    	var spritePos3 = $("#s3").offset().left;
+    }
+    if ($lanes >= 4) {
+    	var spritePos4 = $("#s4").offset().left;
+    }
     $leftOffset = 25 - $innerMargin;
-    $rightOffset = -$innerMargin;
-	
+    $rightOffset = -$innerMargin;	
 	$(block).each(function() {
-		var object = $(this).offset().left;
-		if ($(this).parent().is("#t1")) {
-			if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
-				$(this).remove();
+
+		// If its a two lane obstacle, check sprites in current lane and lane below
+		// Else if its a one lane obstacle, only check sprites in current lane
+		if ($(this).hasClass('twoLane')) {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t2")) {
-			if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
-				$(this).remove();
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t3")) {
-            var spritePos3 = $("#s3").offset().left;
-			if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
-				$(this).remove();
+			if ($(this).parent().is("#t3")) {   
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
-		}
-		if ($(this).parent().is("#t4")) {
-            var spritePos3 = $("#s3").offset().left;
-            var spritePos4 = $("#s4").offset().left;
-			if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
-				$(this).remove();
+		} else {
+			var object = $(this).offset().left;
+			if ($(this).parent().is("#t1")) {
+				if ((object <= spritePos1 + $leftOffset) && (object >= spritePos1 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t2")) {
+				if ((object <= spritePos2 + $leftOffset) && (object >= spritePos2 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t3")) {
+				if ((object <= spritePos3 + $leftOffset) && (object >= spritePos3 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
+			}
+			if ($(this).parent().is("#t4")) {	            
+				if ((object <= spritePos4 + $leftOffset) && (object >= spritePos4 + $rightOffset)) {
+					$(this).remove();
+					audioRemove.play();
+				}
 			}
 		}
 	});
 }
 
-// Starts the game from start overlay
+    //loads game start overlay on game load
+function openStartOverlay() {
+    document.getElementById("startOverLay").style.height = "100%";
+}
+    //opens pause overlay and stops obstacle movement
+    // Starts the game from start overlay
 function startGame() {
 	$("div#startOverlay").fadeOut(300);
 	gameStart = setInterval('tick();', $tickLength);
@@ -360,25 +483,37 @@ function openPauseOverlay() {
     clearInterval(gameStart); 
 }
 
-function closePauseOverlay(){
+    //closes pause overlay and resumes obstacle movement
+    // Resumes game when resume button is clicked.
+function closePauseOverlay() {
     $("div#pauseOverlay").fadeOut(300);
     gameStart = setInterval('tick();', $tickLength);   
 }
 
+// When the time limit is reached, display the proper overlay
+// If logged in, update progress in database
 function gameEnd() {
 	if ($cScore >= $scorePass) {
 		$("span#cScore").html($cScore);
 		$("div#passedOverlay").fadeIn(300);
+
+		// Update database
+		$.ajax({
+			type: 'POST',
+			url: 'lib/updatelevel.php',
+			data: { level : $levelNum },
+			complete: function (response) {
+				$text = response.responseText;
+				if ($text.localeCompare('true') == 0) {
+					// Achievement 1 pop up here
+				}
+			},
+			error: function() {
+				
+			}
+		});
 	} else {
 		$("span#cScore").html($cScore);
 		$("div#failedOverlay").fadeIn(300);
 	}
-}
-
-// Play sound on swipe NOT WORKING
-function swipeAudio() {
-	jQuery("div.target").on("swipedown", function(event) {
-		alert("fml");
-    	//$.playSound('http://localhost/swipeaway/audio/psst1.ogg');
-	});
 }

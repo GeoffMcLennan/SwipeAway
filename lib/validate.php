@@ -21,7 +21,7 @@
 	}
 	
 	$user = $_POST['username'];
-	
+
 	$pass = $_POST['password'];
 	
 	$user = clean($user, $link);
@@ -48,9 +48,11 @@
 			$member = mysqli_fetch_assoc($result);
 			$_SESSION["SESS_MEMBER_ID"] = $member["id"];
 			$_SESSION["SESS_USERNAME"] = $member["username"];
+
 			session_write_close();
 			header("location: /index.php");
 			exit();
+
 		} else {
 			$errmsg_arr[]="Login Failed";
 			$_SESSION['ERRMSG_ARR'] = $errmsg_arr;

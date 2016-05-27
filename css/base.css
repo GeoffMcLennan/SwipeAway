@@ -52,7 +52,7 @@ div#progress {
 
 div#cProgress {
 	height: 100%;
-	background-color: #EDCF72;
+	background-color: #94bac1;
 }
 
 div#lives {
@@ -100,7 +100,7 @@ div.track {
 
 div.obstacle {
 	width: 30px;
-	background-color: #F65E3B;
+	background-color: #4141FF;
 	border-radius: 4px;
 	margin: 0 30px;
 	height: 100%;
@@ -117,7 +117,8 @@ div.track .material-icons {
 	position: relative;
   	top: 50%;
   	transform: translateY(-50%);
-	font-size: 36px; 
+	font-size: 36px;
+	color: #ff7171;
 } 
  
 h2.innerText {
@@ -150,10 +151,6 @@ div#title {
 	margin-bottom: 0px;
 }
 
-#titleText {
-	font-size: 60px;
-}
-
 #logoutText {
     font-size: 20px;
     text-align: center;
@@ -164,7 +161,7 @@ div#title {
 a.btn {
 	text-decoration: none;
     display: inline-block; 
-    width: 310px;
+    width: 250px;
 	height: 50px;
 	padding-top: 6px;
 	padding-left: 8px;
@@ -254,13 +251,13 @@ div#options a.button {
 	margin-left: 10px;
 	padding: 10px 40px;
 	border-radius: 5px;
-	background-color: #EDC53F;
+	background-color: #94bac1;
 	color: white;
 	text-shadow: none;
 }
 
 div#options a#quit {
-	background-color: #f67c5f;
+	background-color: #ff7171;
 }
 
 div#options a#quit:active {

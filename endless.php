@@ -26,6 +26,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/2048theme.css">
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<meta name="viewport" content="width=device-width, user-scalable=no">

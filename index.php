@@ -34,7 +34,7 @@
     ?>
     <audio id="swipe" src="audio/psst1.ogg" type="audio/ogg"></audio>
 	<div id="title">
-		<h1 id="titleText">SwipeAway</h1>
+		<h1 id="titleText"><img src="images/title2.png"/></h1>
 	</div>
 
 	<form>

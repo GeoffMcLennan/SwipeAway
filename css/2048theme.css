@@ -1,5 +1,10 @@
+@font-face {
+	font-family: "Moon-Light";
+	src: url('Moon-Light.otf') format('opentype');
+}
+
 body {
-	font-family: "Verdanna", sans-serif;
+	font-family: "Moon-Light" !important;
 }
 .ui-body-c { 
     background-color: #FAF8EF !important;
@@ -22,9 +27,8 @@ div#phperr {
 .btn {
 	color: white !important;
 	padding-top: 100px;
-	background-color: #EDC53F;
-	border-radius: 4px;
-	
+	background-color: #4141FF;
+	border-radius: 6px;
 }
 
 form .btn:active {
@@ -122,7 +126,7 @@ a#endlessBtn {
 	text-decoration: none;
 	padding: 15px 20px;
 	border-radius: 5px;
-	background-color: #F59563;
+	background-color: #ff7171;
 	color: white;
 	text-shadow: none;
 	padding-right: 102px

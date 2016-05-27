@@ -64,7 +64,8 @@
             		// Print out all scores
             		$i = 1;
             		while ($score = mysqli_fetch_assoc($scoreobj)) {
-            			echo '<tr><td>'. $i++ .'</td><td>'. $score['score'] .'</td></tr>';
+						if ($i <=10)
+							echo '<tr><td>'. $i++ .'</td><td>'. $score['score'] .'</td></tr>';
             		}
             	}
             ?>

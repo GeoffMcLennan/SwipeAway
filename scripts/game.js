@@ -258,17 +258,21 @@ function setObsListeners() {
 		if($newLane >= 1) {
 			$left = $(this).css("left");
 			$height = $(this).css("height");
-			$(this).remove();
+			
 
 			$target = $('<div></div>');
 			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+			if ($(this).hasClass("twoLane")) {
+				$target.addClass("twoLane")
+			}
+			$(this).remove();
 			
 			$block = $('<div></div>');
 			$block.addClass("obstacle");
 			$target.append($block);
 
 			$($newId).append($target);
-
+			setObsListeners();
 		// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
 		} else {
 			easterEgg();
@@ -320,7 +324,7 @@ function setObsListeners() {
 				$target.append($block);
 
 				$($newId).append($target);
-
+				setObsListeners();
 			// If the new lane is invalid, do not change the obstacle, and instead run the easter egg
 			} else {
 				easterEgg();
@@ -357,7 +361,7 @@ function easterEgg() {
 
 // Generates a random interval that is plus or minus a standard interval relative to the tick length
 function randomIntForInterval(){
-    return Math.floor(Math.random() * (601) + (140*$tickLength));
+    return Math.floor(Math.random() * (601) + (900));
 }
 
 // Moves all obstacles by 1 pixel.

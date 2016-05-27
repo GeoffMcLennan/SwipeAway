@@ -194,6 +194,7 @@ function generate() {
 	// Creates target
 	$target = $('<div></div>');
 	$target.addClass("target");
+    $target.addClass("target1");
 	
 	// Creates obstacle
 	$block = $('<div></div>');
@@ -272,7 +273,7 @@ function generate2() {
 function setObsListeners() {
 
 	// Swipe up listener
-	jQuery("div.target").on("swipeup", function(event) {
+	jQuery("div.target1").on("swipeup", function(event) {
 		// Finds current lane and generates id of new lane
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) - 1;
@@ -286,6 +287,7 @@ function setObsListeners() {
 
 			$target = $('<div></div>');
 			$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+            $target.addClass("target1");
             if ($(this).hasClass("twoLane")) {
 				$target.addClass("twoLane")
 			}
@@ -306,7 +308,7 @@ function setObsListeners() {
 	});
 
 	// Swipe down listener
-	jQuery("div.target").on("swipedown", function(event) {
+	jQuery("div.target1").on("swipedown", function(event) {
 		$parentId = $(this).parent().attr("id").replace(/[^\d.]/g, "");
 		$newLane = parseInt($parentId) + 1;
 		$newId = "#t" + $newLane;
@@ -320,6 +322,7 @@ function setObsListeners() {
 
 				$target = $('<div></div>');
 				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+                $target.addClass("target1");
 				$target.addClass("twoLane");
 				
 				$block = $('<div></div>');
@@ -341,6 +344,7 @@ function setObsListeners() {
 
 				$target = $('<div></div>');
 				$target.addClass("target").css({"left": $left, "height": $height, "top": "0"});
+                $target.addClass("target1");
 			
 				$block = $('<div></div>');
 				$block.addClass("obstacle");
@@ -444,7 +448,7 @@ function move() {
 // Removes obstacle if it collides with a sprite.
 function collision() {
 	var audioRemove = document.getElementById("audioRemove");
-	
+	var width = parseInt($("div#container").css("width"));
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.
@@ -454,20 +458,33 @@ function collision() {
     var spritePos4 = $("#s4").offset().left;
     $leftOffset = 25 - $innerMargin;
     $rightOffset = -$innerMargin;
-	
+
 	$colFlag = 0;
 	$(block).each(function() {
-        // If the scrambler's position reaches 0, remove obstacles and sprites, and generate new sprites.
+        // If the scrambler's position reaches the end, remove obstacles and sprites, and generate new sprites.
         if ($(this).hasClass('scrambler')) {
-            var object = $(this).offset().left;
-			if (object <= -35) {
-                $(block).remove();
-                $("#s1").remove();
-                $("#s2").remove();
-                $("#s3").remove();
-                $("#s4").remove();
-				generateSprites();
-			}
+            $object = $(this).offset().left;
+            if (screen.height <= 800 && screen.width <= 800) {
+                if ($object <= -40) {
+                    $(this).remove();
+                    $(block).remove();
+                    $("#s1").remove();
+                    $("#s2").remove();
+                    $("#s3").remove();
+                    $("#s4").remove();
+                    generateSprites();
+                } 
+            } else { 
+                if ($object <= 330) {
+                    $(this).remove();
+                    $(block).remove();
+                    $("#s1").remove();
+                    $("#s2").remove();
+                    $("#s3").remove();
+                    $("#s4").remove();
+				    generateSprites();
+                }
+            }
         }
 		// If its a two lane obstacle, check sprites in current lane and lane below
 		// Else if its a one lane obstacle, only check sprites in current lane

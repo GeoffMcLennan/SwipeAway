@@ -162,7 +162,6 @@ function startGame() {
 
 $time = 0;
 $interval = 0;
-$interval2 = 0;
 function tick() {
 	// Checks to see if another obstacle should be generated
 	// Generates obstacle, randomly selects an interval, and resets timer
@@ -170,9 +169,9 @@ function tick() {
 		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
 			if (Math.random() >= 0.5) {
 				generate();
-			} else if (Math.random() <= 0.2) {
+			} else if (Math.random() <= 0.1) {
 				generate2();
-			} else if (Math.random() <= 0.5) {
+			} else if (Math.random() <= 0.1) {
                 generateScrambler();
             }
 		$interval = randomIntForInterval();

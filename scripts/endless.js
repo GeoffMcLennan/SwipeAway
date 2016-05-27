@@ -442,7 +442,6 @@ function move() {
 // Removes obstacle if it collides with a sprite.
 function collision() {
 	var audioRemove = document.getElementById("audioRemove");
-	var width = parseInt($("div#container").css("width"));
     var block = $(".target");
     $innerMargin = parseInt($("div.obstacle").css("margin-left"));
     // Left position of each sprite.

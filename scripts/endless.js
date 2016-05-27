@@ -162,13 +162,12 @@ function tick() {
 	// Generates obstacle, randomly selects an interval, and resets timer
 	if ($time >= $interval) {
 		// Generate 2 by 1 obstacle 25% of the time and 1 by 1 75% of the time
-			if (Math.random() >= 0.5) {
+			$rand = Math.random();
+			if ($rand >= 0.1) {
 				generate();
-			} else if (Math.random() <= 0.1) {
+			} else {
 				generate2();
-			} else if (Math.random() <= 0.1) {
-                generateScrambler();
-            }
+			}
 		$interval = randomIntForInterval();
 		$time = 0;
 	}

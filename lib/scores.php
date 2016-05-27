@@ -31,7 +31,7 @@ while ($score = mysqli_fetch_assoc($result)) {
     if ($i <= 5) {
     	echo "<tr><td>" . $i . "</td>" . "<td><span data-role='none'><a name='link' href=profile.php?id=". $score['id'] ." rel='external'>" . $score['username'] . "</a></span></td>" . "<td>" . $score['highscore'] . "</td></tr>";
     } else {
-    	if ($sessUser == $score['username']) {
+    	if (isset($_SESSION['SESS_MEMBER_ID']) && $sessUser == $score['username']) {
     		echo "<tr id='userScore'><td>" . $i . "</td>" . "<td>" . $sessUser . "</td>" . "<td>" . $score['highscore'] . "</td></tr>"; 
     	}
     }
